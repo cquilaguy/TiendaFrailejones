@@ -19,6 +19,7 @@ public class EmpleadoVista extends javax.swing.JFrame {
     private Empleado empleado = new Empleado();
     private final ConsultasEmpleado consultasEmpleado = new ConsultasEmpleado();
     private final ControladorEmpleado controladorEmpleado = new ControladorEmpleado(consultasEmpleado);
+    private boolean actualizar = false;
 
     /**
      * Creates new form Empleado
@@ -181,12 +182,12 @@ public class EmpleadoVista extends javax.swing.JFrame {
         try {
             verificarCampos();
 
-            empleado = controladorEmpleado.existePorId(Long.valueOf(inputIdentificacion.getText()));
-            System.out.println(empleado.getIdentificacion());
-            System.out.println(inputIdentificacion.getText());
-            if (empleado != null &&  empleado.getIdentificacion() == inputIdentificacion.getText() ) {
-                JOptionPane.showMessageDialog(null, "Ya existe un usuario con ese número de identificación");
-            } else if (empleado.getId() != null) {
+            Empleado emp = controladorEmpleado.existePorId(Long.valueOf(inputIdentificacion.getText()));
+       
+            System.out.println(Objects.equals(emp.getIdentificacion(), inputIdentificacion.getText()));
+            if(!actualizar && emp != null && Objects.equals(emp.getIdentificacion(), inputIdentificacion.getText())){
+                JOptionPane.showMessageDialog(null, "Usuario ya existe");
+            } else if (empleado.getId() != null && actualizar) {
                 empleado.setId(empleado.getId());
                 empleado.setNombre(inputNombre.getText());
                 empleado.setTelefono(inputTelefono.getText());
@@ -214,12 +215,12 @@ public class EmpleadoVista extends javax.swing.JFrame {
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Debe ingresar: " + e.getMessage());
         }
-        
+
 
     }//GEN-LAST:event_btnGuardarActionPerformed
 
     private void verificarCampos() throws Exception {
-       
+
         if (inputNombre.getText().isEmpty()) {
             throw new Exception("nombre");
         } else if (inputTelefono.getText().isEmpty()) {
@@ -229,7 +230,7 @@ public class EmpleadoVista extends javax.swing.JFrame {
         } else if (inputTipoID.getText().isEmpty()) {
             throw new Exception("tipo de id");
         }
-   
+
     }
 
     private void limpiarCampos() {
@@ -237,6 +238,7 @@ public class EmpleadoVista extends javax.swing.JFrame {
         inputIdentificacion.setText("");
         inputTelefono.setText("");
         inputTipoID.setText("");
+        actualizar = false;
     }
 
     private void idBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_idBuscarActionPerformed
@@ -246,7 +248,7 @@ public class EmpleadoVista extends javax.swing.JFrame {
 
     private void buscarPorIdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscarPorIdActionPerformed
         // TODO add your handling code here:
-        
+
         if (idBuscar.getText().isEmpty() || empleado == null) {
             JOptionPane.showMessageDialog(null, "Empleado no existe");
         } else {
@@ -257,15 +259,20 @@ public class EmpleadoVista extends javax.swing.JFrame {
             inputNombre.setText(empleado.getNombre());
             btnGuardar.setText("Actualizar");
             btnEliminar.setEnabled(true);
-        }
+            actualizar = true;
+            idBuscar.setText("");
+       }
     }//GEN-LAST:event_buscarPorIdActionPerformed
 
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
         // TODO add your handling code here:
-        if (idBuscar.getText().isEmpty() || empleado.getId() == null) {
-            JOptionPane.showMessageDialog(null, "Elimine primero un empleado");
+        if (empleado !=null && empleado.getId() == null) {
+            JOptionPane.showMessageDialog(null, "Elija primero un empleado");
         } else {
             controladorEmpleado.eliminar(empleado.getId());
+            limpiarCampos();
+            empleado = new Empleado();
+            btnGuardar.setText("Guardar");
             JOptionPane.showMessageDialog(null, "Se ha eliminado correctamente");
         }
 

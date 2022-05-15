@@ -5,9 +5,6 @@
 
 package tiendafrailejones;
 
-import tiendafrailejones.controlador.ControladorEmpleado;
-import tiendafrailejones.modelo.ConsultasEmpleado;
-import tiendafrailejones.modelo.Empleado;
 import tiendafrailejones.vista.EmpleadoVista;
 
 /**

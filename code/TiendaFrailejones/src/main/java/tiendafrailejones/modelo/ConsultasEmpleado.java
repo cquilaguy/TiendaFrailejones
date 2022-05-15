@@ -106,10 +106,10 @@ public class ConsultasEmpleado extends Conexion implements IEmpleado {
                 empleado.setTipoUsuario(resultSet.getString("tipo_usuario"));
                 return empleado;
             }
-            return null;
+            return empleado;
         } catch (SQLException e) {
             System.err.println(e);
-            return null;
+            return empleado;
         } finally {
             try {
                 connection.close();
