@@ -2,6 +2,13 @@
 -- Crear la base de datos
 CREATE DATABASE tiendafrailejones;
 
+-- Crear un nuevo usuario
+CREATE USER 'admin'@'localhost' IDENTIFIED BY 'admin';
+
+
+-- Asignarle permisos a un usuario
+GRANT CREATE, ALTER, DROP, INSERT, UPDATE, DELETE, SELECT, REFERENCES, RELOAD on *.* TO 'admin'@'localhost' WITH GRANT OPTION;
+
 -- Usar la base de datos que acabamos de crear
 USE tiendafrailejones;
 
