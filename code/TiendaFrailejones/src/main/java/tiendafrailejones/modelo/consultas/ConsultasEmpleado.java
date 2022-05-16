@@ -1,9 +1,11 @@
-package tiendafrailejones.modelo;
+package tiendafrailejones.modelo.consultas;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import tiendafrailejones.modelo.Conexion;
+import tiendafrailejones.modelo.Empleado;
 import tiendafrailejones.modelo.interfaces.IEmpleado;
 
 public class ConsultasEmpleado extends Conexion implements IEmpleado {

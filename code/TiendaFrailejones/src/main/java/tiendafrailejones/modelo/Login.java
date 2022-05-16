@@ -2,10 +2,11 @@ package tiendafrailejones.modelo;
 
 public class Login {
 
+    private Long id; 
     private String user;
     private String password;
     private String userType;
-    private String userId;
+    private String idUsuario;
 
     public String getUser() {
         return user;
@@ -31,12 +32,22 @@ public class Login {
         this.userType = userType;
     }
 
-    public String getUserId() {
-        return userId;
+    public Long getId() {
+        return id;
     }
 
-    public void setUserId(String userId) {
-        this.userId = userId;
+    public void setId(Long id) {
+        this.id = id;
     }
+
+    public String getIdUsuario() {
+        return idUsuario;
+    }
+
+    public void setIdUsuario(String idUsuario) {
+        this.idUsuario = idUsuario;
+    }
+
+
 
 }

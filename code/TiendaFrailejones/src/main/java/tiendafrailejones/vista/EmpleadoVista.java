@@ -7,7 +7,7 @@ package tiendafrailejones.vista;
 import java.util.Objects;
 import javax.swing.JOptionPane;
 import tiendafrailejones.controlador.ControladorEmpleado;
-import tiendafrailejones.modelo.ConsultasEmpleado;
+import tiendafrailejones.modelo.consultas.ConsultasEmpleado;
 import tiendafrailejones.modelo.Empleado;
 
 /**
@@ -124,7 +124,7 @@ public class EmpleadoVista extends javax.swing.JFrame {
                         .addComponent(btnGuardar)
                         .addGap(143, 143, 143)
                         .addComponent(btnCancelar)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 134, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 154, Short.MAX_VALUE)
                         .addComponent(btnEliminar)
                         .addGap(94, 94, 94))))
             .addGroup(layout.createSequentialGroup()
@@ -165,7 +165,7 @@ public class EmpleadoVista extends javax.swing.JFrame {
                     .addComponent(jLabel5)
                     .addComponent(idBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(buscarPorId))
-                .addContainerGap(97, Short.MAX_VALUE))
+                .addContainerGap(93, Short.MAX_VALUE))
         );
 
         pack();

@@ -1,6 +1,6 @@
 package tiendafrailejones.controlador;
 
-import tiendafrailejones.modelo.ConsultasEmpleado;
+import tiendafrailejones.modelo.consultas.ConsultasEmpleado;
 import tiendafrailejones.modelo.Empleado;
 import tiendafrailejones.modelo.interfaces.IEmpleado;
 

@@ -6,6 +6,7 @@
 package tiendafrailejones;
 
 import tiendafrailejones.vista.EmpleadoVista;
+import tiendafrailejones.vista.LoginForm;
 
 /**
  *
@@ -15,8 +16,11 @@ public class TiendaFrailejones {
 
     public static void main(String[] args) {
        
-        EmpleadoVista empleadoVista = new EmpleadoVista();
-        empleadoVista.setVisible(true);
+//        EmpleadoVista empleadoVista = new EmpleadoVista();
+//        empleadoVista.setVisible(true);
+        
+        LoginForm loginForm = new LoginForm();
+        loginForm.setVisible(true);
         
     }
 }
