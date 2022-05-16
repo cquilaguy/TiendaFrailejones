@@ -21,3 +21,10 @@ CREATE TABLE empleado(
 	tipo_Identificacion VARCHAR(200) NOT NULL,
 	tipo_usuario VARCHAR(200) NOT NULL
 );
+
+-- Usuario de prueba
+INSERT INTO login (user, password, user_type, id_usuario) 
+values('jose@gmail.com', 'AA22', 'empleado', '1234');
+
+-- prueba select
+SELECT * FROM login WHERE user = 'jose@gmail.com' AND password = 'AA22';
