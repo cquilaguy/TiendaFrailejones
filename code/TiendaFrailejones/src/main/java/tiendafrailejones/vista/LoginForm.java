@@ -7,6 +7,7 @@ package tiendafrailejones.vista;
 import java.util.Arrays;
 import javax.swing.JOptionPane;
 import tiendafrailejones.controlador.ControladorLogin;
+import tiendafrailejones.modelo.Administrador;
 import tiendafrailejones.modelo.Login;
 import tiendafrailejones.modelo.consultas.ConsultasLogin;
 
@@ -25,6 +26,7 @@ public class LoginForm extends javax.swing.JFrame {
      */
     public LoginForm() {
         initComponents();
+        this.setLocationRelativeTo(null);
     }
 
     /**
@@ -78,9 +80,7 @@ public class LoginForm extends javax.swing.JFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel2)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel1)
-                                .addGap(31, 31, 31)))
+                            .addComponent(jLabel1))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(inputPassword, javax.swing.GroupLayout.DEFAULT_SIZE, 140, Short.MAX_VALUE)
@@ -106,7 +106,7 @@ public class LoginForm extends javax.swing.JFrame {
                 .addContainerGap(160, Short.MAX_VALUE))
         );
 
-        pack();
+        setBounds(0, 0, 651, 483);
     }// </editor-fold>//GEN-END:initComponents
 
     private void inputUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_inputUsuarioActionPerformed
@@ -132,7 +132,11 @@ public class LoginForm extends javax.swing.JFrame {
         if (loginTmp == null) {
             JOptionPane.showMessageDialog(null, "El usuario no existe");
         } else {
-            JOptionPane.showMessageDialog(null, "El usuario existe");
+            if (loginTmp.getUserType().equals("ADMINISTRADOR")) {
+                AdministradorVistaPrincipal administradorVistaPrincipal = new AdministradorVistaPrincipal();
+                administradorVistaPrincipal.setVisible(true);
+                this.dispose();
+            }
         }
 
     }//GEN-LAST:event_btnLoginActionPerformed

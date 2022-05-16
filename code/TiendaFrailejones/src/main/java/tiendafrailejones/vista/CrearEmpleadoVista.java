@@ -14,7 +14,7 @@ import tiendafrailejones.modelo.Empleado;
  *
  * @author alan
  */
-public class EmpleadoVista extends javax.swing.JFrame {
+public class CrearEmpleadoVista extends javax.swing.JFrame {
 
     private Empleado empleado = new Empleado();
     private final ConsultasEmpleado consultasEmpleado = new ConsultasEmpleado();
@@ -24,9 +24,10 @@ public class EmpleadoVista extends javax.swing.JFrame {
     /**
      * Creates new form Empleado
      */
-    public EmpleadoVista() {
+    public CrearEmpleadoVista() {
         initComponents();
         btnEliminar.setEnabled(false);
+        this.setLocationRelativeTo(null);
     }
 
     /**
@@ -77,6 +78,11 @@ public class EmpleadoVista extends javax.swing.JFrame {
         });
 
         btnCancelar.setText("Cancelar");
+        btnCancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCancelarActionPerformed(evt);
+            }
+        });
 
         btnEliminar.setText("Eliminar");
         btnEliminar.addActionListener(new java.awt.event.ActionListener() {
@@ -279,6 +285,15 @@ public class EmpleadoVista extends javax.swing.JFrame {
 
     }//GEN-LAST:event_btnEliminarActionPerformed
 
+    private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
+        // TODO add your handling code here:
+        AdministrarUsuarios administrarUsuarios = new AdministrarUsuarios();
+        administrarUsuarios.setVisible(true);
+        empleado = null;
+        limpiarCampos();
+        this.dispose();
+    }//GEN-LAST:event_btnCancelarActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -296,21 +311,23 @@ public class EmpleadoVista extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(EmpleadoVista.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CrearEmpleadoVista.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(EmpleadoVista.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CrearEmpleadoVista.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(EmpleadoVista.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CrearEmpleadoVista.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(EmpleadoVista.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CrearEmpleadoVista.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new EmpleadoVista().setVisible(true);
+                new CrearEmpleadoVista().setVisible(true);
             }
         });
     }
