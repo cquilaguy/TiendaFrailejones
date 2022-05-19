@@ -26,5 +26,9 @@ CREATE TABLE empleado(
 INSERT INTO login (user, password, user_type, id_usuario) 
 values('jose@gmail.com', 'AA22', 'empleado', '1234');
 
+-- Admins
+INSERT INTO login (user, password, user_type, id_usuario) 
+values('carlos@gmail.com', 'AA22', 'ADMINISTRADOR', '12345');
+
 -- prueba select
 SELECT * FROM login WHERE user = 'jose@gmail.com' AND password = 'AA22';
