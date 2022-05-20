@@ -36,7 +36,7 @@ public class ConsultasLogin extends Conexion implements ILogin {
                 loginUsuario.setUser(resultSet.getString("user"));
                 loginUsuario.setPassword(resultSet.getString("password"));
                 loginUsuario.setUserType(resultSet.getString("user_type"));
-                loginUsuario.setIdUsuario(resultSet.getString("id_usuario"));
+                loginUsuario.setIdUsuario(resultSet.getLong("id_usuario"));
             }
             return loginUsuario;
         } catch (SQLException e) {
@@ -53,7 +53,28 @@ public class ConsultasLogin extends Conexion implements ILogin {
 
     @Override
     public boolean crearLoginParaUsaurio(Login login) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        PreparedStatement ps = null;
+        Connection connection = getConexion();
+        String sql = "INSERT INTO login (user, password, user_type, id_usuario)"
+                + "VALUES (?, ?, ?, ?)";
+        try {
+            ps = connection.prepareStatement(sql);
+            ps.setString(1, login.getUser());
+            ps.setString(2, login.getPassword());
+            ps.setString(3, login.getUserType());
+            ps.setLong(4, login.getIdUsuario());
+            ps.execute();
+            return true;
+        } catch (SQLException e) {
+            System.err.println(e);
+            return false;
+        } finally {
+            try {
+                connection.close();
+            } catch (SQLException e) {
+                System.err.println(e);
+            }
+        }
     }
 
 }

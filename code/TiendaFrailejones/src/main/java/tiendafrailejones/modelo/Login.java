@@ -6,7 +6,7 @@ public class Login {
     private String user;
     private String password;
     private String userType;
-    private String idUsuario;
+    private Long idUsuario;
 
     public String getUser() {
         return user;
@@ -40,14 +40,11 @@ public class Login {
         this.id = id;
     }
 
-    public String getIdUsuario() {
+    public Long getIdUsuario() {
         return idUsuario;
     }
 
-    public void setIdUsuario(String idUsuario) {
+    public void setIdUsuario(Long idUsuario) {
         this.idUsuario = idUsuario;
     }
-
-
-
 }

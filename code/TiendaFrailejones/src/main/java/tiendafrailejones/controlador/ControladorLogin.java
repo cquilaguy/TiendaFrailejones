@@ -1,10 +1,14 @@
 package tiendafrailejones.controlador;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+import tiendafrailejones.modelo.Conexion;
 import tiendafrailejones.modelo.Login;
 import tiendafrailejones.modelo.consultas.ConsultasLogin;
 import tiendafrailejones.modelo.interfaces.ILogin;
 
-public class ControladorLogin implements ILogin{
+public class ControladorLogin extends Conexion implements ILogin{
 
     private ConsultasLogin consultasLogin;
 
@@ -19,7 +23,7 @@ public class ControladorLogin implements ILogin{
 
     @Override
     public boolean crearLoginParaUsaurio(Login login) {
-        return false;
+        return consultasLogin.crearLoginParaUsaurio(login);
     }
     
 }

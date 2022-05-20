@@ -53,6 +53,7 @@ public class CrearEmpleadoVista extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         idBuscar = new javax.swing.JTextField();
         buscarPorId = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -106,6 +107,8 @@ public class CrearEmpleadoVista extends javax.swing.JFrame {
             }
         });
 
+        jButton1.setText("Volver");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -134,12 +137,17 @@ public class CrearEmpleadoVista extends javax.swing.JFrame {
                         .addComponent(btnEliminar)
                         .addGap(94, 94, 94))))
             .addGroup(layout.createSequentialGroup()
-                .addGap(62, 62, 62)
-                .addComponent(jLabel5)
-                .addGap(38, 38, 38)
-                .addComponent(idBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 358, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(33, 33, 33)
-                .addComponent(buscarPorId)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(62, 62, 62)
+                        .addComponent(jLabel5)
+                        .addGap(38, 38, 38)
+                        .addComponent(idBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 358, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(33, 33, 33)
+                        .addComponent(buscarPorId))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(309, 309, 309)
+                        .addComponent(jButton1)))
                 .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -171,7 +179,9 @@ public class CrearEmpleadoVista extends javax.swing.JFrame {
                     .addComponent(jLabel5)
                     .addComponent(idBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(buscarPorId))
-                .addContainerGap(93, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 37, Short.MAX_VALUE)
+                .addComponent(jButton1)
+                .addGap(34, 34, 34))
         );
 
         pack();
@@ -342,6 +352,7 @@ public class CrearEmpleadoVista extends javax.swing.JFrame {
     private javax.swing.JTextField inputNombre;
     private javax.swing.JTextField inputTelefono;
     private javax.swing.JTextField inputTipoID;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
