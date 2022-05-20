@@ -22,6 +22,14 @@ CREATE TABLE empleado(
 	tipo_usuario VARCHAR(200) NOT NULL
 );
 
+CREATE TABLE login(
+	id INT AUTO_INCREMENT PRIMARY KEY,
+	user VARCHAR(200) NOT NULL,
+	password VARCHAR(200) NOT NULL,
+	user_type VARCHAR(200) NOT NULL,
+	id_usuario VARCHAR(200) NOT NULL
+);
+
 -- Usuario de prueba
 INSERT INTO login (user, password, user_type, id_usuario) 
 values('jose@gmail.com', 'AA22', 'empleado', '1234');
