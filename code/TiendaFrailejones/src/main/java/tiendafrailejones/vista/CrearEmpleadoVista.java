@@ -108,6 +108,11 @@ public class CrearEmpleadoVista extends javax.swing.JFrame {
         });
 
         jButton1.setText("Volver");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -133,7 +138,7 @@ public class CrearEmpleadoVista extends javax.swing.JFrame {
                         .addComponent(btnGuardar)
                         .addGap(143, 143, 143)
                         .addComponent(btnCancelar)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 154, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 200, Short.MAX_VALUE)
                         .addComponent(btnEliminar)
                         .addGap(94, 94, 94))))
             .addGroup(layout.createSequentialGroup()
@@ -179,7 +184,7 @@ public class CrearEmpleadoVista extends javax.swing.JFrame {
                     .addComponent(jLabel5)
                     .addComponent(idBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(buscarPorId))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 37, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 27, Short.MAX_VALUE)
                 .addComponent(jButton1)
                 .addGap(34, 34, 34))
         );
@@ -303,6 +308,14 @@ public class CrearEmpleadoVista extends javax.swing.JFrame {
         limpiarCampos();
         this.dispose();
     }//GEN-LAST:event_btnCancelarActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        AdministrarUsuarios administrarUsuarios = new AdministrarUsuarios();
+        administrarUsuarios.setVisible(true);
+        this.dispose();
+        limpiarCampos();
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments

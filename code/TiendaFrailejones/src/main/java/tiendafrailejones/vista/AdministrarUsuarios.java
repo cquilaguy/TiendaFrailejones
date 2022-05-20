@@ -30,7 +30,7 @@ public class AdministrarUsuarios extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         btnAsignarUsuario = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
+        btnVolver = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -55,7 +55,12 @@ public class AdministrarUsuarios extends javax.swing.JFrame {
             }
         });
 
-        jButton4.setText("VOLVER");
+        btnVolver.setText("VOLVER");
+        btnVolver.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnVolverActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -71,7 +76,7 @@ public class AdministrarUsuarios extends javax.swing.JFrame {
                             .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 376, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(290, 290, 290)
-                        .addComponent(jButton4)))
+                        .addComponent(btnVolver)))
                 .addContainerGap(176, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -84,7 +89,7 @@ public class AdministrarUsuarios extends javax.swing.JFrame {
                 .addGap(23, 23, 23)
                 .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(35, 35, 35)
-                .addComponent(jButton4)
+                .addComponent(btnVolver)
                 .addGap(21, 21, 21))
         );
 
@@ -108,6 +113,13 @@ public class AdministrarUsuarios extends javax.swing.JFrame {
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void btnVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVolverActionPerformed
+        // TODO add your handling code here:
+        AdministradorVistaPrincipal administradorVistaPrincipal = new AdministradorVistaPrincipal();
+        administradorVistaPrincipal.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_btnVolverActionPerformed
 
     /**
      * @param args the command line arguments
@@ -146,8 +158,8 @@ public class AdministrarUsuarios extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAsignarUsuario;
+    private javax.swing.JButton btnVolver;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton4;
     // End of variables declaration//GEN-END:variables
 }

@@ -78,7 +78,7 @@ public class LoginForm extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(398, Short.MAX_VALUE)
+                .addContainerGap(503, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                         .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
@@ -115,7 +115,7 @@ public class LoginForm extends javax.swing.JFrame {
                 .addContainerGap(139, Short.MAX_VALUE))
         );
 
-        setBounds(0, 0, 651, 483);
+        setBounds(0, 0, 756, 483);
     }// </editor-fold>//GEN-END:initComponents
 
     private void inputUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_inputUsuarioActionPerformed
