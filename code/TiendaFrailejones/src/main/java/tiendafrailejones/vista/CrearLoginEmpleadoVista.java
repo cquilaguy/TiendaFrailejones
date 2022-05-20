@@ -247,7 +247,7 @@ public class CrearLoginEmpleadoVista extends javax.swing.JFrame {
 
     private void btnVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVolverActionPerformed
         // TODO add your handling code here:
-        AdministrarUsuarios administrarUsuarios = new AdministrarUsuarios();
+        AdministrarUsuariosVista administrarUsuarios = new AdministrarUsuariosVista();
         administrarUsuarios.setVisible(true);
         this.dispose();
         limpiarCampos();

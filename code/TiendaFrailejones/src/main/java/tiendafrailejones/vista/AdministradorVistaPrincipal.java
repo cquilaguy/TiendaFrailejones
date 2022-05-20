@@ -86,7 +86,7 @@ public class AdministradorVistaPrincipal extends javax.swing.JFrame {
 
     private void btnGestionarUsuriosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGestionarUsuriosActionPerformed
         // TODO add your handling code here:
-        AdministrarUsuarios administrarUsuarios = new AdministrarUsuarios();
+        AdministrarUsuariosVista administrarUsuarios = new AdministrarUsuariosVista();
         administrarUsuarios.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnGestionarUsuriosActionPerformed

@@ -302,7 +302,7 @@ public class CrearEmpleadoVista extends javax.swing.JFrame {
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
         // TODO add your handling code here:
-        AdministrarUsuarios administrarUsuarios = new AdministrarUsuarios();
+        AdministrarUsuariosVista administrarUsuarios = new AdministrarUsuariosVista();
         administrarUsuarios.setVisible(true);
         empleado = null;
         limpiarCampos();
@@ -311,7 +311,7 @@ public class CrearEmpleadoVista extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        AdministrarUsuarios administrarUsuarios = new AdministrarUsuarios();
+        AdministrarUsuariosVista administrarUsuarios = new AdministrarUsuariosVista();
         administrarUsuarios.setVisible(true);
         this.dispose();
         limpiarCampos();
