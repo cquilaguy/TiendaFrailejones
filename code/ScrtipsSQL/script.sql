@@ -1,9 +1,9 @@
 
 -- Crear la base de datos
--- CREATE DATABASE tiendafrailejones;
+CREATE DATABASE tiendafrailejones;
 
 -- Crear un nuevo usuario
--- CREATE USER 'admin'@'localhost' IDENTIFIED BY 'admin';
+CREATE USER 'admin'@'localhost' IDENTIFIED BY 'admin';
 
 
 -- Asignarle permisos a un usuario
@@ -39,7 +39,7 @@ CREATE TABLE cliente(
 	identificacion VARCHAR(200) NOT NULL, 
 	tipo_Identificacion VARCHAR(200) NOT NULL,
 	tipo_usuario VARCHAR(200) NOT NULL,
-    direccion VARCHAR(100) NOT NULL
+    	direccion VARCHAR(100) NOT NULL
 );
 
 CREATE TABLE deuda(
@@ -68,7 +68,7 @@ CREATE TABLE productos(
 
 -- Usuario de prueba
 INSERT INTO login (user, password, user_type, id_usuario) 
-values('jose@gmail.com', 'AA22', 'empleado', '1234');
+values('jose@gmail.com', 'AA22', 'EMPLEADO', '1234');
 
 -- Admins
 INSERT INTO login (user, password, user_type, id_usuario) 
