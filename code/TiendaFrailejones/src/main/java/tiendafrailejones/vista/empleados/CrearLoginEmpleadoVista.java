@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package tiendafrailejones.vista;
+package tiendafrailejones.vista.empleados;
 
 import javax.swing.JOptionPane;
 import tiendafrailejones.controlador.ControladorEmpleado;
@@ -11,6 +11,7 @@ import tiendafrailejones.modelo.Empleado;
 import tiendafrailejones.modelo.Login;
 import tiendafrailejones.modelo.consultas.ConsultasEmpleado;
 import tiendafrailejones.modelo.consultas.ConsultasLogin;
+import tiendafrailejones.vista.AdministrarUsuariosVista;
 
 /**
  *
@@ -59,7 +60,6 @@ public class CrearLoginEmpleadoVista extends javax.swing.JFrame {
         inputPassword = new javax.swing.JPasswordField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(687, 457));
 
         jLabel1.setText("Nombre usuario");
 

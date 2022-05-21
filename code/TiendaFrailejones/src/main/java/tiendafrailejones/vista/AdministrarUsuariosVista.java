@@ -4,6 +4,10 @@
  */
 package tiendafrailejones.vista;
 
+import tiendafrailejones.vista.empleados.CrearEmpleadoVista;
+import tiendafrailejones.vista.empleados.TablaEmpleadoVista;
+import tiendafrailejones.vista.empleados.CrearLoginEmpleadoVista;
+
 /**
  *
  * @author alan

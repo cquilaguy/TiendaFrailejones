@@ -3,13 +3,14 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 
-package tiendafrailejones.vista;
+package tiendafrailejones.vista.empleados;
 
 import java.util.List;
 import javax.swing.table.DefaultTableModel;
 import tiendafrailejones.controlador.ControladorEmpleado;
 import tiendafrailejones.modelo.Empleado;
 import tiendafrailejones.modelo.consultas.ConsultasEmpleado;
+import tiendafrailejones.vista.AdministrarUsuariosVista;
 
 /**
  *

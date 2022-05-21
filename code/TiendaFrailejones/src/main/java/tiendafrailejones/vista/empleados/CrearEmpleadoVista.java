@@ -2,13 +2,14 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package tiendafrailejones.vista;
+package tiendafrailejones.vista.empleados;
 
 import java.util.Objects;
 import javax.swing.JOptionPane;
 import tiendafrailejones.controlador.ControladorEmpleado;
 import tiendafrailejones.modelo.consultas.ConsultasEmpleado;
 import tiendafrailejones.modelo.Empleado;
+import tiendafrailejones.vista.AdministrarUsuariosVista;
 
 /**
  *
