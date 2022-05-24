@@ -50,11 +50,10 @@ public class TablaEmpleadoVista extends javax.swing.JFrame {
             String [] empleadoDatos = new String[6];
             empleadoDatos[0] = String.valueOf(emp.getId());
             empleadoDatos[1] = emp.getNombre();
-            empleadoDatos[2] = emp.getIdentificacion();
-            empleadoDatos[3] = emp.getTelefono();
-            empleadoDatos[4] = emp.getIdentificacion();
-            empleadoDatos[5] = emp.getTipoIdentificacion();
-            empleadoDatos[5] = emp.getTipoUsuario();       
+            empleadoDatos[2] = emp.getTelefono();
+            empleadoDatos[3] = emp.getIdentificacion();
+            empleadoDatos[4] = emp.getTipoIdentificacion();
+            empleadoDatos[5] = emp.getTipoUsuario();     
             defaultTableModel.addRow(empleadoDatos);
         }
         
