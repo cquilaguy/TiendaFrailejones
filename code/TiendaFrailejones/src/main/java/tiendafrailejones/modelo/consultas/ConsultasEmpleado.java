@@ -71,7 +71,7 @@ public class ConsultasEmpleado extends Conexion implements IEmpleado {
     public void eliminar(Long id) {
         PreparedStatement ps = null;
         Connection connection = getConexion();
-        String sql = "DELETE FROM empleado WHERE id = ?";
+        String sql = "UPDATE empleado SET activo = 0 WHERE id = ?";
         try {
             ps = connection.prepareStatement(sql);
             ps.setLong(1, id);
