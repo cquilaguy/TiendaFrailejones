@@ -1,5 +1,6 @@
 package tiendafrailejones;
 
+import tiendafrailejones.utils.AES;
 import tiendafrailejones.vista.LoginForm;
 
 /**
@@ -9,11 +10,9 @@ import tiendafrailejones.vista.LoginForm;
 public class TiendaFrailejones {
 
     public static void main(String[] args) {
-      
+
         LoginForm loginForm = new LoginForm();
         loginForm.setVisible(true);
 
-//        TablaEmpleadoVista tablaEmpleadoVista = new TablaEmpleadoVista();
-//        tablaEmpleadoVista.setVisible(true);
     }
 }
