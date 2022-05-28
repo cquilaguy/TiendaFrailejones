@@ -2,19 +2,20 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package tiendafrailejones.vista;
+package tiendafrailejones.vista.empleados;
 
 import java.util.Objects;
 import javax.swing.JOptionPane;
 import tiendafrailejones.controlador.ControladorEmpleado;
-import tiendafrailejones.modelo.ConsultasEmpleado;
+import tiendafrailejones.modelo.consultas.ConsultasEmpleado;
 import tiendafrailejones.modelo.Empleado;
+import tiendafrailejones.vista.AdministrarUsuariosVista;
 
 /**
  *
  * @author alan
  */
-public class EmpleadoVista extends javax.swing.JFrame {
+public class CrearEmpleadoVista extends javax.swing.JFrame {
 
     private Empleado empleado = new Empleado();
     private final ConsultasEmpleado consultasEmpleado = new ConsultasEmpleado();
@@ -24,9 +25,10 @@ public class EmpleadoVista extends javax.swing.JFrame {
     /**
      * Creates new form Empleado
      */
-    public EmpleadoVista() {
+    public CrearEmpleadoVista() {
         initComponents();
         btnEliminar.setEnabled(false);
+        this.setLocationRelativeTo(null);
     }
 
     /**
@@ -52,6 +54,7 @@ public class EmpleadoVista extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         idBuscar = new javax.swing.JTextField();
         buscarPorId = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -77,6 +80,11 @@ public class EmpleadoVista extends javax.swing.JFrame {
         });
 
         btnCancelar.setText("Cancelar");
+        btnCancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCancelarActionPerformed(evt);
+            }
+        });
 
         btnEliminar.setText("Eliminar");
         btnEliminar.addActionListener(new java.awt.event.ActionListener() {
@@ -97,6 +105,13 @@ public class EmpleadoVista extends javax.swing.JFrame {
         buscarPorId.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 buscarPorIdActionPerformed(evt);
+            }
+        });
+
+        jButton1.setText("Volver");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
             }
         });
 
@@ -124,16 +139,21 @@ public class EmpleadoVista extends javax.swing.JFrame {
                         .addComponent(btnGuardar)
                         .addGap(143, 143, 143)
                         .addComponent(btnCancelar)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 134, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 200, Short.MAX_VALUE)
                         .addComponent(btnEliminar)
                         .addGap(94, 94, 94))))
             .addGroup(layout.createSequentialGroup()
-                .addGap(62, 62, 62)
-                .addComponent(jLabel5)
-                .addGap(38, 38, 38)
-                .addComponent(idBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 358, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(33, 33, 33)
-                .addComponent(buscarPorId)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(62, 62, 62)
+                        .addComponent(jLabel5)
+                        .addGap(38, 38, 38)
+                        .addComponent(idBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 358, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(33, 33, 33)
+                        .addComponent(buscarPorId))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(309, 309, 309)
+                        .addComponent(jButton1)))
                 .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -165,7 +185,9 @@ public class EmpleadoVista extends javax.swing.JFrame {
                     .addComponent(jLabel5)
                     .addComponent(idBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(buscarPorId))
-                .addContainerGap(97, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 27, Short.MAX_VALUE)
+                .addComponent(jButton1)
+                .addGap(34, 34, 34))
         );
 
         pack();
@@ -279,6 +301,23 @@ public class EmpleadoVista extends javax.swing.JFrame {
 
     }//GEN-LAST:event_btnEliminarActionPerformed
 
+    private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
+        // TODO add your handling code here:
+        AdministrarUsuariosVista administrarUsuarios = new AdministrarUsuariosVista();
+        administrarUsuarios.setVisible(true);
+        empleado = null;
+        limpiarCampos();
+        this.dispose();
+    }//GEN-LAST:event_btnCancelarActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        AdministrarUsuariosVista administrarUsuarios = new AdministrarUsuariosVista();
+        administrarUsuarios.setVisible(true);
+        this.dispose();
+        limpiarCampos();
+    }//GEN-LAST:event_jButton1ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -296,21 +335,23 @@ public class EmpleadoVista extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(EmpleadoVista.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CrearEmpleadoVista.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(EmpleadoVista.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CrearEmpleadoVista.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(EmpleadoVista.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CrearEmpleadoVista.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(EmpleadoVista.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CrearEmpleadoVista.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new EmpleadoVista().setVisible(true);
+                new CrearEmpleadoVista().setVisible(true);
             }
         });
     }
@@ -325,6 +366,7 @@ public class EmpleadoVista extends javax.swing.JFrame {
     private javax.swing.JTextField inputNombre;
     private javax.swing.JTextField inputTelefono;
     private javax.swing.JTextField inputTipoID;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

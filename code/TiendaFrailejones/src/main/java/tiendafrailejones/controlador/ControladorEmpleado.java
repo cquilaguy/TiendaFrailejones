@@ -1,6 +1,7 @@
 package tiendafrailejones.controlador;
 
-import tiendafrailejones.modelo.ConsultasEmpleado;
+import java.util.List;
+import tiendafrailejones.modelo.consultas.ConsultasEmpleado;
 import tiendafrailejones.modelo.Empleado;
 import tiendafrailejones.modelo.interfaces.IEmpleado;
 
@@ -32,6 +33,11 @@ public class ControladorEmpleado implements IEmpleado{
     @Override
     public Empleado existePorId(Long id) {
         return consultasEmpleado.existePorId(id);
+    }
+
+    @Override
+    public List<Empleado> obtenetTodosLosEmpleado() {
+        return consultasEmpleado.obtenetTodosLosEmpleado();
     }
     
     

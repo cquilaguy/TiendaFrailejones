@@ -1,9 +1,13 @@
-package tiendafrailejones.modelo;
+package tiendafrailejones.modelo.consultas;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+import tiendafrailejones.modelo.Conexion;
+import tiendafrailejones.modelo.Empleado;
 import tiendafrailejones.modelo.interfaces.IEmpleado;
 
 public class ConsultasEmpleado extends Conexion implements IEmpleado {
@@ -96,7 +100,7 @@ public class ConsultasEmpleado extends Conexion implements IEmpleado {
             ps = connection.prepareStatement(sql);
             ps.setLong(1, id);
             resultSet = ps.executeQuery();
-            
+
             if (resultSet.next()) {
                 empleado.setId(resultSet.getLong("id"));
                 empleado.setNombre(resultSet.getString("nombre"));
@@ -110,6 +114,43 @@ public class ConsultasEmpleado extends Conexion implements IEmpleado {
         } catch (SQLException e) {
             System.err.println(e);
             return empleado;
+        } finally {
+            try {
+                connection.close();
+            } catch (SQLException e) {
+                System.err.println(e);
+            }
+        }
+    }
+
+    @Override
+    public List<Empleado> obtenetTodosLosEmpleado() {
+        List<Empleado> empleados = new ArrayList<>();
+        PreparedStatement ps = null;
+        ResultSet resultSet = null;
+        Connection connection = getConexion();
+        String sql = "SELECT * FROM empleado WHERE tipo_usuario=?";
+
+        try {
+            ps = connection.prepareStatement(sql);
+            ps.setString(1, "EMPLEADO");
+            resultSet = ps.executeQuery();
+            while (resultSet.next()) {
+                
+                Empleado empleado = new Empleado();
+                empleado.setId(resultSet.getLong("id"));
+                empleado.setNombre(resultSet.getString("nombre"));
+                empleado.setTelefono(resultSet.getString("telefono"));
+                empleado.setIdentificacion(resultSet.getString("identificacion"));
+                empleado.setTipoIdentificacion(resultSet.getString("tipo_Identificacion"));
+                empleado.setTipoUsuario(resultSet.getString("tipo_usuario"));
+                empleados.add(empleado);
+               
+            }
+            return empleados;
+        } catch (SQLException e) {
+            System.err.println(e);
+            return empleados;
         } finally {
             try {
                 connection.close();
