@@ -80,3 +80,9 @@ values('carlos@gmail.com', 'AG2YkrQkSeZz3NQx4IWVxw==', 'ADMINISTRADOR', '12345')
 
 -- prueba select
 SELECT * FROM login WHERE user = 'jose@gmail.com' AND password = 'AA22';
+
+ALTER TABLE login  
+ADD activo SMALLINT UNSIGNED DEFAULT 1 NOT NULL;
+
+ALTER TABLE empleado 
+ADD correo VARCHAR(200) NOT NULL;
