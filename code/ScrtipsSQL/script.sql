@@ -76,7 +76,7 @@ values('jose@gmail.com', 'AA22', 'EMPLEADO', '1234');
 
 -- Admins
 INSERT INTO login (user, password, user_type, id_usuario) 
-values('carlos@gmail.com', 'AA22', 'ADMINISTRADOR', '12345');
+values('carlos@gmail.com', 'AG2YkrQkSeZz3NQx4IWVxw==', 'ADMINISTRADOR', '12345');
 
 -- prueba select
 SELECT * FROM login WHERE user = 'jose@gmail.com' AND password = 'AA22';
