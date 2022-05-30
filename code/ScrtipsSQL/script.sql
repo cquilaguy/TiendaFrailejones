@@ -22,6 +22,10 @@ CREATE TABLE empleado(
 	tipo_Identificacion VARCHAR(200) NOT NULL,
 	tipo_usuario VARCHAR(200) NOT NULL
 );
+
+ALTER TABLE empleado 
+ADD activo SMALLINT UNSIGNED DEFAULT 1 NOT NULL;
+
 -- Creacion tabla login
 CREATE TABLE login(
 	id INT AUTO_INCREMENT PRIMARY KEY,
@@ -56,7 +60,7 @@ CREATE TABLE deuda(
 CREATE TABLE productos(
 	id INT AUTO_INCREMENT PRIMARY KEY,
 	nombre VARCHAR(200) NOT NULL,
-    categoria_id INT AUTO_INCREMENT,
+    categoria_id INT,
     nombre_categoria VARCHAR(200) NOT NULL,
     precio_compra INT NOT NULL,
     precio_venta INT NOT NULL,
@@ -72,7 +76,13 @@ values('jose@gmail.com', 'AA22', 'EMPLEADO', '1234');
 
 -- Admins
 INSERT INTO login (user, password, user_type, id_usuario) 
-values('carlos@gmail.com', 'AA22', 'ADMINISTRADOR', '12345');
+values('carlos@gmail.com', 'AG2YkrQkSeZz3NQx4IWVxw==', 'ADMINISTRADOR', '12345');
 
 -- prueba select
 SELECT * FROM login WHERE user = 'jose@gmail.com' AND password = 'AA22';
+
+ALTER TABLE login  
+ADD activo SMALLINT UNSIGNED DEFAULT 1 NOT NULL;
+
+ALTER TABLE empleado 
+ADD correo VARCHAR(200) NOT NULL;

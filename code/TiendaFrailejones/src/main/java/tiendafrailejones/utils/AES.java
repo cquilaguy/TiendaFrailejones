@@ -33,6 +33,11 @@ public class AES {
             throw new IllegalArgumentException("Parametro no encontrado");
         }
     }
+    
+    
+    public static AES singletonAes() throws IOException{
+        return new AES();
+    }
 
     public static String decrypt(String strToDecrypt) {
         try {

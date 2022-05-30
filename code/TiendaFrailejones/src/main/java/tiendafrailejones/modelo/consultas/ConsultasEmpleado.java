@@ -16,8 +16,8 @@ public class ConsultasEmpleado extends Conexion implements IEmpleado {
     public boolean crear(Empleado empleado) {
         PreparedStatement ps = null;
         Connection connection = getConexion();
-        String sql = "INSERT INTO empleado (nombre, telefono, identificacion, tipo_Identificacion, tipo_usuario)"
-                + "VALUES (?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO empleado (nombre, telefono, identificacion, tipo_Identificacion, tipo_usuario, correo)"
+                + "VALUES (?, ?, ?, ?, ?, ?)";
         try {
             ps = connection.prepareStatement(sql);
             ps.setString(1, empleado.getNombre());
@@ -25,6 +25,7 @@ public class ConsultasEmpleado extends Conexion implements IEmpleado {
             ps.setString(3, empleado.getIdentificacion());
             ps.setString(4, empleado.getTipoIdentificacion());
             ps.setString(5, empleado.getTipoUsuario());
+            ps.setString(6, empleado.getCorreo());
             ps.execute();
             return true;
         } catch (SQLException e) {
@@ -43,8 +44,8 @@ public class ConsultasEmpleado extends Conexion implements IEmpleado {
     public void actualizar(Empleado empleado) {
         PreparedStatement ps = null;
         Connection connection = getConexion();
-        String sql = "UPDATE empleado SET nombre=?, telefono=?, identificacion=?, tipo_Identificacion=?, tipo_usuario=?"
-                + "WHERE id=?";
+        String sql = "UPDATE empleado SET nombre=?, telefono=?, identificacion=?, tipo_Identificacion=?, tipo_usuario=?, correo=?, activo=?"
+                + " WHERE id=?";
         try {
             ps = connection.prepareStatement(sql);
             ps.setString(1, empleado.getNombre());
@@ -52,7 +53,10 @@ public class ConsultasEmpleado extends Conexion implements IEmpleado {
             ps.setString(3, empleado.getIdentificacion());
             ps.setString(4, empleado.getTipoIdentificacion());
             ps.setString(5, empleado.getTipoUsuario());
-            ps.setLong(6, empleado.getId());
+            ps.setString(6, empleado.getCorreo());
+            ps.setLong(7, empleado.getActivo());
+            ps.setLong(8, empleado.getId());
+            
             ps.execute();
 
         } catch (SQLException e) {
@@ -71,7 +75,7 @@ public class ConsultasEmpleado extends Conexion implements IEmpleado {
     public void eliminar(Long id) {
         PreparedStatement ps = null;
         Connection connection = getConexion();
-        String sql = "DELETE FROM empleado WHERE id = ?";
+        String sql = "UPDATE empleado SET activo = 0 WHERE id = ?";
         try {
             ps = connection.prepareStatement(sql);
             ps.setLong(1, id);
@@ -95,7 +99,7 @@ public class ConsultasEmpleado extends Conexion implements IEmpleado {
         PreparedStatement ps = null;
         ResultSet resultSet = null;
         Connection connection = getConexion();
-        String sql = "SELECT * FROM empleado WHERE identificacion=?";
+        String sql = "SELECT * FROM empleado WHERE id=?";
         try {
             ps = connection.prepareStatement(sql);
             ps.setLong(1, id);
@@ -108,6 +112,8 @@ public class ConsultasEmpleado extends Conexion implements IEmpleado {
                 empleado.setIdentificacion(resultSet.getString("identificacion"));
                 empleado.setTipoIdentificacion(resultSet.getString("tipo_Identificacion"));
                 empleado.setTipoUsuario(resultSet.getString("tipo_usuario"));
+                empleado.setCorreo(resultSet.getString("correo"));
+                empleado.setActivo(resultSet.getInt("activo"));
                 return empleado;
             }
             return empleado;
@@ -129,11 +135,10 @@ public class ConsultasEmpleado extends Conexion implements IEmpleado {
         PreparedStatement ps = null;
         ResultSet resultSet = null;
         Connection connection = getConexion();
-        String sql = "SELECT * FROM empleado WHERE tipo_usuario=?";
+        String sql = "SELECT * FROM empleado WHERE activo = 1";
 
         try {
             ps = connection.prepareStatement(sql);
-            ps.setString(1, "EMPLEADO");
             resultSet = ps.executeQuery();
             while (resultSet.next()) {
                 
@@ -144,6 +149,8 @@ public class ConsultasEmpleado extends Conexion implements IEmpleado {
                 empleado.setIdentificacion(resultSet.getString("identificacion"));
                 empleado.setTipoIdentificacion(resultSet.getString("tipo_Identificacion"));
                 empleado.setTipoUsuario(resultSet.getString("tipo_usuario"));
+                empleado.setActivo(resultSet.getInt("activo"));
+                empleado.setCorreo(resultSet.getString("correo"));
                 empleados.add(empleado);
                
             }

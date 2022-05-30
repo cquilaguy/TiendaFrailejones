@@ -8,6 +8,7 @@ public class Persona {
     private String tipoIdentificacion;
     private String identificacion;
     private String tipoUsuario;
+    private Integer activo;
 
     public String getTipoIdentificacion() {
         return tipoIdentificacion;
@@ -55,6 +56,14 @@ public class Persona {
 
     public void setIdentificacion(String identificacion) {
         this.identificacion = identificacion;
+    }
+
+    public Integer getActivo() {
+        return activo;
+    }
+
+    public void setActivo(Integer activo) {
+        this.activo = activo;
     }
 
 }

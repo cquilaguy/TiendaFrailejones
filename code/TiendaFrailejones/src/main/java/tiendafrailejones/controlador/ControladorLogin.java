@@ -25,5 +25,15 @@ public class ControladorLogin extends Conexion implements ILogin{
     public boolean crearLoginParaUsaurio(Login login) {
         return consultasLogin.crearLoginParaUsaurio(login);
     }
+
+    @Override
+    public void actualizarLogin(Login login) {
+       consultasLogin.actualizarLogin(login);
+    }
+
+    @Override
+    public Login existeLoginPorId(Login login) {
+        return consultasLogin.existeLoginPorId(login);
+    }
     
 }

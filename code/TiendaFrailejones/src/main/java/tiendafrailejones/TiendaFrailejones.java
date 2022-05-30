@@ -1,7 +1,8 @@
 package tiendafrailejones;
 
+import java.io.IOException;
 import tiendafrailejones.utils.AES;
-import tiendafrailejones.vista.LoginForm;
+import tiendafrailejones.vista.ui.login;
 
 /**
  *
@@ -9,10 +10,10 @@ import tiendafrailejones.vista.LoginForm;
  */
 public class TiendaFrailejones {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
 
-        LoginForm loginForm = new LoginForm();
-        loginForm.setVisible(true);
-
+        login login = new login();
+        login.setVisible(true);
+        
     }
 }
