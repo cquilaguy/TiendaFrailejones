@@ -500,6 +500,7 @@ public class AdminGestUsers extends javax.swing.JFrame {
         login.setPassword(AES.singletonAes().encrypt(inputPassword.getText()));
         login.setUserType(tipoUsuario);
         login.setIdUsuario(Long.valueOf(empleado.getIdentificacion()));
+        login.setActivo(1L);
         controladorLogin.crearLoginParaUsaurio(login);
     }
 
@@ -562,6 +563,12 @@ public class AdminGestUsers extends javax.swing.JFrame {
 
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
         // TODO add your handling code here:
+        empleado.setActivo(0);
+        login.setActivo(0l);
+        controladorLogin.actualizarLogin(login);
+        controladorEmpleado.actualizar(empleado);
+        limpiarCampos();
+        llenarGuardarTabla();
     }//GEN-LAST:event_btnEliminarActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
@@ -592,17 +599,22 @@ public class AdminGestUsers extends javax.swing.JFrame {
         if (fila == -1) {
             JOptionPane.showMessageDialog(null, "Usuario seleccionado");
         } else{
-            inputUsuario.setEnabled(false);
-            inputPassword.setEnabled(false);
             actualizar = true;
             Long id = Long.valueOf((String)tablaEmpleados.getValueAt(fila, 0));
             empleado = controladorEmpleado.existePorId(id);
+            Login loginTemp = new Login();
+            loginTemp.setIdUsuario(Long.valueOf(empleado.getIdentificacion()));
+            login = controladorLogin.existeLoginPorId(loginTemp);
             inputNombre.setText(empleado.getNombre());
             inputCorreo.setText(empleado.getCorreo());
             inputIdentificacion.setText(empleado.getIdentificacion());
             inputTelefono.setText(empleado.getTelefono());
             jcomboxTipoID.setSelectedItem(empleado.getTipoIdentificacion());
             jcomboxTipoUsuario.setSelectedItem(empleado.getTipoUsuario());
+            
+            inputUsuario.setEnabled(false);
+            inputPassword.setEnabled(false);
+            btnEliminar.setEnabled(true);
             
        }
     }//GEN-LAST:event_tablaEmpleadosMouseClicked

@@ -44,8 +44,8 @@ public class ConsultasEmpleado extends Conexion implements IEmpleado {
     public void actualizar(Empleado empleado) {
         PreparedStatement ps = null;
         Connection connection = getConexion();
-        String sql = "UPDATE empleado SET nombre=?, telefono=?, identificacion=?, tipo_Identificacion=?, tipo_usuario=?, correo=?"
-                + "WHERE id=?";
+        String sql = "UPDATE empleado SET nombre=?, telefono=?, identificacion=?, tipo_Identificacion=?, tipo_usuario=?, correo=?, activo=?"
+                + " WHERE id=?";
         try {
             ps = connection.prepareStatement(sql);
             ps.setString(1, empleado.getNombre());
@@ -54,7 +54,8 @@ public class ConsultasEmpleado extends Conexion implements IEmpleado {
             ps.setString(4, empleado.getTipoIdentificacion());
             ps.setString(5, empleado.getTipoUsuario());
             ps.setString(6, empleado.getCorreo());
-            ps.setLong(7, empleado.getId());
+            ps.setLong(7, empleado.getActivo());
+            ps.setLong(8, empleado.getId());
             
             ps.execute();
 

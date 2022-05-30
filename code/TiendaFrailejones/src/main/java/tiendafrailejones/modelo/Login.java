@@ -7,7 +7,8 @@ public class Login {
     private String password;
     private String userType;
     private Long idUsuario;
-
+    private Long activo;
+    
     public String getUser() {
         return user;
     }
@@ -51,4 +52,14 @@ public class Login {
     public void setVisible(boolean b) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
+
+    public Long getActivo() {
+        return activo;
+    }
+
+    public void setActivo(Long activo) {
+        this.activo = activo;
+    }
+    
+    
 }
