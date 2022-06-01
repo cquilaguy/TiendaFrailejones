@@ -11,6 +11,8 @@ import java.awt.event.ItemListener;
 import java.io.IOException;
 import java.util.List;
 import java.util.Objects;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.UIManager;
@@ -49,8 +51,8 @@ public class AdminGestUsers extends javax.swing.JFrame {
         initComponents();
         this.setLocationRelativeTo(null);
         btnEliminar.setEnabled(false);
-        tipoUsuario = "Administador";
-        tipoDocumento = "Cédula";
+        tipoUsuario = "ADMINISTRADOR";
+        tipoDocumento = "CÉDULA";
         initTable();
         llenarTabla();
     }
@@ -301,6 +303,11 @@ public class AdminGestUsers extends javax.swing.JFrame {
                 jcomboxTipoUsuarioItemStateChanged(evt);
             }
         });
+        jcomboxTipoUsuario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jcomboxTipoUsuarioActionPerformed(evt);
+            }
+        });
 
         jButton1.setBackground(new java.awt.Color(255, 255, 51));
         jButton1.setText("Cancelar");
@@ -325,12 +332,9 @@ public class AdminGestUsers extends javax.swing.JFrame {
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel3Layout.createSequentialGroup()
                                 .addComponent(jLabel8)
-                                .addGap(221, 221, 221))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jcomboxTipoUsuario, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(inputCorreo))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))))
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addComponent(jcomboxTipoUsuario, javax.swing.GroupLayout.Alignment.TRAILING, 0, 446, Short.MAX_VALUE)
+                            .addComponent(inputCorreo, javax.swing.GroupLayout.Alignment.TRAILING)))
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel3)
@@ -350,8 +354,8 @@ public class AdminGestUsers extends javax.swing.JFrame {
                                 .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 113, Short.MAX_VALUE))
                             .addGroup(jPanel3Layout.createSequentialGroup()
                                 .addGap(18, 18, 18)
-                                .addComponent(jLabel7)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
+                                .addComponent(jLabel7)))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -538,6 +542,7 @@ public class AdminGestUsers extends javax.swing.JFrame {
             } else { // Crear
 
                 verificarCampos();
+                verificarCorreos();
                 verificarCamposLogin();
                 empleado.setNombre(inputNombre.getText());
                 empleado.setTelefono(inputTelefono.getText());
@@ -625,6 +630,10 @@ public class AdminGestUsers extends javax.swing.JFrame {
         inputPassword.setEnabled(true);
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    private void jcomboxTipoUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcomboxTipoUsuarioActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jcomboxTipoUsuarioActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -643,7 +652,6 @@ public class AdminGestUsers extends javax.swing.JFrame {
     }
 
     private void verificarCampos() throws Exception {
-
         if (inputNombre.getText().isEmpty()) {
             throw new Exception("nombre");
         } else if (inputTelefono.getText().isEmpty()) {
@@ -652,9 +660,22 @@ public class AdminGestUsers extends javax.swing.JFrame {
             throw new Exception("identificacion");
         } else if (tipoDocumento.isEmpty()) {
             throw new Exception("tipo de id vacío");
+        } else if (inputCorreo.getText().isEmpty()) {
+            throw new Exception("Correo vacío");
         }
-
     }
+    
+    private void verificarCorreos() throws Exception{
+        String verificarCorreo = "^[a-zA-Z0-9_!#$%&'*+/=?`{|}~^-]+(?:\\.[a-zA-Z0-9_!#$%&'*+/=?`{|}~^-]+)*@[a-zA-Z0-9-]+(?:\\.[a-zA-Z0-9-]+)*$";
+        Pattern pattern = Pattern.compile(verificarCorreo);
+        Matcher matcher = pattern.matcher(inputCorreo.getText());
+        Boolean match = matcher.matches();
+        if (!match) {
+            throw new Exception("Correo invalido. Formato: corre@gmail.com");
+        }  
+    }
+    
+    
     
     
     private void verificarCamposLogin() throws Exception{
