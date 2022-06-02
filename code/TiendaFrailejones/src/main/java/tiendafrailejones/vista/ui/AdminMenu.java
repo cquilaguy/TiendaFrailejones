@@ -8,7 +8,6 @@ import UI.*;
 import com.formdev.flatlaf.FlatLightLaf;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
-import tiendafrailejones.vista.AdministrarUsuariosVista;
 
 /**
  *

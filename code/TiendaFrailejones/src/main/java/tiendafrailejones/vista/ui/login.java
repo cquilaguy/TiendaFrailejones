@@ -11,7 +11,6 @@ import tiendafrailejones.controlador.ControladorLogin;
 import tiendafrailejones.modelo.Login;
 import tiendafrailejones.modelo.consultas.ConsultasLogin;
 import tiendafrailejones.utils.AES;
-import tiendafrailejones.vista.AdministradorVistaPrincipal;
 
 
 public class login extends javax.swing.JFrame {
