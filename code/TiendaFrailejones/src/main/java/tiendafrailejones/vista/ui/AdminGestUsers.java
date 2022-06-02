@@ -27,6 +27,7 @@ import tiendafrailejones.modelo.Login;
 import tiendafrailejones.modelo.consultas.ConsultasEmpleado;
 import tiendafrailejones.modelo.consultas.ConsultasLogin;
 import tiendafrailejones.utils.AES;
+import tiendafrailejones.utils.DataUser;
 import tiendafrailejones.utils.TipoDocumentos;
 
 /**
@@ -58,6 +59,7 @@ public class AdminGestUsers extends javax.swing.JFrame {
         inputPassword.setEnabled(false);
         initTable();
         llenarTabla();
+        System.out.println(DataUser.getDataUser().getIdUser());
     }
 
     private void initTable() {
