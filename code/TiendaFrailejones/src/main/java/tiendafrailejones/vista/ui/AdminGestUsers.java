@@ -567,8 +567,9 @@ public class AdminGestUsers extends javax.swing.JFrame {
                 empleado.setActivo(activo);
                 empleado.setCorreo(inputCorreo.getText());
 
-                guardarLogin();
                 controladorEmpleado.crear(empleado);
+                guardarLogin();
+                
 
                 llenarGuardarTabla();
                 limpiarCampos();
@@ -630,7 +631,7 @@ public class AdminGestUsers extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Usuario seleccionado");
         } else {
             actualizar = true;
-            Long id = Long.valueOf((String) tablaEmpleados.getValueAt(fila, 0));
+            Long id = Long.valueOf((String) tablaEmpleados.getValueAt(fila, 3));
             empleado = controladorEmpleado.existePorId(id);
             Login loginTemp = new Login();
             loginTemp.setIdUsuario(Long.valueOf(empleado.getIdentificacion()));
