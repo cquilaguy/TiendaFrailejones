@@ -11,7 +11,7 @@ import tiendafrailejones.controlador.ControladorLogin;
 import tiendafrailejones.modelo.Login;
 import tiendafrailejones.modelo.consultas.ConsultasLogin;
 import tiendafrailejones.utils.AES;
-import tiendafrailejones.vista.AdministradorVistaPrincipal;
+import tiendafrailejones.utils.DataUser;
 
 
 public class login extends javax.swing.JFrame {
@@ -148,6 +148,8 @@ public class login extends javax.swing.JFrame {
         if (loginTmp.getUser() == null || loginTmp.getPassword() == null) {
             labelUsuarioOContraseña.setText("Usuario o contraseña incorrecto");
         } else {
+            DataUser dataUser  = DataUser.getDataUser();
+            dataUser.setIdUser(String.valueOf(loginTmp.getId()));
             if (loginTmp.getUserType().equals("ADMINISTRADOR")) {
                 AdminMenu adminMenu = new AdminMenu();
                 adminMenu.setVisible(true);
@@ -194,6 +196,8 @@ public class login extends javax.swing.JFrame {
             }
         });
     }
+    
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnLogin;

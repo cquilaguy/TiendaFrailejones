@@ -20,7 +20,6 @@ import tiendafrailejones.modelo.Conexion;
  * @author anramosr
  */
 public class log extends Conexion{
-    private static final int loggedUserId = 0;
     private static log singleton = null;
 
     private log(){}
@@ -33,6 +32,12 @@ public class log extends Conexion{
     }
 
     public void logData(String Description, String Source) {
+        
+        int loggedUserId = 0;
+        String user_id = DataUser.getDataUser().getIdUser();
+        if (user_id != null){
+            loggedUserId = Integer.parseInt(user_id);
+        }
         PreparedStatement ps = null;
         Connection connection = getConexion();  
         Timestamp dt = Timestamp.from(Instant.now());

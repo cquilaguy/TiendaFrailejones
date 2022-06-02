@@ -421,8 +421,14 @@
               <Properties>
                 <Property name="text" type="java.lang.String" value="Restaurar Contrase&#xf1;a"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnRestaurarContrasenaActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JPasswordField" name="inputPassword">
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="inputPasswordActionPerformed"/>
+              </Events>
             </Component>
           </SubComponents>
         </Container>
