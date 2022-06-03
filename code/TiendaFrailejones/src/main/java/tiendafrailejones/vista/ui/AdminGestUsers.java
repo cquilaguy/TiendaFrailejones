@@ -11,6 +11,10 @@ import java.awt.event.ItemListener;
 import java.io.IOException;
 import java.util.List;
 import java.util.Objects;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.UIManager;
@@ -23,7 +27,8 @@ import tiendafrailejones.modelo.Login;
 import tiendafrailejones.modelo.consultas.ConsultasEmpleado;
 import tiendafrailejones.modelo.consultas.ConsultasLogin;
 import tiendafrailejones.utils.AES;
-import tiendafrailejones.vista.empleados.TablaEmpleadoVista;
+import tiendafrailejones.utils.DataUser;
+import tiendafrailejones.utils.TipoDocumentos;
 
 /**
  *
@@ -49,20 +54,22 @@ public class AdminGestUsers extends javax.swing.JFrame {
         initComponents();
         this.setLocationRelativeTo(null);
         btnEliminar.setEnabled(false);
-        tipoUsuario = "Administador";
-        tipoDocumento = "Cédula";
+        tipoUsuario = "ADMINISTRADOR";
+        tipoDocumento = "CÉDULA";
+        inputPassword.setEnabled(false);
         initTable();
         llenarTabla();
+        System.out.println(DataUser.getDataUser().getIdUser());
     }
 
     private void initTable() {
-        defaultTableModel = new DefaultTableModel(){
+        defaultTableModel = new DefaultTableModel() {
             @Override
             public boolean isCellEditable(int row, int column) {
                 return false; // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/OverriddenMethodBody
             }
         };
-        
+
         defaultTableModel.addColumn("ID");
         defaultTableModel.addColumn("Nombre");
         defaultTableModel.addColumn("Telefono");
@@ -87,7 +94,7 @@ public class AdminGestUsers extends javax.swing.JFrame {
             empleadoDatos[3] = emp.getIdentificacion();
             empleadoDatos[4] = emp.getTipoIdentificacion();
             empleadoDatos[5] = emp.getTipoUsuario();
-            empleadoDatos[6] = (emp.getActivo().equals(1)) ? "ACTIVO":"INACTIVO"; 
+            empleadoDatos[6] = (emp.getActivo().equals(1)) ? "ACTIVO" : "INACTIVO";
             empleadoDatos[7] = emp.getCorreo();
             defaultTableModel.addRow(empleadoDatos);
         }
@@ -254,6 +261,17 @@ public class AdminGestUsers extends javax.swing.JFrame {
         jLabel10.setText("Contraseña");
 
         btnRestaurarContrasena.setText("Restaurar Contraseña");
+        btnRestaurarContrasena.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRestaurarContrasenaActionPerformed(evt);
+            }
+        });
+
+        inputPassword.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                inputPasswordActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
@@ -301,6 +319,11 @@ public class AdminGestUsers extends javax.swing.JFrame {
                 jcomboxTipoUsuarioItemStateChanged(evt);
             }
         });
+        jcomboxTipoUsuario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jcomboxTipoUsuarioActionPerformed(evt);
+            }
+        });
 
         jButton1.setBackground(new java.awt.Color(255, 255, 51));
         jButton1.setText("Cancelar");
@@ -325,12 +348,9 @@ public class AdminGestUsers extends javax.swing.JFrame {
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel3Layout.createSequentialGroup()
                                 .addComponent(jLabel8)
-                                .addGap(221, 221, 221))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jcomboxTipoUsuario, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(inputCorreo))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))))
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addComponent(jcomboxTipoUsuario, javax.swing.GroupLayout.Alignment.TRAILING, 0, 446, Short.MAX_VALUE)
+                            .addComponent(inputCorreo, javax.swing.GroupLayout.Alignment.TRAILING)))
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel3)
@@ -350,8 +370,8 @@ public class AdminGestUsers extends javax.swing.JFrame {
                                 .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 113, Short.MAX_VALUE))
                             .addGroup(jPanel3Layout.createSequentialGroup()
                                 .addGap(18, 18, 18)
-                                .addComponent(jLabel7)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
+                                .addComponent(jLabel7)))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -496,8 +516,9 @@ public class AdminGestUsers extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void guardarLogin() throws IOException {
+        String contrasena = TipoDocumentos.getById(tipoDocumento) + inputIdentificacion.getText();
         login.setUser(inputUsuario.getText());
-        login.setPassword(AES.singletonAes().encrypt(inputPassword.getText()));
+        login.setPassword(AES.singletonAes().encrypt(contrasena));
         login.setUserType(tipoUsuario);
         login.setIdUsuario(Long.valueOf(empleado.getIdentificacion()));
         login.setActivo(1L);
@@ -510,7 +531,6 @@ public class AdminGestUsers extends javax.swing.JFrame {
 
     private void btnCrearActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCrearActualizarActionPerformed
         try {
-            
 
             Empleado emp = controladorEmpleado.existePorId(Long.valueOf(inputIdentificacion.getText()));
 
@@ -533,11 +553,11 @@ public class AdminGestUsers extends javax.swing.JFrame {
                 limpiarCampos();
                 llenarGuardarTabla();
                 inputUsuario.setEnabled(true);
-                inputPassword.setEnabled(true);
                 JOptionPane.showMessageDialog(null, "Se ha actualizado el registro");
             } else { // Crear
 
                 verificarCampos();
+                verificarCorreos();
                 verificarCamposLogin();
                 empleado.setNombre(inputNombre.getText());
                 empleado.setTelefono(inputTelefono.getText());
@@ -547,13 +567,13 @@ public class AdminGestUsers extends javax.swing.JFrame {
                 empleado.setActivo(activo);
                 empleado.setCorreo(inputCorreo.getText());
 
-                guardarLogin();
                 controladorEmpleado.crear(empleado);
+                guardarLogin();
                 
+
                 llenarGuardarTabla();
                 limpiarCampos();
                 inputUsuario.setEnabled(true);
-                inputPassword.setEnabled(true);
                 JOptionPane.showMessageDialog(null, "Se ha guardado el registro");
             }
         } catch (Exception e) {
@@ -562,6 +582,8 @@ public class AdminGestUsers extends javax.swing.JFrame {
     }//GEN-LAST:event_btnCrearActualizarActionPerformed
 
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
+        verificarSeleccionEmpleado();
+
         // TODO add your handling code here:
         empleado.setActivo(0);
         login.setActivo(0l);
@@ -572,7 +594,9 @@ public class AdminGestUsers extends javax.swing.JFrame {
     }//GEN-LAST:event_btnEliminarActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        // TODO add your handling code here:
+        AdminMenu adminMenu = new AdminMenu();
+        adminMenu.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void idBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_idBuscarActionPerformed
@@ -588,6 +612,13 @@ public class AdminGestUsers extends javax.swing.JFrame {
         tipoDocumento = jcomboxTipoID.getSelectedItem().toString();
     }//GEN-LAST:event_jcomboxTipoIDItemStateChanged
 
+    private void verificarSeleccionEmpleado() {
+        if (empleado == null || empleado.getId() == null) {
+            JOptionPane.showMessageDialog(null, "Seleccione un usuario ");
+            return;
+        }
+    }
+
     private void jcomboxTipoUsuarioItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jcomboxTipoUsuarioItemStateChanged
         // TODO add your handling code here:
         tipoUsuario = jcomboxTipoUsuario.getSelectedItem().toString();
@@ -598,9 +629,9 @@ public class AdminGestUsers extends javax.swing.JFrame {
         int fila = tablaEmpleados.getSelectedRow();
         if (fila == -1) {
             JOptionPane.showMessageDialog(null, "Usuario seleccionado");
-        } else{
+        } else {
             actualizar = true;
-            Long id = Long.valueOf((String)tablaEmpleados.getValueAt(fila, 0));
+            Long id = Long.valueOf((String) tablaEmpleados.getValueAt(fila, 3));
             empleado = controladorEmpleado.existePorId(id);
             Login loginTemp = new Login();
             loginTemp.setIdUsuario(Long.valueOf(empleado.getIdentificacion()));
@@ -611,19 +642,37 @@ public class AdminGestUsers extends javax.swing.JFrame {
             inputTelefono.setText(empleado.getTelefono());
             jcomboxTipoID.setSelectedItem(empleado.getTipoIdentificacion());
             jcomboxTipoUsuario.setSelectedItem(empleado.getTipoUsuario());
-            
+
             inputUsuario.setEnabled(false);
-            inputPassword.setEnabled(false);
             btnEliminar.setEnabled(true);
-            
-       }
+
+        }
     }//GEN-LAST:event_tablaEmpleadosMouseClicked
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         limpiarCampos();
         inputUsuario.setEnabled(true);
-        inputPassword.setEnabled(true);
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jcomboxTipoUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcomboxTipoUsuarioActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jcomboxTipoUsuarioActionPerformed
+
+    private void inputPasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_inputPasswordActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_inputPasswordActionPerformed
+
+    private void btnRestaurarContrasenaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRestaurarContrasenaActionPerformed
+        verificarSeleccionEmpleado();
+
+        String contrasena = TipoDocumentos.getById(tipoDocumento) + inputIdentificacion.getText();
+        try {
+            login.setPassword(AES.singletonAes().encrypt(contrasena));
+        } catch (IOException ex) {
+            Logger.getLogger(AdminGestUsers.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        controladorLogin.crearLoginParaUsaurio(login);
+    }//GEN-LAST:event_btnRestaurarContrasenaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -643,7 +692,6 @@ public class AdminGestUsers extends javax.swing.JFrame {
     }
 
     private void verificarCampos() throws Exception {
-
         if (inputNombre.getText().isEmpty()) {
             throw new Exception("nombre");
         } else if (inputTelefono.getText().isEmpty()) {
@@ -652,16 +700,24 @@ public class AdminGestUsers extends javax.swing.JFrame {
             throw new Exception("identificacion");
         } else if (tipoDocumento.isEmpty()) {
             throw new Exception("tipo de id vacío");
+        } else if (inputCorreo.getText().isEmpty()) {
+            throw new Exception("Correo vacío");
         }
-
     }
-    
-    
-    private void verificarCamposLogin() throws Exception{
+
+    private void verificarCorreos() throws Exception {
+        String verificarCorreo = "^[a-zA-Z0-9_!#$%&'*+/=?`{|}~^-]+(?:\\.[a-zA-Z0-9_!#$%&'*+/=?`{|}~^-]+)*@[a-zA-Z0-9-]+(?:\\.[a-zA-Z0-9-]+)*$";
+        Pattern pattern = Pattern.compile(verificarCorreo);
+        Matcher matcher = pattern.matcher(inputCorreo.getText());
+        Boolean match = matcher.matches();
+        if (!match) {
+            throw new Exception("Correo invalido. Formato: corre@gmail.com");
+        }
+    }
+
+    private void verificarCamposLogin() throws Exception {
         if (inputUsuario.getText().isEmpty() || inputUsuario.getText() == null) {
             throw new Exception("usuario");
-        } else if (inputPassword.getText().isEmpty() || inputPassword.getText() == null) {
-            throw new Exception("constraseña");
         }
     }
 
@@ -676,7 +732,7 @@ public class AdminGestUsers extends javax.swing.JFrame {
         actualizar = false;
         empleado = new Empleado();
     }
-    
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCrearActualizar;
