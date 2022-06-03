@@ -7,8 +7,10 @@ package tiendafrailejones.vista.ui;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import tiendafrailejones.controlador.ControladorLogin;
 import tiendafrailejones.modelo.Login;
+import tiendafrailejones.modelo.consultas.ConsultaContraseña;
 import tiendafrailejones.modelo.consultas.ConsultasLogin;
 import tiendafrailejones.utils.AES;
 import tiendafrailejones.utils.DataUser;
@@ -18,6 +20,8 @@ public class login extends javax.swing.JFrame {
     
     private final ConsultasLogin consultasLogin = new ConsultasLogin();
     private final ControladorLogin controladorLogin = new ControladorLogin(consultasLogin);
+    private final ConsultaContraseña consultaContraseña = new ConsultaContraseña();
+    int value = 0;
     private Login login = new Login();
     
 
@@ -134,6 +138,7 @@ public class login extends javax.swing.JFrame {
         stringBuilder.append(passArray);
         String password = stringBuilder.toString();
         
+        
         String pass = null;
         try {
             pass = AES.singletonAes().encrypt(password);
@@ -150,9 +155,24 @@ public class login extends javax.swing.JFrame {
         } else {
             DataUser dataUser  = DataUser.getDataUser();
             dataUser.setIdUser(String.valueOf(loginTmp.getId()));
+            
             if (loginTmp.getUserType().equals("ADMINISTRADOR")) {
+
+                System.out.println("eeeeeeeeeeeeeeeeeeeeee");
+                Boolean check = consultaContraseña.checkPassword(loginTmp.getPassword(),loginTmp);
+                 System.out.println(check);
+                System.out.println("entreeee");
+                if(check ==true){
+                    JOptionPane.showMessageDialog(null, "Por seguridad debes cambiar la comtraseña de tu cuenta");
+                    AdminGestUsers adminGestUsers = new AdminGestUsers();
+                    adminGestUsers.setVisible(true);
+                }else{
                 AdminMenu adminMenu = new AdminMenu();
                 adminMenu.setVisible(true);
+                }
+                
+                
+                
                 this.dispose();
             }
             labelUsuarioOContraseña.setText("");
