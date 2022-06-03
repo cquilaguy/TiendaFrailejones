@@ -15,15 +15,13 @@ import tiendafrailejones.modelo.consultas.ConsultasLogin;
 import tiendafrailejones.utils.AES;
 import tiendafrailejones.utils.DataUser;
 
-
 public class login extends javax.swing.JFrame {
-    
+
     private final ConsultasLogin consultasLogin = new ConsultasLogin();
     private final ControladorLogin controladorLogin = new ControladorLogin(consultasLogin);
     private final ConsultaContraseña consultaContraseña = new ConsultaContraseña();
     int value = 0;
     private Login login = new Login();
-    
 
     public login() {
         initComponents();
@@ -137,8 +135,7 @@ public class login extends javax.swing.JFrame {
         char[] passArray = inputPassword.getPassword();
         stringBuilder.append(passArray);
         String password = stringBuilder.toString();
-        
-        
+
         String pass = null;
         try {
             pass = AES.singletonAes().encrypt(password);
@@ -153,24 +150,22 @@ public class login extends javax.swing.JFrame {
         if (loginTmp.getUser() == null || loginTmp.getPassword() == null) {
             labelUsuarioOContraseña.setText("Usuario o contraseña incorrecto");
         } else {
-            DataUser dataUser  = DataUser.getDataUser();
+            DataUser dataUser = DataUser.getDataUser();
             dataUser.setIdUser(String.valueOf(loginTmp.getId()));
-            
-            if (loginTmp.getUserType().equals("ADMINISTRADOR")) {
 
-                System.out.println("eeeeeeeeeeeeeeeeeeeeee");
-                Boolean check = consultaContraseña.checkPassword(loginTmp.getPassword(),loginTmp);
-                 System.out.println(check);
-                System.out.println("entreeee");
-                if(check ==true){
-                    JOptionPane.showMessageDialog(null, "Por seguridad debes cambiar la comtraseña de tu cuenta");
-                    AdminGestUsers adminGestUsers = new AdminGestUsers();
-                    adminGestUsers.setVisible(true);
-                }else{
-                AdminMenu adminMenu = new AdminMenu();
-                adminMenu.setVisible(true);
+            if (loginTmp.getUserType().equals("ADMINISTRADOR")) {
+                Boolean check = consultaContraseña.checkPassword(loginTmp.getPassword(), loginTmp);
+                if (check) {
+                    CambioPassword cambioPassword = new CambioPassword();
+                    cambioPassword.setControladorLogin(controladorLogin);
+                    cambioPassword.setLogin(loginTmp);
+                    cambioPassword.setVisible(true);
+                    this.dispose();
+                } else {
+                    AdminMenu adminMenu = new AdminMenu();
+                    adminMenu.setVisible(true);
                 }
-                
+
                 this.dispose();
             }
             labelUsuarioOContraseña.setText("");
@@ -214,8 +209,7 @@ public class login extends javax.swing.JFrame {
             }
         });
     }
-    
-    
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnLogin;
