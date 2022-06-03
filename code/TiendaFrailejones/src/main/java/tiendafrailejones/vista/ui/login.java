@@ -171,8 +171,6 @@ public class login extends javax.swing.JFrame {
                 adminMenu.setVisible(true);
                 }
                 
-                
-                
                 this.dispose();
             }
             labelUsuarioOContraseña.setText("");
