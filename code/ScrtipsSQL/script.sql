@@ -86,3 +86,11 @@ ADD activo SMALLINT UNSIGNED DEFAULT 1 NOT NULL;
 
 ALTER TABLE empleado 
 ADD correo VARCHAR(200) NOT NULL;
+
+CREATE TABLE logData(
+	id INT AUTO_INCREMENT PRIMARY KEY,
+	source varchar(50) not null,
+	description varchar(50) not null,
+	user_id int not null, 
+	date datetime not null
+);

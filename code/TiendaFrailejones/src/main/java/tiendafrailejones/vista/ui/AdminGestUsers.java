@@ -573,8 +573,9 @@ public class AdminGestUsers extends javax.swing.JFrame {
                 empleado.setActivo(activo);
                 empleado.setCorreo(inputCorreo.getText());
 
-                guardarLogin();
                 controladorEmpleado.crear(empleado);
+                guardarLogin();
+                
 
                 llenarGuardarTabla();
                 limpiarCampos();
@@ -599,7 +600,9 @@ public class AdminGestUsers extends javax.swing.JFrame {
     }//GEN-LAST:event_btnEliminarActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        // TODO add your handling code here:
+        AdminMenu adminMenu = new AdminMenu();
+        adminMenu.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void idBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_idBuscarActionPerformed
@@ -634,7 +637,7 @@ public class AdminGestUsers extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Usuario seleccionado");
         } else {
             actualizar = true;
-            Long id = Long.valueOf((String) tablaEmpleados.getValueAt(fila, 0));
+            Long id = Long.valueOf((String) tablaEmpleados.getValueAt(fila, 3));
             empleado = controladorEmpleado.existePorId(id);
             Login loginTemp = new Login();
             loginTemp.setIdUsuario(Long.valueOf(empleado.getIdentificacion()));

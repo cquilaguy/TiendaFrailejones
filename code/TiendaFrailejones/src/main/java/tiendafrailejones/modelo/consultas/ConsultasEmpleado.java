@@ -99,7 +99,7 @@ public class ConsultasEmpleado extends Conexion implements IEmpleado {
         PreparedStatement ps = null;
         ResultSet resultSet = null;
         Connection connection = getConexion();
-        String sql = "SELECT * FROM empleado WHERE id=?";
+        String sql = "SELECT * FROM empleado WHERE identificacion=?";
         try {
             ps = connection.prepareStatement(sql);
             ps.setLong(1, id);
