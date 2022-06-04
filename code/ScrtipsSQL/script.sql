@@ -46,6 +46,7 @@ CREATE TABLE cliente(
     	direccion VARCHAR(100) NOT NULL
 );
 
+/*
 CREATE TABLE deuda(
 	id INT AUTO_INCREMENT PRIMARY KEY,
 	id_cliente INT NOT NULL,
@@ -54,7 +55,21 @@ CREATE TABLE deuda(
     fecha_compra DATE NOT NULL,
     fecha_vencimiento DATE NOT NULL,
     fecha_cancelacion DATE NOT NULL
+);*/
+
+
+-- DROP TABLE deuda
+
+CREATE TABLE gestion_deuda(
+	id INT AUTO_INCREMENT PRIMARY KEY,
+	id_cliente INT NOT NULL,
+    valor_total_productos DECIMAL NOT NULL,
+    fecha DATE NOT NULL,
+	descripcion TEXT NOT NULL,
+	abono_deuda CHAR(1) NOT NULL
 );
+
+
 
 -- TERCER SPRINT
 CREATE TABLE productos(
