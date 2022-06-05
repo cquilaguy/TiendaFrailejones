@@ -59,12 +59,13 @@ CREATE TABLE deuda(
 
 
 -- DROP TABLE deuda
+-- DROP TABLE gestion_deuda
 
 CREATE TABLE gestion_deuda(
 	id INT AUTO_INCREMENT PRIMARY KEY,
 	id_cliente INT NOT NULL,
     valor_total_productos DECIMAL NOT NULL,
-    fecha DATE NOT NULL,
+    fecha datetime NOT NULL,
 	descripcion TEXT NOT NULL,
 	abono_deuda CHAR(1) NOT NULL
 );
