@@ -143,6 +143,7 @@ public class CambioPassword extends javax.swing.JFrame {
             login.setPassword(pass);
             controladorLogin.actualizarLogin(login);
 
+            switchWindowAdminOrUser();
             
             this.dispose();
         } else {
