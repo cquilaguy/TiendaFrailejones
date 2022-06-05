@@ -43,6 +43,11 @@ public class ControladorCliente implements ICliente{
     public List<Cliente> obtenetTodosLosCliente() {
         return consultasCliente.obtenetTodosLosCliente();
     }
+
+    @Override
+    public List<Cliente> buscar(String parametros) {
+        return consultasCliente.buscar(parametros);
+    }
     
     
     

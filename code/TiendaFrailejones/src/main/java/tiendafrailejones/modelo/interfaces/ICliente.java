@@ -19,4 +19,5 @@ public interface ICliente {
     void eliminar(Long id);
     Cliente existePorId(Long id); 
     List<Cliente> obtenetTodosLosCliente();
+    List<Cliente> buscar(String parametros);
 }

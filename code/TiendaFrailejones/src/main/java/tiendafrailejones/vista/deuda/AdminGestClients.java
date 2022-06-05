@@ -12,6 +12,7 @@ import tiendafrailejones.controlador.ControladorCliente;
 import tiendafrailejones.controlador.ControladorDeuda;
 import tiendafrailejones.modelo.Cliente;
 import tiendafrailejones.modelo.Deuda;
+import tiendafrailejones.modelo.Empleado;
 import tiendafrailejones.modelo.Login;
 import tiendafrailejones.modelo.consultas.ConsultaDeuda;
 import tiendafrailejones.modelo.consultas.ConsultasCliente;
@@ -101,9 +102,10 @@ public class AdminGestClients extends javax.swing.JFrame {
         jPanel4 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tablaClientes = new javax.swing.JTable();
-        jTextField5 = new javax.swing.JTextField();
+        inputBuscar = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
         jComboBox3 = new javax.swing.JComboBox<>();
+        buscar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("FraileStore");
@@ -321,10 +323,10 @@ public class AdminGestClients extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(tablaClientes);
 
-        jTextField5.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jTextField5.addActionListener(new java.awt.event.ActionListener() {
+        inputBuscar.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        inputBuscar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField5ActionPerformed(evt);
+                inputBuscarActionPerformed(evt);
             }
         });
 
@@ -333,6 +335,13 @@ public class AdminGestClients extends javax.swing.JFrame {
 
         jComboBox3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
+        buscar.setText("Buscar");
+        buscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buscarActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
@@ -340,14 +349,15 @@ public class AdminGestClients extends javax.swing.JFrame {
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 1221, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 1251, Short.MAX_VALUE)
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addComponent(jLabel6)
                         .addGap(24, 24, 24)
                         .addComponent(jComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(jTextField5)
-                        .addGap(27, 27, 27)))
+                        .addComponent(inputBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 678, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(26, 26, 26)
+                        .addComponent(buscar)))
                 .addContainerGap())
         );
         jPanel4Layout.setVerticalGroup(
@@ -355,8 +365,9 @@ public class AdminGestClients extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
-                    .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(inputBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(buscar))
                 .addGap(9, 9, 9)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 322, Short.MAX_VALUE)
                 .addGap(76, 76, 76))
@@ -414,9 +425,9 @@ public class AdminGestClients extends javax.swing.JFrame {
         
     }//GEN-LAST:event_jButton4ActionPerformed
 
-    private void jTextField5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField5ActionPerformed
+    private void inputBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_inputBuscarActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField5ActionPerformed
+    }//GEN-LAST:event_inputBuscarActionPerformed
 
     private void inputDireccionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_inputDireccionActionPerformed
         // TODO add your handling code here:
@@ -448,6 +459,19 @@ public class AdminGestClients extends javax.swing.JFrame {
             jComboxTipoDocumento.setSelectedItem(cliente.getTipoIdentificacion());
         }
     }//GEN-LAST:event_tablaClientesMouseClicked
+
+    private void buscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscarActionPerformed
+        defaultTableModel.setRowCount(0);
+        List<Cliente> clientes = controladorCliente.buscar(inputBuscar.getText());
+        for (Cliente cli : clientes) {
+            String[] clienteDatos = new String[4];
+            clienteDatos[0] = String.valueOf(cli.getId());
+            clienteDatos[1] = cli.getNombre();
+            clienteDatos[2] = cli.getIdentificacion();
+            clienteDatos[3] = calcularTotalAbono(cli.getId());
+            defaultTableModel.addRow(clienteDatos);
+        }
+    }//GEN-LAST:event_buscarActionPerformed
 
     private Cliente getCliente(Long id) {
         return controladorCliente.existePorId(id);
@@ -500,7 +524,9 @@ public class AdminGestClients extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton bntVerMas;
+    private javax.swing.JButton buscar;
     private javax.swing.ButtonGroup buttonGroup1;
+    private javax.swing.JTextField inputBuscar;
     private javax.swing.JTextField inputDireccion;
     private javax.swing.JTextField inputNombre;
     private javax.swing.JTextField inputNumeroDocumento;
@@ -525,7 +551,6 @@ public class AdminGestClients extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextField jTextField5;
     private javax.swing.JTable tablaClientes;
     // End of variables declaration//GEN-END:variables
 }

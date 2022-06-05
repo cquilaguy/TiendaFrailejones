@@ -168,4 +168,44 @@ public class ConsultasCliente extends Conexion implements ICliente {
         }
     }
 
+    @Override
+    public List<Cliente> buscar(String parametros) {
+        List<Cliente> clientes = new ArrayList<>();
+        PreparedStatement ps = null;
+        ResultSet resultSet = null;
+        Connection connection = getConexion();
+        String sql = "SELECT * FROM cliente WHERE nombre = ? OR identificacion = ?";
+
+        try {
+            ps = connection.prepareStatement(sql);
+            ps.setString(1, "%" + parametros + "%");
+            ps.setString(2, "%" + parametros + "%");
+            resultSet = ps.executeQuery();
+            while (resultSet.next()) {
+                
+                Cliente cliente = new Cliente();
+                cliente.setId(resultSet.getLong("id"));
+                cliente.setNombre(resultSet.getString("nombre"));
+                cliente.setTelefono(resultSet.getString("telefono"));
+                cliente.setIdentificacion(resultSet.getString("identificacion"));
+                cliente.setTipoIdentificacion(resultSet.getString("tipo_Identificacion"));
+                cliente.setTipoUsuario(resultSet.getString("tipo_usuario"));
+                cliente.setActivo(resultSet.getInt("activo"));
+                cliente.setDireccion(resultSet.getString("direccion"));
+                clientes.add(cliente);
+               
+            }
+            return clientes;
+        } catch (SQLException e) {
+            System.err.println(e);
+            return clientes;
+        } finally {
+            try {
+                connection.close();
+            } catch (SQLException e) {
+                System.err.println(e);
+            }
+        }
+    }
+
 }
