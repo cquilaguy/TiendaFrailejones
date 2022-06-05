@@ -4,6 +4,7 @@
  */
 package tiendafrailejones.vista.ui;
 
+import UI.ClienteMenu;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -79,6 +80,8 @@ public class login extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 100, Short.MAX_VALUE)
         );
+
+        labelUsuarioOContraseña.setForeground(new java.awt.Color(255, 0, 0));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -164,6 +167,20 @@ public class login extends javax.swing.JFrame {
                 } else {
                     AdminMenu adminMenu = new AdminMenu();
                     adminMenu.setVisible(true);
+                }
+
+                this.dispose();
+            } else if (loginTmp.getUserType().equals("EMPLEADO")) {
+                Boolean check = consultaContraseña.checkPassword(loginTmp.getPassword(), loginTmp);
+                if (check) {
+                    CambioPassword cambioPassword = new CambioPassword();
+                    cambioPassword.setControladorLogin(controladorLogin);
+                    cambioPassword.setLogin(loginTmp);
+                    cambioPassword.setVisible(true);
+                    this.dispose();
+                } else {
+                    ClienteMenu clienteMenu = new ClienteMenu();
+                    clienteMenu.setVisible(true);
                 }
 
                 this.dispose();

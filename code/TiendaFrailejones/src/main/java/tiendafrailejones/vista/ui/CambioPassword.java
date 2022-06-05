@@ -4,6 +4,7 @@
  */
 package tiendafrailejones.vista.ui;
 
+import UI.ClienteMenu;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -142,13 +143,22 @@ public class CambioPassword extends javax.swing.JFrame {
             login.setPassword(pass);
             controladorLogin.actualizarLogin(login);
 
-            AdminMenu adminMenu = new AdminMenu();
-            adminMenu.setVisible(true);
+            
             this.dispose();
         } else {
             JOptionPane.showMessageDialog(null, "Constraseña no coinciden");
         }
     }//GEN-LAST:event_btnGuardarActionPerformed
+
+    private void switchWindowAdminOrUser() {
+        if (login.getUserType().equalsIgnoreCase("ADMISNITRADOR")) {
+            AdminMenu adminMenu = new AdminMenu();
+            adminMenu.setVisible(true);
+        } else if (login.getUserType().equalsIgnoreCase("EMPLEADO")) {
+            ClienteMenu clienteMenu = new ClienteMenu();
+            clienteMenu.setVisible(true);
+        }
+    }
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
         // TODO add your handling code here:
