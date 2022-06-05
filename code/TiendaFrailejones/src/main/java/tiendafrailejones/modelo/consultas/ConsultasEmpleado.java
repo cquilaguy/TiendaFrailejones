@@ -167,4 +167,45 @@ public class ConsultasEmpleado extends Conexion implements IEmpleado {
         }
     }
 
+
+    @Override
+    public List<Empleado> buscar(String parametro) {
+        List<Empleado> empleados = new ArrayList<>();
+        PreparedStatement ps = null;
+        ResultSet resultSet = null;
+        Connection connection = getConexion();
+        String sql = "SELECT * FROM empleado WHERE identificacion like ? OR nombre like ?";
+
+        try {
+            ps = connection.prepareStatement(sql);
+            ps.setString(1, "%" + parametro + "%");
+            ps.setString(2, "%" + parametro + "%");
+            resultSet = ps.executeQuery();
+            while (resultSet.next()) {
+                
+                Empleado empleado = new Empleado();
+                empleado.setId(resultSet.getLong("id"));
+                empleado.setNombre(resultSet.getString("nombre"));
+                empleado.setTelefono(resultSet.getString("telefono"));
+                empleado.setIdentificacion(resultSet.getString("identificacion"));
+                empleado.setTipoIdentificacion(resultSet.getString("tipo_Identificacion"));
+                empleado.setTipoUsuario(resultSet.getString("tipo_usuario"));
+                empleado.setActivo(resultSet.getInt("activo"));
+                empleado.setCorreo(resultSet.getString("correo"));
+                empleados.add(empleado);
+               
+            }
+            return empleados;
+        } catch (SQLException e) {
+            System.err.println(e);
+            return empleados;
+        } finally {
+            try {
+                connection.close();
+            } catch (SQLException e) {
+                System.err.println(e);
+            }
+        }
+    }
+
 }

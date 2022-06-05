@@ -39,6 +39,11 @@ public class ControladorEmpleado implements IEmpleado{
     public List<Empleado> obtenetTodosLosEmpleado() {
         return consultasEmpleado.obtenetTodosLosEmpleado();
     }
+
+    @Override
+    public List<Empleado> buscar(String parametro) {
+        return consultasEmpleado.buscar(parametro);
+    }
     
     
     

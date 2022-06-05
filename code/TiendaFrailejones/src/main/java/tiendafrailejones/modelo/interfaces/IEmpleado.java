@@ -12,5 +12,5 @@ public interface IEmpleado {
     void eliminar(Long id);
     Empleado existePorId(Long id); 
     List<Empleado> obtenetTodosLosEmpleado();
-    
+    List<Empleado> buscar(String parametro); 
 }
