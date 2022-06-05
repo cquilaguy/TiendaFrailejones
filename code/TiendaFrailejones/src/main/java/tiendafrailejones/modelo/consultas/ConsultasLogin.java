@@ -27,7 +27,7 @@ public class ConsultasLogin extends Conexion implements ILogin {
         String sql = "SELECT * FROM login WHERE user=? AND password=? AND activo=1";
         try {
             ps = connection.prepareStatement(sql);
-            ps.setString(1, login.getUser());
+            ps.setString(1, login.getUser().toUpperCase());
             ps.setString(2, login.getPassword());
             resultSet = ps.executeQuery();
 
@@ -60,7 +60,7 @@ public class ConsultasLogin extends Conexion implements ILogin {
                 + "VALUES (?, ?, ?, ?)";
         try {
             ps = connection.prepareStatement(sql);
-            ps.setString(1, login.getUser());
+            ps.setString(1, login.getUser().toUpperCase());
             ps.setString(2, login.getPassword());
             ps.setString(3, login.getUserType());
             ps.setLong(4, login.getIdUsuario());
