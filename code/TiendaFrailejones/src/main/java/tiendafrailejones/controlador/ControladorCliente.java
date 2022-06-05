@@ -36,7 +36,7 @@ public class ControladorCliente implements ICliente{
 
     @Override
     public Cliente existePorId(Long id) {
-        return consultasCliente.existePorId(id);
+    return consultasCliente.existePorId(id);
     }
 
     @Override

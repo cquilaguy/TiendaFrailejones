@@ -9,7 +9,7 @@ public class Deuda {
     private BigDecimal todalDeuda;
     private String fecha;
     private String descripcion;
-    private BigDecimal abonoDeuda;
+    private String abonoDeuda;
 
     public Integer getId() {
         return id;
@@ -51,13 +51,14 @@ public class Deuda {
         this.descripcion = descripcion;
     }
 
-    public BigDecimal getAbonoDeuda() {
+    public String getAbonoDeuda() {
         return abonoDeuda;
     }
 
-    public void setAbonoDeuda(BigDecimal abonoDeuda) {
+    public void setAbonoDeuda(String abonoDeuda) {
         this.abonoDeuda = abonoDeuda;
     }
-    
-    
+
+ 
+
 }
