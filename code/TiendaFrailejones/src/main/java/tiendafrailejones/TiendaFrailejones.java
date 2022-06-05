@@ -13,11 +13,11 @@ public class TiendaFrailejones {
 
     public static void main(String[] args) throws IOException {
 
-//        login login = new login();
-//        login.setVisible(true);
+        login login = new login();
+        login.setVisible(true);
 
-          AdminGestClients adminGestClients = new AdminGestClients();
-          adminGestClients.setVisible(true);
+//          AdminGestClients adminGestClients = new AdminGestClients();
+//          adminGestClients.setVisible(true);
 //        
     }
 }
