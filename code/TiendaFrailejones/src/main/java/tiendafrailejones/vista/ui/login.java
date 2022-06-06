@@ -1,10 +1,6 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 package tiendafrailejones.vista.ui;
 
-import UI.ClienteMenu;
+
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -15,6 +11,7 @@ import tiendafrailejones.modelo.consultas.ConsultaContraseña;
 import tiendafrailejones.modelo.consultas.ConsultasLogin;
 import tiendafrailejones.utils.AES;
 import tiendafrailejones.utils.DataUser;
+import tiendafrailejones.vista.ui.empleado.ClienteMenu;
 
 public class login extends javax.swing.JFrame {
 

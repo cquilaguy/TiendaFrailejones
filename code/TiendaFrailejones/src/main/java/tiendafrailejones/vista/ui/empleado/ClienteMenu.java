@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 package tiendafrailejones.vista.ui.empleado;
 
 import UI.*;
@@ -61,11 +57,6 @@ public class ClienteMenu extends javax.swing.JFrame {
         jButton2.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         jButton2.setForeground(new java.awt.Color(255, 255, 255));
         jButton2.setText("INVENTARIO");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
-            }
-        });
 
         jPanel1.setBackground(new java.awt.Color(166, 85, 15));
 
@@ -137,14 +128,8 @@ public class ClienteMenu extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        AdminGestClients adminGestClients = new AdminGestClients();
-        adminGestClients.setVisible(true);
-        this.dispose();
-    }//GEN-LAST:event_jButton2ActionPerformed
-
     private void btnClientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClientesActionPerformed
-        AdminGestClients adminGestClients = new AdminGestClients();
+         AdminGestClients adminGestClients = new AdminGestClients();
         adminGestClients.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnClientesActionPerformed
@@ -155,10 +140,10 @@ public class ClienteMenu extends javax.swing.JFrame {
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         try {
-            UIManager.setLookAndFeel(new FlatLightLaf());
-        } catch (UnsupportedLookAndFeelException ex) {
-            System.err.println("Failed to initialize LaF");
-        }
+    UIManager.setLookAndFeel( new FlatLightLaf() );
+} catch( UnsupportedLookAndFeelException ex ) {
+    System.err.println( "Failed to initialize LaF" );
+}
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(() -> {

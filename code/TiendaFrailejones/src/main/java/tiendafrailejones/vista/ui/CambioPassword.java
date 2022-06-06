@@ -4,7 +4,7 @@
  */
 package tiendafrailejones.vista.ui;
 
-import UI.ClienteMenu;
+
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -13,6 +13,7 @@ import tiendafrailejones.controlador.ControladorLogin;
 import tiendafrailejones.modelo.Login;
 import tiendafrailejones.modelo.consultas.ConsultasLogin;
 import tiendafrailejones.utils.AES;
+import tiendafrailejones.vista.ui.empleado.ClienteMenu;
 
 /**
  *
