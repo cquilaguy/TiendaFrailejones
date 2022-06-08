@@ -225,8 +225,19 @@ public class AdminGestCustomer extends javax.swing.JFrame {
                 inputIdentificacionActionPerformed(evt);
             }
         });
+        inputIdentificacion.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                inputIdentificacionKeyTyped(evt);
+            }
+        });
 
         jLabel4.setText("Número de Documento");
+
+        inputTelefono.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                inputTelefonoKeyTyped(evt);
+            }
+        });
 
         jLabel5.setText("Telefono");
 
@@ -365,7 +376,7 @@ public class AdminGestCustomer extends javax.swing.JFrame {
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                                 .addComponent(btnCrearActualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(20, 20, 20)))))
-                .addContainerGap(450, Short.MAX_VALUE))
+                .addContainerGap(480, Short.MAX_VALUE))
         );
 
         jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder("Usuarios Registrados"));
@@ -641,6 +652,21 @@ public class AdminGestCustomer extends javax.swing.JFrame {
         llenarTabla();
     }//GEN-LAST:event_jButton2ActionPerformed
 
+    private void inputIdentificacionKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_inputIdentificacionKeyTyped
+        verificarSiEsDigito(evt);
+    }//GEN-LAST:event_inputIdentificacionKeyTyped
+
+    private void inputTelefonoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_inputTelefonoKeyTyped
+        verificarSiEsDigito(evt);
+    }//GEN-LAST:event_inputTelefonoKeyTyped
+
+    
+    private void verificarSiEsDigito(java.awt.event.KeyEvent evt){
+        char c = evt.getKeyChar();
+        if (!Character.isDigit(c)) {
+            evt.consume();
+        }
+    }
     /**
      * @param args the command line arguments
      */

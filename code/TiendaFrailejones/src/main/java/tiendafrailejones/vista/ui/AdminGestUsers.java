@@ -215,6 +215,11 @@ public class AdminGestUsers extends javax.swing.JFrame {
         );
 
         jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder("Información de Usuario"));
+        jPanel3.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jPanel3KeyTyped(evt);
+            }
+        });
 
         jLabel2.setText("Nombre Completo");
 
@@ -225,8 +230,27 @@ public class AdminGestUsers extends javax.swing.JFrame {
                 inputIdentificacionActionPerformed(evt);
             }
         });
+        inputIdentificacion.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                inputIdentificacionKeyPressed(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                inputIdentificacionKeyTyped(evt);
+            }
+        });
 
         jLabel4.setText("Número de Documento");
+
+        inputTelefono.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                inputTelefonoActionPerformed(evt);
+            }
+        });
+        inputTelefono.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                inputTelefonoKeyTyped(evt);
+            }
+        });
 
         jLabel5.setText("Telefono");
 
@@ -737,12 +761,37 @@ public class AdminGestUsers extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-       llenarTabla();
+        llenarTabla();
     }//GEN-LAST:event_jButton3ActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
+    private void inputIdentificacionKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_inputIdentificacionKeyPressed
+
+    }//GEN-LAST:event_inputIdentificacionKeyPressed
+
+    private void inputTelefonoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_inputTelefonoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_inputTelefonoActionPerformed
+
+    private void inputIdentificacionKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_inputIdentificacionKeyTyped
+        verificarSiEsDigito(evt);
+    }//GEN-LAST:event_inputIdentificacionKeyTyped
+
+    private void inputTelefonoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_inputTelefonoKeyTyped
+        verificarSiEsDigito(evt);
+    }//GEN-LAST:event_inputTelefonoKeyTyped
+
+    private void jPanel3KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jPanel3KeyTyped
+        
+    }//GEN-LAST:event_jPanel3KeyTyped
+
+    private void verificarSiEsDigito(java.awt.event.KeyEvent evt){
+        char c = evt.getKeyChar();
+        if (!Character.isDigit(c)) {
+            evt.consume();
+        }
+    }
+    
+    
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         try {
