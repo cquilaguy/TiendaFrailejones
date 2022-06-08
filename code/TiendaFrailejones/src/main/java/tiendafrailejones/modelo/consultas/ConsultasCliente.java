@@ -174,7 +174,7 @@ public class ConsultasCliente extends Conexion implements ICliente {
         PreparedStatement ps = null;
         ResultSet resultSet = null;
         Connection connection = getConexion();
-        String sql = "SELECT * FROM cliente WHERE nombre = ? OR identificacion = ?";
+        String sql = "SELECT * FROM cliente WHERE nombre = ? OR identificacion = ? AND activo = 1";
 
         try {
             ps = connection.prepareStatement(sql);

@@ -699,6 +699,7 @@ public class AdminGestUsers extends javax.swing.JFrame {
 
         if (inputBuscar.getText().isEmpty()) {
             JOptionPane.showMessageDialog(null, "Debe ingresar número de indentificacion o nombre");
+            return;
         }
 
         List<Empleado> empleados = consultasEmpleado.buscar(inputBuscar.getText());

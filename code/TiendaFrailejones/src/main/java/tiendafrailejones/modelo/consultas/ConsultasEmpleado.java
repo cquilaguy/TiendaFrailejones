@@ -174,7 +174,7 @@ public class ConsultasEmpleado extends Conexion implements IEmpleado {
         PreparedStatement ps = null;
         ResultSet resultSet = null;
         Connection connection = getConexion();
-        String sql = "SELECT * FROM empleado WHERE identificacion like ? OR nombre like ?";
+        String sql = "SELECT * FROM empleado WHERE identificacion like ? OR nombre like ? AND activo = 1";
 
         try {
             ps = connection.prepareStatement(sql);
