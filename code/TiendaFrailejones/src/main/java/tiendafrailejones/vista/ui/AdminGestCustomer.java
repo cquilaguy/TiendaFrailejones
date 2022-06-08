@@ -138,12 +138,12 @@ public class AdminGestCustomer extends javax.swing.JFrame {
         jcomboxTipoUsuario = new javax.swing.JComboBox<>();
         jButton1 = new javax.swing.JButton();
         jPanel4 = new javax.swing.JPanel();
-        idBuscar = new javax.swing.JTextField();
+        inputBuscar = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
         jComboBox2 = new javax.swing.JComboBox<>();
         jScrollPane2 = new javax.swing.JScrollPane();
         tablaClientes = new javax.swing.JTable();
-        inputBuscar = new javax.swing.JButton();
+        btnBuscar = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -370,10 +370,10 @@ public class AdminGestCustomer extends javax.swing.JFrame {
 
         jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder("Usuarios Registrados"));
 
-        idBuscar.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        idBuscar.addActionListener(new java.awt.event.ActionListener() {
+        inputBuscar.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        inputBuscar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                idBuscarActionPerformed(evt);
+                inputBuscarActionPerformed(evt);
             }
         });
 
@@ -401,10 +401,10 @@ public class AdminGestCustomer extends javax.swing.JFrame {
         });
         jScrollPane2.setViewportView(tablaClientes);
 
-        inputBuscar.setText("Buscar");
-        inputBuscar.addActionListener(new java.awt.event.ActionListener() {
+        btnBuscar.setText("Buscar");
+        btnBuscar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                inputBuscarActionPerformed(evt);
+                btnBuscarActionPerformed(evt);
             }
         });
 
@@ -430,9 +430,9 @@ public class AdminGestCustomer extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(idBuscar)
-                        .addGap(18, 18, 18)
                         .addComponent(inputBuscar)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnBuscar)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jButton2)
                         .addGap(38, 38, 38))))
@@ -447,8 +447,8 @@ public class AdminGestCustomer extends javax.swing.JFrame {
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addContainerGap()
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(idBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(inputBuscar)
+                            .addComponent(inputBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnBuscar)
                             .addComponent(jButton2))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 341, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -548,9 +548,9 @@ public class AdminGestCustomer extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_jButton4ActionPerformed
 
-    private void idBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_idBuscarActionPerformed
+    private void inputBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_inputBuscarActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_idBuscarActionPerformed
+    }//GEN-LAST:event_inputBuscarActionPerformed
 
     private void jcomboxTipoIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcomboxTipoIDActionPerformed
         // TODO add your handling code here:
@@ -610,7 +610,7 @@ public class AdminGestCustomer extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_inputIdentificacionActionPerformed
 
-    private void inputBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_inputBuscarActionPerformed
+    private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
         if (inputBuscar.getText().isEmpty()) {
             JOptionPane.showMessageDialog(null, "Debe ingresar número de identificación o nombre");
             return;
@@ -635,7 +635,7 @@ public class AdminGestCustomer extends javax.swing.JFrame {
                 defaultTableModel.addRow(clienteDatos);
             }
         }
-    }//GEN-LAST:event_inputBuscarActionPerformed
+    }//GEN-LAST:event_btnBuscarActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         llenarTabla();
@@ -696,11 +696,11 @@ public class AdminGestCustomer extends javax.swing.JFrame {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnBuscar;
     private javax.swing.JButton btnCrearActualizar;
     private javax.swing.JButton btnEliminar;
     public javax.swing.ButtonGroup buttonGroup;
-    private javax.swing.JTextField idBuscar;
-    private javax.swing.JButton inputBuscar;
+    private javax.swing.JTextField inputBuscar;
     private javax.swing.JTextField inputDireccion;
     private javax.swing.JTextField inputIdentificacion;
     private javax.swing.JTextField inputNombre;
