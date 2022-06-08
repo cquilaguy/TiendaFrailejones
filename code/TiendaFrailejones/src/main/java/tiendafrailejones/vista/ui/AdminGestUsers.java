@@ -9,6 +9,7 @@ import com.formdev.flatlaf.FlatLightLaf;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import java.util.logging.Level;
@@ -22,6 +23,7 @@ import javax.swing.UnsupportedLookAndFeelException;
 import javax.swing.table.DefaultTableModel;
 import tiendafrailejones.controlador.ControladorEmpleado;
 import tiendafrailejones.controlador.ControladorLogin;
+import tiendafrailejones.modelo.Cliente;
 import tiendafrailejones.modelo.Empleado;
 import tiendafrailejones.modelo.Login;
 import tiendafrailejones.modelo.consultas.ConsultasEmpleado;
@@ -140,7 +142,7 @@ public class AdminGestUsers extends javax.swing.JFrame {
         jPanel4 = new javax.swing.JPanel();
         inputBuscar = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
-        jComboBox2 = new javax.swing.JComboBox<>();
+        jcomboxOrdenar = new javax.swing.JComboBox<>();
         jScrollPane2 = new javax.swing.JScrollPane();
         tablaEmpleados = new javax.swing.JTable();
         jButton2 = new javax.swing.JButton();
@@ -465,8 +467,13 @@ public class AdminGestUsers extends javax.swing.JFrame {
         jLabel6.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel6.setText("Buscar");
 
-        jComboBox2.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jcomboxOrdenar.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jcomboxOrdenar.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Ordenar por nombre Ascendete", "Ordenar por nombre Descendente", "Solo Administradores", "Solo empleados" }));
+        jcomboxOrdenar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jcomboxOrdenarActionPerformed(evt);
+            }
+        });
 
         tablaEmpleados.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -513,7 +520,7 @@ public class AdminGestUsers extends javax.swing.JFrame {
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addComponent(jLabel6)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jcomboxOrdenar, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(inputBuscar, javax.swing.GroupLayout.DEFAULT_SIZE, 631, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -528,7 +535,7 @@ public class AdminGestUsers extends javax.swing.JFrame {
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jLabel6)
-                        .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jcomboxOrdenar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addContainerGap()
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -781,17 +788,50 @@ public class AdminGestUsers extends javax.swing.JFrame {
     }//GEN-LAST:event_inputTelefonoKeyTyped
 
     private void jPanel3KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jPanel3KeyTyped
-        
+
     }//GEN-LAST:event_jPanel3KeyTyped
 
-    private void verificarSiEsDigito(java.awt.event.KeyEvent evt){
+    private void jcomboxOrdenarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcomboxOrdenarActionPerformed
+          String selectValue = jcomboxOrdenar.getSelectedItem().toString();
+          ordenar(selectValue);
+    }//GEN-LAST:event_jcomboxOrdenarActionPerformed
+
+    private void ordenar(String seleccion) {
+
+        List<Empleado> empleados = new ArrayList<>();
+        if (seleccion.equalsIgnoreCase("Ordenar por nombre Ascendete")) {
+            empleados = controladorEmpleado.ordenarPorNombreAsc();
+        } else if (seleccion.equalsIgnoreCase("Ordenar por nombre Descendente")) {
+            empleados = controladorEmpleado.ordenarPorNombreDesc();
+        } else if (seleccion.equalsIgnoreCase("Solo Administradores")) {
+            empleados = controladorEmpleado.soloAdministradores();
+        } else if (seleccion.equalsIgnoreCase("Solo empleados")) {
+            empleados = controladorEmpleado.soloEmpleados();
+
+        }
+
+        defaultTableModel.setRowCount(0);
+        for (Empleado emp : empleados) {
+            String[] empleadoDatos = new String[8];
+            empleadoDatos[0] = String.valueOf(emp.getId());
+            empleadoDatos[1] = emp.getNombre();
+            empleadoDatos[2] = emp.getTelefono();
+            empleadoDatos[3] = emp.getIdentificacion();
+            empleadoDatos[4] = emp.getTipoIdentificacion();
+            empleadoDatos[5] = emp.getTipoUsuario();
+            empleadoDatos[6] = (emp.getActivo().equals(1)) ? "ACTIVO" : "INACTIVO";
+            empleadoDatos[7] = emp.getCorreo();
+            defaultTableModel.addRow(empleadoDatos);
+        }
+    }
+
+    private void verificarSiEsDigito(java.awt.event.KeyEvent evt) {
         char c = evt.getKeyChar();
         if (!Character.isDigit(c)) {
             evt.consume();
         }
     }
-    
-    
+
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         try {
@@ -866,7 +906,6 @@ public class AdminGestUsers extends javax.swing.JFrame {
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
-    private javax.swing.JComboBox<String> jComboBox2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
@@ -883,6 +922,7 @@ public class AdminGestUsers extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JComboBox<String> jcomboxOrdenar;
     private javax.swing.JComboBox<String> jcomboxTipoID;
     private javax.swing.JComboBox<String> jcomboxTipoUsuario;
     private javax.swing.JTable tablaEmpleados;

@@ -4,10 +4,11 @@ import java.util.List;
 import tiendafrailejones.modelo.consultas.ConsultasEmpleado;
 import tiendafrailejones.modelo.Empleado;
 import tiendafrailejones.modelo.interfaces.IEmpleado;
+import tiendafrailejones.modelo.interfaces.IUsuarioOrdenar;
 import tiendafrailejones.utils.log;
 
 
-public class ControladorEmpleado implements IEmpleado{
+public class ControladorEmpleado implements IEmpleado, IUsuarioOrdenar{
     
     private ConsultasEmpleado consultasEmpleado;
 
@@ -56,6 +57,28 @@ public class ControladorEmpleado implements IEmpleado{
     public List<Empleado> buscar(String parametro) {
         return consultasEmpleado.buscar(parametro);
     }
+
+    @Override
+    public List<Empleado> ordenarPorNombreAsc() {
+        return consultasEmpleado.ordenarPorNombreAsc();
+    }
+
+    @Override
+    public List<Empleado> ordenarPorNombreDesc() {
+       return consultasEmpleado.ordenarPorNombreDesc();
+    }
+
+    @Override
+    public List<Empleado> soloAdministradores() {
+        return consultasEmpleado.soloAdministradores();
+    }
+
+    @Override
+    public List<Empleado> soloEmpleados() {
+        return consultasEmpleado.soloEmpleados();
+    }
+
+   
     
     
     
