@@ -1,6 +1,6 @@
 package tiendafrailejones.vista.deuda;
 
-import UI.*;
+
 import com.formdev.flatlaf.FlatLightLaf;
 import java.math.BigDecimal;
 import java.util.List;
@@ -16,6 +16,7 @@ import tiendafrailejones.modelo.Empleado;
 import tiendafrailejones.modelo.Login;
 import tiendafrailejones.modelo.consultas.ConsultaDeuda;
 import tiendafrailejones.modelo.consultas.ConsultasCliente;
+import tiendafrailejones.vista.ui.empleado.ClienteMenu;
 
 public class AdminGestClients extends javax.swing.JFrame {
 
@@ -422,7 +423,9 @@ public class AdminGestClients extends javax.swing.JFrame {
 
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        
+        ClienteMenu clienteMenu = new ClienteMenu();
+        clienteMenu.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void inputBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_inputBuscarActionPerformed
@@ -461,6 +464,11 @@ public class AdminGestClients extends javax.swing.JFrame {
     }//GEN-LAST:event_tablaClientesMouseClicked
 
     private void buscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscarActionPerformed
+        
+        if (inputBuscar.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Debe ingresar número de identificación o nombre");
+            return;
+        } 
         defaultTableModel.setRowCount(0);
         List<Cliente> clientes = controladorCliente.buscar(inputBuscar.getText());
         for (Cliente cli : clientes) {

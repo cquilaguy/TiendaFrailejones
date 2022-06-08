@@ -4,7 +4,6 @@
  */
 package tiendafrailejones.vista.ui;
 
-import UI.*;
 import com.formdev.flatlaf.FlatLightLaf;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;

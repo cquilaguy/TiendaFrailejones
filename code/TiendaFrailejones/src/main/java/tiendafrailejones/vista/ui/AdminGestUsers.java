@@ -697,7 +697,10 @@ public class AdminGestUsers extends javax.swing.JFrame {
     }//GEN-LAST:event_inputIdentificacionActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        
+
+        if (inputBuscar.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Debe ingresar número de indentificacion o nombre");
+        }
         defaultTableModel.setRowCount(0);
         List<Empleado> empleados = consultasEmpleado.buscar(inputBuscar.getText());;
         for (Empleado emp : empleados) {
@@ -712,6 +715,7 @@ public class AdminGestUsers extends javax.swing.JFrame {
             empleadoDatos[7] = emp.getCorreo();
             defaultTableModel.addRow(empleadoDatos);
         }
+        
     }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
