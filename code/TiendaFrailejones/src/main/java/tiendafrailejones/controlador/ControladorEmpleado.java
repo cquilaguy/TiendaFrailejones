@@ -4,6 +4,7 @@ import java.util.List;
 import tiendafrailejones.modelo.consultas.ConsultasEmpleado;
 import tiendafrailejones.modelo.Empleado;
 import tiendafrailejones.modelo.interfaces.IEmpleado;
+import tiendafrailejones.utils.log;
 
 
 public class ControladorEmpleado implements IEmpleado{
@@ -16,17 +17,28 @@ public class ControladorEmpleado implements IEmpleado{
 
     @Override
     public boolean crear(Empleado empleado) {
-        return consultasEmpleado.crear(empleado);
-        
+        log logger = log.getInstance();
+        Boolean tmp = consultasEmpleado.crear(empleado);
+        if(tmp){
+            logger.logData("Se ha creado el empleado: "+empleado.getIdentificacion(), "empleado");
+        }
+        else {
+            logger.logData("Se ha intentado crear el empleado: "+empleado.getIdentificacion(), "empleado");
+        }
+        return tmp;
     }
 
     @Override
     public void actualizar(Empleado empleado) {
+        log logger = log.getInstance();
+        logger.logData("Se ha creado el empleado: "+empleado.getIdentificacion(), "empleado");
         consultasEmpleado.actualizar(empleado);
     }
 
     @Override
     public void eliminar(Long id) {
+        log logger = log.getInstance();
+        logger.logData("Se ha creado el empleado: "+id, "empleado");
         consultasEmpleado.eliminar(id);
     }
 
