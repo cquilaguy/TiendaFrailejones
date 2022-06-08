@@ -1,9 +1,10 @@
 package tiendafrailejones.vista.ui.empleado;
 
-import UI.*;
+
 import com.formdev.flatlaf.FlatLightLaf;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
+import tiendafrailejones.vista.deuda.AdminGestClients;
 
 /**
  *
@@ -129,7 +130,7 @@ public class ClienteMenu extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnClientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClientesActionPerformed
-         AdminGestClients adminGestClients = new AdminGestClients();
+        AdminGestClients adminGestClients = new AdminGestClients();
         adminGestClients.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnClientesActionPerformed
