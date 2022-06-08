@@ -10,9 +10,10 @@ import tiendafrailejones.modelo.Cliente;
 import tiendafrailejones.modelo.Conexion;
 import tiendafrailejones.modelo.Empleado;
 import tiendafrailejones.modelo.interfaces.ICliente;
+import tiendafrailejones.modelo.interfaces.IClienteOrdenar;
 import tiendafrailejones.modelo.interfaces.IEmpleado;
 
-public class ConsultasCliente extends Conexion implements ICliente {
+public class ConsultasCliente extends Conexion implements ICliente, IClienteOrdenar {
 
     @Override
     public boolean crear(Cliente cliente) {
@@ -180,6 +181,82 @@ public class ConsultasCliente extends Conexion implements ICliente {
             ps = connection.prepareStatement(sql);
             ps.setString(1, "%" + parametros + "%");
             ps.setString(2, "%" + parametros + "%");
+            resultSet = ps.executeQuery();
+            while (resultSet.next()) {
+                
+                Cliente cliente = new Cliente();
+                cliente.setId(resultSet.getLong("id"));
+                cliente.setNombre(resultSet.getString("nombre"));
+                cliente.setTelefono(resultSet.getString("telefono"));
+                cliente.setIdentificacion(resultSet.getString("identificacion"));
+                cliente.setTipoIdentificacion(resultSet.getString("tipo_Identificacion"));
+                cliente.setTipoUsuario(resultSet.getString("tipo_usuario"));
+                cliente.setActivo(resultSet.getInt("activo"));
+                cliente.setDireccion(resultSet.getString("direccion"));
+                clientes.add(cliente);
+               
+            }
+            return clientes;
+        } catch (SQLException e) {
+            System.err.println(e);
+            return clientes;
+        } finally {
+            try {
+                connection.close();
+            } catch (SQLException e) {
+                System.err.println(e);
+            }
+        }
+    }
+
+    @Override
+    public List<Cliente> ordenarPorNombreAsc() {
+       List<Cliente> clientes = new ArrayList<>();
+        PreparedStatement ps = null;
+        ResultSet resultSet = null;
+        Connection connection = getConexion();
+        String sql = "SELECT * FROM cliente WHERE activo = 1 ORDER BY nombre ASC";
+
+        try {
+            ps = connection.prepareStatement(sql);
+            resultSet = ps.executeQuery();
+            while (resultSet.next()) {
+                
+                Cliente cliente = new Cliente();
+                cliente.setId(resultSet.getLong("id"));
+                cliente.setNombre(resultSet.getString("nombre"));
+                cliente.setTelefono(resultSet.getString("telefono"));
+                cliente.setIdentificacion(resultSet.getString("identificacion"));
+                cliente.setTipoIdentificacion(resultSet.getString("tipo_Identificacion"));
+                cliente.setTipoUsuario(resultSet.getString("tipo_usuario"));
+                cliente.setActivo(resultSet.getInt("activo"));
+                cliente.setDireccion(resultSet.getString("direccion"));
+                clientes.add(cliente);
+               
+            }
+            return clientes;
+        } catch (SQLException e) {
+            System.err.println(e);
+            return clientes;
+        } finally {
+            try {
+                connection.close();
+            } catch (SQLException e) {
+                System.err.println(e);
+            }
+        }
+    }
+
+    @Override
+    public List<Cliente> ordenarPorNombreDesc() {
+        List<Cliente> clientes = new ArrayList<>();
+        PreparedStatement ps = null;
+        ResultSet resultSet = null;
+        Connection connection = getConexion();
+        String sql = "SELECT * FROM cliente WHERE activo = 1 ORDER BY nombre DESC;";
+
+        try {
+            ps = connection.prepareStatement(sql);
             resultSet = ps.executeQuery();
             while (resultSet.next()) {
                 
