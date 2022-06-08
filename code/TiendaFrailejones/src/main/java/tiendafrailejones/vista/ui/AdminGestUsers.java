@@ -66,7 +66,7 @@ public class AdminGestUsers extends javax.swing.JFrame {
         defaultTableModel = new DefaultTableModel() {
             @Override
             public boolean isCellEditable(int row, int column) {
-                return false; // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/OverriddenMethodBody
+                return false;
             }
         };
 
@@ -550,13 +550,14 @@ public class AdminGestUsers extends javax.swing.JFrame {
     private void btnCrearActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCrearActualizarActionPerformed
         try {
 
+            verificarCampos();
             Empleado emp = controladorEmpleado.existePorId(Long.valueOf(inputIdentificacion.getText()));
 
             System.out.println(Objects.equals(emp.getIdentificacion(), inputIdentificacion.getText()));
             if (!actualizar && emp != null && Objects.equals(emp.getIdentificacion(), inputIdentificacion.getText())) {
                 JOptionPane.showMessageDialog(null, "Usuario ya existe con ese numero de identificación");
             } else if (empleado.getId() != null && actualizar) {  // Actualizar
-                verificarCampos();
+
                 empleado.setId(empleado.getId());
                 empleado.setNombre(inputNombre.getText());
                 empleado.setTelefono(inputTelefono.getText());
@@ -574,7 +575,6 @@ public class AdminGestUsers extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(null, "Se ha actualizado el registro");
             } else { // Crear
 
-                verificarCampos();
                 verificarCorreos();
                 verificarCamposLogin();
                 empleado.setNombre(inputNombre.getText());
@@ -587,7 +587,6 @@ public class AdminGestUsers extends javax.swing.JFrame {
 
                 controladorEmpleado.crear(empleado);
                 guardarLogin();
-                
 
                 llenarGuardarTabla();
                 limpiarCampos();
@@ -701,21 +700,28 @@ public class AdminGestUsers extends javax.swing.JFrame {
         if (inputBuscar.getText().isEmpty()) {
             JOptionPane.showMessageDialog(null, "Debe ingresar número de indentificacion o nombre");
         }
-        defaultTableModel.setRowCount(0);
-        List<Empleado> empleados = consultasEmpleado.buscar(inputBuscar.getText());;
-        for (Empleado emp : empleados) {
-            String[] empleadoDatos = new String[8];
-            empleadoDatos[0] = String.valueOf(emp.getId());
-            empleadoDatos[1] = emp.getNombre();
-            empleadoDatos[2] = emp.getTelefono();
-            empleadoDatos[3] = emp.getIdentificacion();
-            empleadoDatos[4] = emp.getTipoIdentificacion();
-            empleadoDatos[5] = emp.getTipoUsuario();
-            empleadoDatos[6] = (emp.getActivo().equals(1)) ? "ACTIVO" : "INACTIVO";
-            empleadoDatos[7] = emp.getCorreo();
-            defaultTableModel.addRow(empleadoDatos);
+
+        List<Empleado> empleados = consultasEmpleado.buscar(inputBuscar.getText());
+
+        if (empleados.isEmpty()) {
+            JOptionPane.showMessageDialog(null, "No existe empleado (s) que concidan con los parametro de busqueda");
+        } else {
+            defaultTableModel.setRowCount(0);
+            for (Empleado emp : empleados) {
+                String[] empleadoDatos = new String[8];
+                empleadoDatos[0] = String.valueOf(emp.getId());
+                empleadoDatos[1] = emp.getNombre();
+                empleadoDatos[2] = emp.getTelefono();
+                empleadoDatos[3] = emp.getIdentificacion();
+                empleadoDatos[4] = emp.getTipoIdentificacion();
+                empleadoDatos[5] = emp.getTipoUsuario();
+                empleadoDatos[6] = (emp.getActivo().equals(1)) ? "ACTIVO" : "INACTIVO";
+                empleadoDatos[7] = emp.getCorreo();
+                defaultTableModel.addRow(empleadoDatos);
+            }
+
         }
-        
+
     }//GEN-LAST:event_jButton2ActionPerformed
 
     /**

@@ -38,19 +38,18 @@ import tiendafrailejones.utils.TipoDocumentos;
  */
 public class AdminGestCustomer extends javax.swing.JFrame {
 
-
     private Empleado e = new Empleado();
     private final ConsultasEmpleado consultasEmpleado = new ConsultasEmpleado();
     private final ControladorEmpleado controladorEmpleado = new ControladorEmpleado(consultasEmpleado);
-    
+
     private Login login = new Login();
     private final ConsultasLogin consultasLogin = new ConsultasLogin();
     private final ControladorLogin controladorLogin = new ControladorLogin(consultasLogin);
     private DefaultTableModel defaultTableModel;
-    
+
     private Cliente cliente = new Cliente();
     private final ConsultasCliente consultasCliente = new ConsultasCliente();
-    private final ControladorCliente controladorCliente =  new ControladorCliente(consultasCliente);
+    private final ControladorCliente controladorCliente = new ControladorCliente(consultasCliente);
 
     private boolean actualizar = false;
     private String tipoDocumento;
@@ -63,7 +62,7 @@ public class AdminGestCustomer extends javax.swing.JFrame {
         btnEliminar.setEnabled(false);
         tipoUsuario = "CLIENTE";
         tipoDocumento = "CÉDULA";
-        
+
         initTable();
         llenarTabla();
         System.out.println(DataUser.getDataUser().getIdUser());
@@ -462,17 +461,17 @@ public class AdminGestCustomer extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
 
-
     private void btnCrearActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCrearActualizarActionPerformed
         try {
-            Cliente cli = controladorCliente.existePorId(Long.valueOf(inputIdentificacion.getText()));
-            
 
-            System.out.println(Objects.equals(cli.getIdentificacion(), inputIdentificacion.getText()));
+            verificarCampos();
+
+            Cliente cli = controladorCliente.existePorId(Long.valueOf(inputIdentificacion.getText()));
+
             if (!actualizar && cli != null && Objects.equals(cli.getIdentificacion(), inputIdentificacion.getText())) {
                 JOptionPane.showMessageDialog(null, "Usuario ya existe con ese numero de identificación");
             } else if (cliente.getId() != null && actualizar) {  // Actualizar
-                verificarCampos();
+
                 cliente.setId(cliente.getId());
                 cliente.setNombre(inputNombre.getText());
                 cliente.setTelefono(inputTelefono.getText());
@@ -486,13 +485,10 @@ public class AdminGestCustomer extends javax.swing.JFrame {
                 btnEliminar.setEnabled(false);
                 limpiarCampos();
                 llenarGuardarTabla();
-                
+
                 JOptionPane.showMessageDialog(null, "Se ha actualizado el registro");
             } else { // Crear
 
-                verificarCampos();
-                
-                
                 cliente.setNombre(inputNombre.getText());
                 cliente.setTelefono(inputTelefono.getText());
                 cliente.setIdentificacion(inputIdentificacion.getText());
@@ -502,12 +498,10 @@ public class AdminGestCustomer extends javax.swing.JFrame {
                 cliente.setDireccion(inputDireccion.getText());
 
                 controladorCliente.crear(cliente);
-                
-                
 
                 llenarGuardarTabla();
                 limpiarCampos();
-               
+
                 JOptionPane.showMessageDialog(null, "Se ha guardado el registro");
             }
         } catch (Exception e) {
@@ -575,7 +569,6 @@ public class AdminGestCustomer extends javax.swing.JFrame {
             jcomboxTipoID.setSelectedItem(cliente.getTipoIdentificacion());
             jcomboxTipoUsuario.setSelectedItem(cliente.getTipoUsuario());
 
-            
             btnEliminar.setEnabled(true);
 
         }
@@ -583,13 +576,13 @@ public class AdminGestCustomer extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         limpiarCampos();
-       
+
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jcomboxTipoUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcomboxTipoUsuarioActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jcomboxTipoUsuarioActionPerformed
-/**/
+    /**/
     private void inputIdentificacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_inputIdentificacionActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_inputIdentificacionActionPerformed
@@ -635,14 +628,13 @@ public class AdminGestCustomer extends javax.swing.JFrame {
         }
     }
 
-
     private void limpiarCampos() {
         inputNombre.setText("");
         inputIdentificacion.setText("");
         inputTelefono.setText("");
-       
+
         inputDireccion.setText("");
-       
+
 //        jcomboxTipoID.cl;
         actualizar = false;
         cliente = new Cliente();

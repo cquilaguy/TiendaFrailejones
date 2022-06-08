@@ -1,6 +1,5 @@
 package tiendafrailejones.vista.deuda;
 
-
 import com.formdev.flatlaf.FlatLightLaf;
 import java.math.BigDecimal;
 import java.util.List;
@@ -464,21 +463,28 @@ public class AdminGestClients extends javax.swing.JFrame {
     }//GEN-LAST:event_tablaClientesMouseClicked
 
     private void buscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscarActionPerformed
-        
+
         if (inputBuscar.getText().isEmpty()) {
             JOptionPane.showMessageDialog(null, "Debe ingresar número de identificación o nombre");
             return;
-        } 
-        defaultTableModel.setRowCount(0);
-        List<Cliente> clientes = controladorCliente.buscar(inputBuscar.getText());
-        for (Cliente cli : clientes) {
-            String[] clienteDatos = new String[4];
-            clienteDatos[0] = String.valueOf(cli.getId());
-            clienteDatos[1] = cli.getNombre();
-            clienteDatos[2] = cli.getIdentificacion();
-            clienteDatos[3] = calcularTotalAbono(cli.getId());
-            defaultTableModel.addRow(clienteDatos);
         }
+
+        List<Cliente> clientes = controladorCliente.buscar(inputBuscar.getText());
+        if (clientes.isEmpty()) {
+            JOptionPane.showMessageDialog(null, "No hay coincidencias");
+            return;
+        } else {
+            defaultTableModel.setRowCount(0);
+            for (Cliente cli : clientes) {
+                String[] clienteDatos = new String[4];
+                clienteDatos[0] = String.valueOf(cli.getId());
+                clienteDatos[1] = cli.getNombre();
+                clienteDatos[2] = cli.getIdentificacion();
+                clienteDatos[3] = calcularTotalAbono(cli.getId());
+                defaultTableModel.addRow(clienteDatos);
+            }
+        }
+
     }//GEN-LAST:event_buscarActionPerformed
 
     private Cliente getCliente(Long id) {
