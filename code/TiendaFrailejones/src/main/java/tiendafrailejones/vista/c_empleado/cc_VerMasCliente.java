@@ -354,14 +354,24 @@ public class cc_VerMasCliente extends javax.swing.JFrame
         if (existeCliente()) {
             JOptionPane.showMessageDialog(null, "Debe seleccionar un cliente primero");
         } else {
+            usuarioNoHabilitadoParaDeuda();
+            
+        }
+
+
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void usuarioNoHabilitadoParaDeuda() {
+        if (cliente.getPermitirDeuda().equalsIgnoreCase("N")) {
+            JOptionPane.showMessageDialog(null, "Usuario no habilitado para generar deuda");
+            return;
+        }else{
             ab_AgregarDeuda deudaCliente = new ab_AgregarDeuda(this, rootPaneCheckingEnabled);
             deudaCliente.setCliente(cliente);
             deudaCliente.setiDeudaCrearListener(this);
             deudaCliente.setVisible(true);
         }
-
-
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }
 
     private void btnVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVolverActionPerformed
         c_Menu cMenu = new c_Menu();

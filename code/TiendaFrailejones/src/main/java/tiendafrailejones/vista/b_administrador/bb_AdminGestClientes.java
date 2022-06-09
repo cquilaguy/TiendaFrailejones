@@ -472,12 +472,22 @@ public class bb_AdminGestClientes extends javax.swing.JFrame {
         if (isClienteSeleccionado()) {
             showDialog("Seleccione un cliente primero");
         } else {
+            usuarioNoHabilitadoParaDeuda();
+
+        }
+    }//GEN-LAST:event_bntVerMasActionPerformed
+
+    private void usuarioNoHabilitadoParaDeuda() {
+        if (cliente.getPermitirDeuda().equalsIgnoreCase("N")) {
+            showDialog("Usuario no habilitado para generar deuda");
+            return;
+        } else {
             bba_VerMasCliente adminGestClientsDeuda = new bba_VerMasCliente();
             adminGestClientsDeuda.setVisible(true);
             adminGestClientsDeuda.setCliente(cliente);
             this.dispose();
         }
-    }//GEN-LAST:event_bntVerMasActionPerformed
+    }
 
     private boolean isClienteSeleccionado() {
         return cliente.getId() == null;
@@ -553,6 +563,7 @@ public class bb_AdminGestClientes extends javax.swing.JFrame {
             inputTelefono.setText(cliente.getTelefono());
             inputIdentificacion.setText(cliente.getIdentificacion());
             jcomboxTipoID.setSelectedItem(cliente.getTipoIdentificacion());
+            jComboBoxPermitirDeuda.setSelectedItem(cliente.getPermitirDeuda().equalsIgnoreCase("S") ? "Sí" : "No");
             actualizar = true;
             btnCrearActualizar.setText("Actualizar");
             habilitarBotonEliminar();
@@ -617,7 +628,7 @@ public class bb_AdminGestClientes extends javax.swing.JFrame {
                 cliente.setTipoUsuario(cliente.getTipoUsuario().toUpperCase());
                 cliente.setTipoIdentificacion(tipoDocumento);
                 cliente.setDireccion(inputDireccion.getText());
-                cliente.setPermitirDeuda(jComboBoxPermitirDeuda.getSelectedItem().toString().equalsIgnoreCase("Sí") ? "S"  : "N");
+                cliente.setPermitirDeuda(jComboBoxPermitirDeuda.getSelectedItem().toString().equalsIgnoreCase("Sí") ? "S" : "N");
                 controladorCliente.actualizar(cliente);
                 btnCrearActualizar.setText("Guardar");
                 deshabilitarBotonEliminar();
@@ -634,8 +645,8 @@ public class bb_AdminGestClientes extends javax.swing.JFrame {
                 cliente.setTipoUsuario(tipoUsuario.toUpperCase());
                 cliente.setActivo(activo);
                 cliente.setDireccion(inputDireccion.getText());
-                cliente.setPermitirDeuda(jComboBoxPermitirDeuda.getSelectedItem().toString().equalsIgnoreCase("Sí") ? "S"  : "N");
-                
+                cliente.setPermitirDeuda(jComboBoxPermitirDeuda.getSelectedItem().toString().equalsIgnoreCase("Sí") ? "S" : "N");
+
                 controladorCliente.crear(cliente);
                 llenarTabla();
                 limpiarCampos();
@@ -729,15 +740,14 @@ public class bb_AdminGestClientes extends javax.swing.JFrame {
         actualizar = false;
         cliente = new Cliente();
     }
-    
-    private void habilitarBotonEliminar(){
+
+    private void habilitarBotonEliminar() {
         btnEliminar.setEnabled(true);
     }
-    
-    private void deshabilitarBotonEliminar(){
+
+    private void deshabilitarBotonEliminar() {
         btnEliminar.setEnabled(false);
     }
-    
 
     private void verificarSeleccionCliente() {
         if (cliente == null || cliente.getId() == null) {
