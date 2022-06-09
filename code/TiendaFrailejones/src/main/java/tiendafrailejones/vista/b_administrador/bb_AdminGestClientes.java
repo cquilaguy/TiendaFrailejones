@@ -473,20 +473,16 @@ public class bb_AdminGestClientes extends javax.swing.JFrame {
             showDialog("Seleccione un cliente primero");
         } else {
             usuarioNoHabilitadoParaDeuda();
-
         }
     }//GEN-LAST:event_bntVerMasActionPerformed
 
     private void usuarioNoHabilitadoParaDeuda() {
-        if (cliente.getPermitirDeuda().equalsIgnoreCase("N")) {
-            showDialog("Usuario no habilitado para generar deuda");
-            return;
-        } else {
-            bba_VerMasCliente adminGestClientsDeuda = new bba_VerMasCliente();
-            adminGestClientsDeuda.setVisible(true);
-            adminGestClientsDeuda.setCliente(cliente);
-            this.dispose();
-        }
+
+        bba_VerMasCliente adminGestClientsDeuda = new bba_VerMasCliente();
+        adminGestClientsDeuda.setVisible(true);
+        adminGestClientsDeuda.setCliente(cliente);
+        this.dispose();
+
     }
 
     private boolean isClienteSeleccionado() {

@@ -306,10 +306,14 @@ public class bba_VerMasCliente extends javax.swing.JFrame
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        ab_AgregarDeuda deudaCliente = new ab_AgregarDeuda(this, rootPaneCheckingEnabled);
-        deudaCliente.setCliente(cliente);
-        deudaCliente.setiDeudaCrearListener(this);
-        deudaCliente.setVisible(true);
+        if (cliente.getPermitirDeuda().equalsIgnoreCase("N")) {
+            JOptionPane.showMessageDialog(null, "EL usuario no tiene permitido crear deuda");
+        } else {
+            ab_AgregarDeuda deudaCliente = new ab_AgregarDeuda(this, rootPaneCheckingEnabled);
+            deudaCliente.setCliente(cliente);
+            deudaCliente.setiDeudaCrearListener(this);
+            deudaCliente.setVisible(true);
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void btnVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVolverActionPerformed

@@ -350,6 +350,8 @@ public class cc_VerMasCliente extends javax.swing.JFrame
 
         if (existeCliente()) {
             JOptionPane.showMessageDialog(null, "Debe seleccionar un cliente primero");
+        } else if (cliente.getPermitirDeuda().equalsIgnoreCase("N")) {
+            JOptionPane.showMessageDialog(null, "El usuario no tiene permitido crear deuda");
         } else {
             usuarioNoHabilitadoParaDeuda();
 
