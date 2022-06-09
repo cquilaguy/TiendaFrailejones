@@ -11,6 +11,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import javax.xml.crypto.Data;
 import tiendafrailejones.controlador.ControladorDeuda;
+import tiendafrailejones.modelo.Cliente;
 import tiendafrailejones.modelo.Deuda;
 import tiendafrailejones.modelo.consultas.ConsultaDeuda;
 import tiendafrailejones.modelo.interfaces.IDeudaCrearListener;
@@ -18,7 +19,7 @@ import tiendafrailejones.modelo.interfaces.IDeudaCrearListener;
 public class ab_AgregarDeuda extends javax.swing.JDialog {
 
     private IDeudaCrearListener iDeudaCrearListener;
-    private Long idCliente;
+    private Cliente cliente;
     private Deuda deuda = new Deuda();
     private static final String DEUDA_VALUE = "D";
 
@@ -41,7 +42,7 @@ public class ab_AgregarDeuda extends javax.swing.JDialog {
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
-        jLabel6 = new javax.swing.JLabel();
+        labelNombreCliente = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         inputDescripcion = new javax.swing.JTextArea();
 
@@ -83,9 +84,9 @@ public class ab_AgregarDeuda extends javax.swing.JDialog {
 
         jPanel2.setBackground(new java.awt.Color(166, 85, 15));
 
-        jLabel6.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
-        jLabel6.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel6.setText("NombreCliente");
+        labelNombreCliente.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
+        labelNombreCliente.setForeground(new java.awt.Color(255, 255, 255));
+        labelNombreCliente.setText("NombreCliente");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -93,14 +94,14 @@ public class ab_AgregarDeuda extends javax.swing.JDialog {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel6)
+                .addComponent(labelNombreCliente)
                 .addGap(150, 150, 150))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(16, 16, 16)
-                .addComponent(jLabel6)
+                .addComponent(labelNombreCliente)
                 .addContainerGap(19, Short.MAX_VALUE))
         );
 
@@ -127,10 +128,11 @@ public class ab_AgregarDeuda extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
+        
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
         LocalDateTime now = LocalDateTime.now();
 
-        deuda.setIdCliente(Integer.valueOf(String.valueOf(idCliente)));
+        deuda.setIdCliente(Integer.valueOf(String.valueOf(cliente.getId())));
         deuda.setFecha(String.valueOf(dtf.format(now)));
         deuda.setAbonoDeuda(DEUDA_VALUE);
         deuda.setTodalDeuda(new BigDecimal(inputValor.getText()));
@@ -218,17 +220,20 @@ public class ab_AgregarDeuda extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel labelNombreCliente;
     // End of variables declaration//GEN-END:variables
 
-    public Long getIdCliente() {
-        return idCliente;
+    public Cliente getCliente() {
+        return cliente;
     }
 
-    public void setIdCliente(Long idCliente) {
-        this.idCliente = idCliente;
+    public void setCliente(Cliente cliente) {
+        this.cliente = cliente;
+        labelNombreCliente.setText(this.cliente.getNombre());
     }
+
+    
 }

@@ -19,8 +19,8 @@ public class ConsultasCliente extends Conexion implements ICliente, IClienteOrde
     public boolean crear(Cliente cliente) {
         PreparedStatement ps = null;
         Connection connection = getConexion();
-        String sql = "INSERT INTO cliente (nombre, telefono, identificacion, tipo_Identificacion, tipo_usuario, direccion )"
-                + "VALUES (?, ?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO cliente (nombre, telefono, identificacion, tipo_Identificacion, tipo_usuario, direccion, permitir_deuda) "
+                + "VALUES (?, ?, ?, ?, ?, ?, ?)";
         try {
             ps = connection.prepareStatement(sql);
             ps.setString(1, cliente.getNombre());
@@ -29,6 +29,7 @@ public class ConsultasCliente extends Conexion implements ICliente, IClienteOrde
             ps.setString(4, cliente.getTipoIdentificacion());
             ps.setString(5, cliente.getTipoUsuario());
             ps.setString(6, cliente.getDireccion());
+            ps.setString(7, cliente.getPermitirDeuda());
             ps.execute();
             return true;
         } catch (SQLException e) {
@@ -47,7 +48,7 @@ public class ConsultasCliente extends Conexion implements ICliente, IClienteOrde
     public void actualizar(Cliente cliente) {
         PreparedStatement ps = null;
         Connection connection = getConexion();
-        String sql = "UPDATE cliente SET nombre=?, telefono=?, identificacion=?, tipo_Identificacion=?, tipo_usuario=?, direccion=? "
+        String sql = "UPDATE cliente SET nombre=?, telefono=?, identificacion=?, tipo_Identificacion=?, tipo_usuario=?, direccion=?, permitir_deuda=? "
                 + " WHERE id=?";
         try {
             ps = connection.prepareStatement(sql);
@@ -57,8 +58,9 @@ public class ConsultasCliente extends Conexion implements ICliente, IClienteOrde
             ps.setString(4, cliente.getTipoIdentificacion());
             ps.setString(5, cliente.getTipoUsuario());
             ps.setString(6, cliente.getDireccion());
-            ps.setLong(7, cliente.getId());
-            
+            ps.setString(7, cliente.getPermitirDeuda());
+            ps.setLong(8, cliente.getId());
+
             ps.execute();
 
         } catch (SQLException e) {
@@ -116,6 +118,7 @@ public class ConsultasCliente extends Conexion implements ICliente, IClienteOrde
                 cliente.setTipoUsuario(resultSet.getString("tipo_usuario"));
                 cliente.setDireccion(resultSet.getString("direccion"));
                 cliente.setActivo(resultSet.getInt("activo"));
+                cliente.setPermitirDeuda(resultSet.getString("permitir_deuda"));
                 return cliente;
             }
             return cliente;
@@ -143,7 +146,7 @@ public class ConsultasCliente extends Conexion implements ICliente, IClienteOrde
             ps = connection.prepareStatement(sql);
             resultSet = ps.executeQuery();
             while (resultSet.next()) {
-                
+
                 Cliente cliente = new Cliente();
                 cliente.setId(resultSet.getLong("id"));
                 cliente.setNombre(resultSet.getString("nombre"));
@@ -153,8 +156,9 @@ public class ConsultasCliente extends Conexion implements ICliente, IClienteOrde
                 cliente.setTipoUsuario(resultSet.getString("tipo_usuario"));
                 cliente.setActivo(resultSet.getInt("activo"));
                 cliente.setDireccion(resultSet.getString("direccion"));
+                cliente.setPermitirDeuda(resultSet.getString("permitir_deuda"));
+
                 clientes.add(cliente);
-               
             }
             return clientes;
         } catch (SQLException e) {
@@ -183,7 +187,7 @@ public class ConsultasCliente extends Conexion implements ICliente, IClienteOrde
             ps.setString(2, "%" + parametros + "%");
             resultSet = ps.executeQuery();
             while (resultSet.next()) {
-                
+
                 Cliente cliente = new Cliente();
                 cliente.setId(resultSet.getLong("id"));
                 cliente.setNombre(resultSet.getString("nombre"));
@@ -193,8 +197,10 @@ public class ConsultasCliente extends Conexion implements ICliente, IClienteOrde
                 cliente.setTipoUsuario(resultSet.getString("tipo_usuario"));
                 cliente.setActivo(resultSet.getInt("activo"));
                 cliente.setDireccion(resultSet.getString("direccion"));
+                cliente.setPermitirDeuda(resultSet.getString("permitir_deuda"));
+
                 clientes.add(cliente);
-               
+
             }
             return clientes;
         } catch (SQLException e) {
@@ -211,7 +217,7 @@ public class ConsultasCliente extends Conexion implements ICliente, IClienteOrde
 
     @Override
     public List<Cliente> ordenarPorNombreAsc() {
-       List<Cliente> clientes = new ArrayList<>();
+        List<Cliente> clientes = new ArrayList<>();
         PreparedStatement ps = null;
         ResultSet resultSet = null;
         Connection connection = getConexion();
@@ -221,7 +227,7 @@ public class ConsultasCliente extends Conexion implements ICliente, IClienteOrde
             ps = connection.prepareStatement(sql);
             resultSet = ps.executeQuery();
             while (resultSet.next()) {
-                
+
                 Cliente cliente = new Cliente();
                 cliente.setId(resultSet.getLong("id"));
                 cliente.setNombre(resultSet.getString("nombre"));
@@ -231,8 +237,10 @@ public class ConsultasCliente extends Conexion implements ICliente, IClienteOrde
                 cliente.setTipoUsuario(resultSet.getString("tipo_usuario"));
                 cliente.setActivo(resultSet.getInt("activo"));
                 cliente.setDireccion(resultSet.getString("direccion"));
+                cliente.setPermitirDeuda(resultSet.getString("permitir_deuda"));
+
                 clientes.add(cliente);
-               
+
             }
             return clientes;
         } catch (SQLException e) {
@@ -259,7 +267,7 @@ public class ConsultasCliente extends Conexion implements ICliente, IClienteOrde
             ps = connection.prepareStatement(sql);
             resultSet = ps.executeQuery();
             while (resultSet.next()) {
-                
+
                 Cliente cliente = new Cliente();
                 cliente.setId(resultSet.getLong("id"));
                 cliente.setNombre(resultSet.getString("nombre"));
@@ -269,8 +277,10 @@ public class ConsultasCliente extends Conexion implements ICliente, IClienteOrde
                 cliente.setTipoUsuario(resultSet.getString("tipo_usuario"));
                 cliente.setActivo(resultSet.getInt("activo"));
                 cliente.setDireccion(resultSet.getString("direccion"));
+                cliente.setPermitirDeuda(resultSet.getString("permitir_deuda"));
+
                 clientes.add(cliente);
-               
+
             }
             return clientes;
         } catch (SQLException e) {

@@ -176,11 +176,11 @@ public class login extends javax.swing.JFrame {
             Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
         }
 
-        login.setUser(inputUsuario.getText());
+        login.setCorreo(inputUsuario.getText());
         login.setPassword(pass);
 
         Login loginTmp = controladorLogin.existeUsuario(login);
-        if (loginTmp.getUser() == null || loginTmp.getPassword() == null) {
+        if (loginTmp.getCorreo()== null || loginTmp.getPassword() == null) {
             labelUsuarioOContraseña.setText("Usuario o contraseña incorrecto");
         } else {
             DataUser dataUser = DataUser.getDataUser();

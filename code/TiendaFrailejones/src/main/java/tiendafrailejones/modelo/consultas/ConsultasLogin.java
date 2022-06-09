@@ -27,13 +27,13 @@ public class ConsultasLogin extends Conexion implements ILogin {
         String sql = "SELECT * FROM login WHERE user=? AND password=? AND activo=1";
         try {
             ps = connection.prepareStatement(sql);
-            ps.setString(1, login.getUser().toUpperCase());
+            ps.setString(1, login.getCorreo().toUpperCase());
             ps.setString(2, login.getPassword());
             resultSet = ps.executeQuery();
 
             if (resultSet.next()) {
                 loginUsuario.setId(resultSet.getLong("id"));
-                loginUsuario.setUser(resultSet.getString("user"));
+                loginUsuario.setCorreo(resultSet.getString("user"));
                 loginUsuario.setPassword(resultSet.getString("password"));
                 loginUsuario.setUserType(resultSet.getString("user_type"));
                 loginUsuario.setIdUsuario(resultSet.getLong("id_usuario"));
@@ -60,7 +60,7 @@ public class ConsultasLogin extends Conexion implements ILogin {
                 + "VALUES (?, ?, ?, ?)";
         try {
             ps = connection.prepareStatement(sql);
-            ps.setString(1, login.getUser().toUpperCase());
+            ps.setString(1, login.getCorreo().toUpperCase());
             ps.setString(2, login.getPassword());
             ps.setString(3, login.getUserType());
             ps.setLong(4, login.getIdUsuario());
@@ -86,7 +86,7 @@ public class ConsultasLogin extends Conexion implements ILogin {
                 + " WHERE id=?";
         try {
             ps = connection.prepareStatement(sql);
-            ps.setString(1, login.getUser());
+            ps.setString(1, login.getCorreo());
             ps.setString(2, login.getPassword());
             ps.setString(3, login.getUserType());
             ps.setLong(4, login.getIdUsuario());
@@ -120,7 +120,7 @@ public class ConsultasLogin extends Conexion implements ILogin {
 
             if (resultSet.next()) {
                 loginUsuario.setId(resultSet.getLong("id"));
-                loginUsuario.setUser(resultSet.getString("user"));
+                loginUsuario.setCorreo(resultSet.getString("user"));
                 loginUsuario.setPassword(resultSet.getString("password"));
                 loginUsuario.setUserType(resultSet.getString("user_type"));
                 loginUsuario.setIdUsuario(resultSet.getLong("id_usuario"));

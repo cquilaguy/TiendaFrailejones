@@ -2,28 +2,50 @@ package tiendafrailejones.vista.b_administrador;
 
 import com.formdev.flatlaf.FlatLightLaf;
 import java.math.BigDecimal;
+import java.sql.Array;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import javax.swing.JOptionPane;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 import javax.swing.table.DefaultTableModel;
 import tiendafrailejones.controlador.ControladorCliente;
 import tiendafrailejones.controlador.ControladorDeuda;
+import tiendafrailejones.controlador.ControladorEmpleado;
+import tiendafrailejones.controlador.ControladorLogin;
 import tiendafrailejones.modelo.Cliente;
 import tiendafrailejones.modelo.Deuda;
 import tiendafrailejones.modelo.Empleado;
 import tiendafrailejones.modelo.Login;
 import tiendafrailejones.modelo.consultas.ConsultaDeuda;
 import tiendafrailejones.modelo.consultas.ConsultasCliente;
+import tiendafrailejones.modelo.consultas.ConsultasEmpleado;
+import tiendafrailejones.modelo.consultas.ConsultasLogin;
 import tiendafrailejones.vista.c_empleado.c_Menu;
 
 public class bb_AdminGestClientes extends javax.swing.JFrame {
 
+    private Empleado empleado = new Empleado();
+    private final ConsultasEmpleado consultasEmpleado = new ConsultasEmpleado();
+    private final ControladorEmpleado controladorEmpleado = new ControladorEmpleado(consultasEmpleado);
+
+    private Login login = new Login();
+    private final ConsultasLogin consultasLogin = new ConsultasLogin();
+    private final ControladorLogin controladorLogin = new ControladorLogin(consultasLogin);
+
     private Cliente cliente = new Cliente();
     private final ConsultasCliente consultasCliente = new ConsultasCliente();
     private final ControladorCliente controladorCliente = new ControladorCliente(consultasCliente);
+
     private ConsultaDeuda consultaDeuda = new ConsultaDeuda();
     private ControladorDeuda controladorDeuda = new ControladorDeuda(consultaDeuda);
+
+    private boolean actualizar = false;
+    private String tipoDocumento;
+    private String tipoUsuario;
+    private Integer activo = 1;
+
     private DefaultTableModel defaultTableModel;
     private BigDecimal totalDeudas = BigDecimal.ZERO;
     private BigDecimal totalAbono = BigDecimal.ZERO;
@@ -33,7 +55,7 @@ public class bb_AdminGestClientes extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
         initTable();
         llenarTabla();
-        disableAllButtons();
+        datosPredeterminados();
     }
 
     private void initTable() {
@@ -46,32 +68,28 @@ public class bb_AdminGestClientes extends javax.swing.JFrame {
 
         defaultTableModel.addColumn("ID");
         defaultTableModel.addColumn("Nombre");
+        defaultTableModel.addColumn("Telefono");
         defaultTableModel.addColumn("Identificación");
+        defaultTableModel.addColumn("Tipo de indentificación");
+        defaultTableModel.addColumn("Tipo Usuario");
+        defaultTableModel.addColumn("Activo");
+        defaultTableModel.addColumn("Direccion");
+        defaultTableModel.addColumn("Permitir");
         defaultTableModel.addColumn("Total Deuda");
 
         this.tablaClientes.setModel(defaultTableModel);
     }
 
-    private void llenarTabla() {
-        defaultTableModel.setRowCount(0);
-        List<Cliente> clientes = controladorCliente.obtenetTodosLosCliente();
-        for (Cliente cli : clientes) {
-            String[] clienteDatos = new String[4];
-            clienteDatos[0] = String.valueOf(cli.getId());
-            clienteDatos[1] = cli.getNombre();
-            clienteDatos[2] = cli.getIdentificacion();
-            clienteDatos[3] = calcularTotalAbono(cli.getId());
-            defaultTableModel.addRow(clienteDatos);
-        }
+    private void datosPredeterminados() {
+        btnEliminar.setEnabled(false);
+        tipoUsuario = "CLIENTE";
+        tipoDocumento = "CÉDULA";
     }
 
-    private void disableAllButtons() {
-        inputNombre.setEnabled(false);
-        inputDireccion.setEnabled(false);
-        inputNumeroDocumento.setEnabled(false);
-        inputTelefono.setEnabled(false);
-        jComboxTipoDocumento.setEnabled(false);
-        jComboBoxPermitirDeuda.setEnabled(false);
+    private void llenarTabla() {
+        vaciarTabla();
+        List<Cliente> clientes = controladorCliente.obtenetTodosLosCliente();
+        llenarDatos(clientes);
     }
 
     @SuppressWarnings("unchecked")
@@ -87,25 +105,28 @@ public class bb_AdminGestClientes extends javax.swing.JFrame {
         inputNombre = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        inputNumeroDocumento = new javax.swing.JTextField();
+        inputIdentificacion = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
         inputTelefono = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
-        jComboxTipoDocumento = new javax.swing.JComboBox<>();
+        jcomboxTipoID = new javax.swing.JComboBox<>();
         inputDireccion = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
         jButton4 = new javax.swing.JButton();
         jComboBoxPermitirDeuda = new javax.swing.JComboBox<>();
         jLabel7 = new javax.swing.JLabel();
         bntVerMas = new javax.swing.JButton();
+        btnEliminar = new javax.swing.JButton();
+        jButton3 = new javax.swing.JButton();
+        btnCrearActualizar = new javax.swing.JButton();
         jPanel4 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tablaClientes = new javax.swing.JTable();
         inputBuscar = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
-        jComboBox3 = new javax.swing.JComboBox<>();
-        buscar = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
+        jComboBoxOrdenar = new javax.swing.JComboBox<>();
+        btnBuscar = new javax.swing.JButton();
+        btnQuitar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("FraileStore");
@@ -166,11 +187,23 @@ public class bb_AdminGestClientes extends javax.swing.JFrame {
 
         jLabel3.setText("Tipo de Documento");
 
+        inputIdentificacion.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                inputIdentificacionKeyTyped(evt);
+            }
+        });
+
         jLabel4.setText("Número de Documento");
+
+        inputTelefono.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                inputTelefonoKeyTyped(evt);
+            }
+        });
 
         jLabel5.setText("Telefono");
 
-        jComboxTipoDocumento.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jcomboxTipoID.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "CÉDULA", "CÉDULA DE EXTRANJERIA", "PASAPORTE" }));
 
         inputDireccion.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -187,7 +220,7 @@ public class bb_AdminGestClientes extends javax.swing.JFrame {
             }
         });
 
-        jComboBoxPermitirDeuda.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBoxPermitirDeuda.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Sí", "No" }));
         jComboBoxPermitirDeuda.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jComboBoxPermitirDeudaActionPerformed(evt);
@@ -203,6 +236,36 @@ public class bb_AdminGestClientes extends javax.swing.JFrame {
         bntVerMas.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 bntVerMasActionPerformed(evt);
+            }
+        });
+
+        btnEliminar.setBackground(new java.awt.Color(255, 67, 56));
+        btnEliminar.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btnEliminar.setForeground(new java.awt.Color(255, 255, 255));
+        btnEliminar.setText("Eliminar");
+        btnEliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEliminarActionPerformed(evt);
+            }
+        });
+
+        jButton3.setBackground(new java.awt.Color(255, 255, 51));
+        jButton3.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jButton3.setForeground(new java.awt.Color(255, 255, 255));
+        jButton3.setText("Cancelar");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
+
+        btnCrearActualizar.setBackground(new java.awt.Color(130, 188, 0));
+        btnCrearActualizar.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btnCrearActualizar.setForeground(new java.awt.Color(255, 255, 255));
+        btnCrearActualizar.setText("Guardar");
+        btnCrearActualizar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCrearActualizarActionPerformed(evt);
             }
         });
 
@@ -235,9 +298,9 @@ public class bb_AdminGestClientes extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(jComboBoxPermitirDeuda, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addComponent(jComboxTipoDocumento, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jcomboxTipoID, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(inputNumeroDocumento, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(inputIdentificacion, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel5)
@@ -246,7 +309,13 @@ public class bb_AdminGestClientes extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(bntVerMas, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(537, 537, 537))
+                .addGap(31, 31, 31)
+                .addComponent(btnCrearActualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(31, 31, 31)
+                .addComponent(btnEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(183, 183, 183))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -268,12 +337,16 @@ public class bb_AdminGestClientes extends javax.swing.JFrame {
                     .addComponent(jLabel5))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jComboxTipoDocumento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(inputNumeroDocumento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jcomboxTipoID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(inputIdentificacion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(inputTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addComponent(bntVerMas, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(25, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(bntVerMas, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnCrearActualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(17, 17, 17))
         );
 
         jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder("Clientes Registrados"));
@@ -306,19 +379,24 @@ public class bb_AdminGestClientes extends javax.swing.JFrame {
         jLabel6.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel6.setText("Buscar");
 
-        jComboBox3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
-        buscar.setText("Buscar");
-        buscar.addActionListener(new java.awt.event.ActionListener() {
+        jComboBoxOrdenar.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Ordenar por nombre Ascendete", "Ordenar por nombre Descendente" }));
+        jComboBoxOrdenar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                buscarActionPerformed(evt);
+                jComboBoxOrdenarActionPerformed(evt);
             }
         });
 
-        jButton1.setText("Quitar filtros");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btnBuscar.setText("Buscar");
+        btnBuscar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btnBuscarActionPerformed(evt);
+            }
+        });
+
+        btnQuitar.setText("Quitar filtros");
+        btnQuitar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnQuitarActionPerformed(evt);
             }
         });
 
@@ -333,13 +411,13 @@ public class bb_AdminGestClientes extends javax.swing.JFrame {
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addComponent(jLabel6)
                         .addGap(24, 24, 24)
-                        .addComponent(jComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jComboBoxOrdenar, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(inputBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 678, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(26, 26, 26)
-                        .addComponent(buscar)
+                        .addComponent(btnBuscar)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton1)
+                        .addComponent(btnQuitar)
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -349,9 +427,9 @@ public class bb_AdminGestClientes extends javax.swing.JFrame {
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
                     .addComponent(inputBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(buscar)
-                    .addComponent(jButton1))
+                    .addComponent(jComboBoxOrdenar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnBuscar)
+                    .addComponent(btnQuitar))
                 .addGap(9, 9, 9)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 322, Short.MAX_VALUE)
                 .addGap(76, 76, 76))
@@ -406,14 +484,49 @@ public class bb_AdminGestClientes extends javax.swing.JFrame {
 
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        c_Menu clienteMenu = new c_Menu();
-        clienteMenu.setVisible(true);
+        b_Menu bMenu = new b_Menu();
+        bMenu.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void inputBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_inputBuscarActionPerformed
-        // TODO add your handling code here:
+        String evento = jComboBoxOrdenar.getSelectedItem().toString();
+        ordenar(evento);
     }//GEN-LAST:event_inputBuscarActionPerformed
+
+    private void ordenar(String seleccion) {
+
+        List<Cliente> clientes = new ArrayList<>();
+        if (seleccion.equalsIgnoreCase("Ordenar por nombre Ascendete")) {
+            clientes = consultasCliente.ordenarPorNombreAsc();
+        } else if (seleccion.equalsIgnoreCase("Ordenar por nombre Descendente")) {
+            clientes = consultasCliente.ordenarPorNombreDesc();
+        }
+
+        vaciarTabla();
+        llenarDatos(clientes);
+    }
+
+    private void llenarDatos(List<Cliente> clientes) {
+        for (Cliente cli : clientes) {
+            String[] clienteDatos = new String[10];
+            clienteDatos[0] = String.valueOf(cli.getId());
+            clienteDatos[1] = cli.getNombre();
+            clienteDatos[2] = cli.getTelefono();
+            clienteDatos[3] = cli.getIdentificacion();
+            clienteDatos[4] = cli.getTipoIdentificacion();
+            clienteDatos[5] = cli.getTipoUsuario();
+            clienteDatos[6] = (cli.getActivo().equals(1)) ? "ACTIVO" : "INACTIVO";
+            clienteDatos[7] = cli.getDireccion();
+            clienteDatos[8] = cli.getPermitirDeuda().equalsIgnoreCase("S") ? "Sí" : "No";
+            clienteDatos[9] = calcularTotalAbono(cli.getId());
+            defaultTableModel.addRow(clienteDatos);
+        }
+    }
+
+    private void vaciarTabla() {
+        defaultTableModel.setRowCount(0);
+    }
 
     private void inputDireccionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_inputDireccionActionPerformed
         // TODO add your handling code here:
@@ -428,17 +541,20 @@ public class bb_AdminGestClientes extends javax.swing.JFrame {
         if (fila == -1) {
             JOptionPane.showMessageDialog(null, "Cliente no seleccionado");
         } else {
-            Long id = Long.valueOf((String) tablaClientes.getValueAt(fila, 2));
+            Long id = Long.valueOf((String) tablaClientes.getValueAt(fila, 3));
             cliente = getCliente(id);
             inputNombre.setText(cliente.getNombre());
             inputDireccion.setText(cliente.getDireccion());
             inputTelefono.setText(cliente.getTelefono());
-            inputNumeroDocumento.setText(cliente.getIdentificacion());
-            jComboxTipoDocumento.setSelectedItem(cliente.getTipoIdentificacion());
+            inputIdentificacion.setText(cliente.getIdentificacion());
+            jcomboxTipoID.setSelectedItem(cliente.getTipoIdentificacion());
+            actualizar = true;
+            btnCrearActualizar.setText("Actualizar");
+            habilitarBotonEliminar();
         }
     }//GEN-LAST:event_tablaClientesMouseClicked
 
-    private void buscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscarActionPerformed
+    private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
 
         if (inputBuscar.getText().isEmpty()) {
             JOptionPane.showMessageDialog(null, "Debe ingresar número de identificación o nombre");
@@ -450,22 +566,102 @@ public class bb_AdminGestClientes extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "No hay coincidencias");
             return;
         } else {
-            defaultTableModel.setRowCount(0);
-            for (Cliente cli : clientes) {
-                String[] clienteDatos = new String[4];
-                clienteDatos[0] = String.valueOf(cli.getId());
-                clienteDatos[1] = cli.getNombre();
-                clienteDatos[2] = cli.getIdentificacion();
-                clienteDatos[3] = calcularTotalAbono(cli.getId());
-                defaultTableModel.addRow(clienteDatos);
-            }
+            vaciarTabla();
+            llenarDatos(clientes);
         }
 
-    }//GEN-LAST:event_buscarActionPerformed
+    }//GEN-LAST:event_btnBuscarActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void btnQuitarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnQuitarActionPerformed
+        inputBuscar.setText("");
         llenarTabla();
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_btnQuitarActionPerformed
+
+    private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
+        verificarSeleccionCliente();
+
+        // TODO add your handling code here:
+        cliente.setActivo(0);
+        controladorCliente.eliminar(cliente.getId());
+        limpiarCampos();
+        llenarTabla();
+    }//GEN-LAST:event_btnEliminarActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        limpiarCampos();
+        deshabilitarBotonEliminar();
+        btnCrearActualizar.setText("Guardar");
+    }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void btnCrearActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCrearActualizarActionPerformed
+        try {
+
+            verificarCampos();
+
+            Cliente cliente = controladorCliente.existePorId(Long.valueOf(inputIdentificacion.getText()));
+
+            if (!actualizar && cliente != null && Objects.equals(cliente.getIdentificacion(), inputIdentificacion.getText())) {
+                JOptionPane.showMessageDialog(null, "Usuario ya existe con ese numero de identificación");
+            } else if (cliente.getId() != null && actualizar) {  // Actualizar
+
+                cliente.setId(cliente.getId());
+                cliente.setNombre(inputNombre.getText());
+                cliente.setTelefono(inputTelefono.getText());
+                cliente.setIdentificacion(inputIdentificacion.getText());
+                cliente.setTipoIdentificacion(jcomboxTipoID.getPrototypeDisplayValue());
+                cliente.setTipoUsuario(cliente.getTipoUsuario().toUpperCase());
+                cliente.setTipoIdentificacion(tipoDocumento);
+                cliente.setDireccion(inputDireccion.getText());
+                cliente.setPermitirDeuda(jComboBoxPermitirDeuda.getSelectedItem().toString().equalsIgnoreCase("Sí") ? "S"  : "N");
+                controladorCliente.actualizar(cliente);
+                btnCrearActualizar.setText("Guardar");
+                deshabilitarBotonEliminar();
+                limpiarCampos();
+                llenarTabla();
+
+                JOptionPane.showMessageDialog(null, "Se ha actualizado el registro");
+            } else { // Crear
+
+                cliente.setNombre(inputNombre.getText());
+                cliente.setTelefono(inputTelefono.getText());
+                cliente.setIdentificacion(inputIdentificacion.getText());
+                cliente.setTipoIdentificacion(tipoDocumento.toUpperCase());
+                cliente.setTipoUsuario(tipoUsuario.toUpperCase());
+                cliente.setActivo(activo);
+                cliente.setDireccion(inputDireccion.getText());
+                cliente.setPermitirDeuda(jComboBoxPermitirDeuda.getSelectedItem().toString().equalsIgnoreCase("Sí") ? "S"  : "N");
+                
+                controladorCliente.crear(cliente);
+                llenarTabla();
+                limpiarCampos();
+                deshabilitarBotonEliminar();
+
+                JOptionPane.showMessageDialog(null, "Se ha guardado el registro");
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Debe ingresar: " + e.getMessage());
+        }
+    }//GEN-LAST:event_btnCrearActualizarActionPerformed
+
+    private void inputIdentificacionKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_inputIdentificacionKeyTyped
+        verificarSiEsDigito(evt);
+    }//GEN-LAST:event_inputIdentificacionKeyTyped
+
+    private void inputTelefonoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_inputTelefonoKeyTyped
+        verificarSiEsDigito(evt);
+    }//GEN-LAST:event_inputTelefonoKeyTyped
+
+    private void jComboBoxOrdenarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxOrdenarActionPerformed
+        String evento = jComboBoxOrdenar.getSelectedItem().toString();
+        ordenar(evento);
+    }//GEN-LAST:event_jComboBoxOrdenarActionPerformed
+
+    private void verificarSiEsDigito(java.awt.event.KeyEvent evt) {
+        char c = evt.getKeyChar();
+        if (!Character.isDigit(c)) {
+            evt.consume();
+        }
+    }
 
     private Cliente getCliente(Long id) {
         return controladorCliente.existePorId(id);
@@ -516,21 +712,62 @@ public class bb_AdminGestClientes extends javax.swing.JFrame {
         totalDeudas = BigDecimal.ZERO;
     }
 
+    private void limpiarCampos() {
+        inputNombre.setText("");
+        inputIdentificacion.setText("");
+        inputTelefono.setText("");
+        inputDireccion.setText("");
+        actualizar = false;
+        cliente = new Cliente();
+    }
+    
+    private void habilitarBotonEliminar(){
+        btnEliminar.setEnabled(true);
+    }
+    
+    private void deshabilitarBotonEliminar(){
+        btnEliminar.setEnabled(false);
+    }
+    
+
+    private void verificarSeleccionCliente() {
+        if (cliente == null || cliente.getId() == null) {
+            JOptionPane.showMessageDialog(null, "Seleccione un usuario ");
+            return;
+        }
+    }
+
+    private void verificarCampos() throws Exception {
+        if (inputNombre.getText().isEmpty()) {
+            throw new Exception("nombre");
+        } else if (inputTelefono.getText().isEmpty()) {
+            throw new Exception("telefono");
+        } else if (inputIdentificacion.getText().isEmpty()) {
+            throw new Exception("identificacion");
+        } else if (tipoDocumento.isEmpty()) {
+            throw new Exception("tipo de id vacío");
+        } else if (inputDireccion.getText().isEmpty()) {
+            throw new Exception("Direccion vacío");
+        }
+    }
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton bntVerMas;
-    private javax.swing.JButton buscar;
+    private javax.swing.JButton btnBuscar;
+    private javax.swing.JButton btnCrearActualizar;
+    private javax.swing.JButton btnEliminar;
+    private javax.swing.JButton btnQuitar;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JTextField inputBuscar;
     private javax.swing.JTextField inputDireccion;
+    private javax.swing.JTextField inputIdentificacion;
     private javax.swing.JTextField inputNombre;
-    private javax.swing.JTextField inputNumeroDocumento;
     private javax.swing.JTextField inputTelefono;
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
-    private javax.swing.JComboBox<String> jComboBox3;
+    private javax.swing.JComboBox<String> jComboBoxOrdenar;
     private javax.swing.JComboBox<String> jComboBoxPermitirDeuda;
-    private javax.swing.JComboBox<String> jComboxTipoDocumento;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -544,6 +781,7 @@ public class bb_AdminGestClientes extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JComboBox<String> jcomboxTipoID;
     private javax.swing.JTable tablaClientes;
     // End of variables declaration//GEN-END:variables
 }

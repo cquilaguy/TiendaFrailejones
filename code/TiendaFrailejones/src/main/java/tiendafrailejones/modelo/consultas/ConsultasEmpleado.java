@@ -17,8 +17,8 @@ public class ConsultasEmpleado extends Conexion implements IEmpleado, IUsuarioOr
     public boolean crear(Empleado empleado) {
         PreparedStatement ps = null;
         Connection connection = getConexion();
-        String sql = "INSERT INTO empleado (nombre, telefono, identificacion, tipo_Identificacion, tipo_usuario, correo)"
-                + "VALUES (?, ?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO empleado (nombre, telefono, identificacion, tipo_Identificacion, tipo_usuario, correo, usuario)"
+                + "VALUES (?, ?, ?, ?, ?, ?, ?)";
         try {
             ps = connection.prepareStatement(sql);
             ps.setString(1, empleado.getNombre());
@@ -27,6 +27,7 @@ public class ConsultasEmpleado extends Conexion implements IEmpleado, IUsuarioOr
             ps.setString(4, empleado.getTipoIdentificacion());
             ps.setString(5, empleado.getTipoUsuario());
             ps.setString(6, empleado.getCorreo());
+            ps.setString(7, empleado.getUsuario());
             ps.execute();
             return true;
         } catch (SQLException e) {
@@ -45,7 +46,7 @@ public class ConsultasEmpleado extends Conexion implements IEmpleado, IUsuarioOr
     public void actualizar(Empleado empleado) {
         PreparedStatement ps = null;
         Connection connection = getConexion();
-        String sql = "UPDATE empleado SET nombre=?, telefono=?, identificacion=?, tipo_Identificacion=?, tipo_usuario=?, correo=?, activo=?"
+        String sql = "UPDATE empleado SET nombre=?, telefono=?, identificacion=?, tipo_Identificacion=?, tipo_usuario=?, correo=?, activo=?, usuario=?"
                 + " WHERE id=?";
         try {
             ps = connection.prepareStatement(sql);
@@ -56,7 +57,8 @@ public class ConsultasEmpleado extends Conexion implements IEmpleado, IUsuarioOr
             ps.setString(5, empleado.getTipoUsuario());
             ps.setString(6, empleado.getCorreo());
             ps.setLong(7, empleado.getActivo());
-            ps.setLong(8, empleado.getId());
+            ps.setString(8, empleado.getUsuario());
+            ps.setLong(9, empleado.getId());
             
             ps.execute();
 
@@ -115,6 +117,7 @@ public class ConsultasEmpleado extends Conexion implements IEmpleado, IUsuarioOr
                 empleado.setTipoUsuario(resultSet.getString("tipo_usuario"));
                 empleado.setCorreo(resultSet.getString("correo"));
                 empleado.setActivo(resultSet.getInt("activo"));
+                empleado.setUsuario(resultSet.getString("usuario"));
                 return empleado;
             }
             return empleado;
@@ -152,6 +155,7 @@ public class ConsultasEmpleado extends Conexion implements IEmpleado, IUsuarioOr
                 empleado.setTipoUsuario(resultSet.getString("tipo_usuario"));
                 empleado.setActivo(resultSet.getInt("activo"));
                 empleado.setCorreo(resultSet.getString("correo"));
+                empleado.setUsuario(resultSet.getString("usuario"));
                 empleados.add(empleado);
                
             }
@@ -193,6 +197,7 @@ public class ConsultasEmpleado extends Conexion implements IEmpleado, IUsuarioOr
                 empleado.setTipoUsuario(resultSet.getString("tipo_usuario"));
                 empleado.setActivo(resultSet.getInt("activo"));
                 empleado.setCorreo(resultSet.getString("correo"));
+                empleado.setUsuario(resultSet.getString("usuario"));
                 empleados.add(empleado);
                
             }
@@ -231,6 +236,7 @@ public class ConsultasEmpleado extends Conexion implements IEmpleado, IUsuarioOr
                 empleado.setTipoUsuario(resultSet.getString("tipo_usuario"));
                 empleado.setActivo(resultSet.getInt("activo"));
                 empleado.setCorreo(resultSet.getString("correo"));
+                empleado.setUsuario(resultSet.getString("usuario"));
                 empleados.add(empleado);
 
             }
@@ -269,6 +275,7 @@ public class ConsultasEmpleado extends Conexion implements IEmpleado, IUsuarioOr
                 empleado.setTipoUsuario(resultSet.getString("tipo_usuario"));
                 empleado.setActivo(resultSet.getInt("activo"));
                 empleado.setCorreo(resultSet.getString("correo"));
+                empleado.setUsuario(resultSet.getString("usuario"));
                 empleados.add(empleado);
 
             }
@@ -307,6 +314,7 @@ public class ConsultasEmpleado extends Conexion implements IEmpleado, IUsuarioOr
                 empleado.setTipoUsuario(resultSet.getString("tipo_usuario"));
                 empleado.setActivo(resultSet.getInt("activo"));
                 empleado.setCorreo(resultSet.getString("correo"));
+                empleado.setUsuario(resultSet.getString("usuario"));
                 empleados.add(empleado);
 
             }
@@ -345,6 +353,7 @@ public class ConsultasEmpleado extends Conexion implements IEmpleado, IUsuarioOr
                 empleado.setTipoUsuario(resultSet.getString("tipo_usuario"));
                 empleado.setActivo(resultSet.getInt("activo"));
                 empleado.setCorreo(resultSet.getString("correo"));
+                empleado.setUsuario(resultSet.getString("usuario"));
                 empleados.add(empleado);
 
             }

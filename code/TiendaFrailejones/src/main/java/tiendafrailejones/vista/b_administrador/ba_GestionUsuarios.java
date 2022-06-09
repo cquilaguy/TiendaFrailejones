@@ -578,7 +578,7 @@ public class ba_GestionUsuarios extends javax.swing.JFrame {
 
     private void guardarLogin() throws IOException {
         String contrasena = TipoDocumentos.getById(tipoDocumento) + inputIdentificacion.getText();
-        login.setUser(inputUsuario.getText());
+        login.setCorreo(inputCorreo.getText());
         login.setPassword(AES.singletonAes().encrypt(contrasena));
         login.setUserType(tipoUsuario);
         login.setIdUsuario(Long.valueOf(empleado.getIdentificacion()));
@@ -609,6 +609,7 @@ public class ba_GestionUsuarios extends javax.swing.JFrame {
                 empleado.setTipoUsuario(empleado.getTipoUsuario().toUpperCase());
                 empleado.setTipoIdentificacion(tipoDocumento);
                 empleado.setCorreo(inputCorreo.getText());
+                empleado.setUsuario(inputUsuario.getText());
                 controladorEmpleado.actualizar(empleado);
                 btnCrearActualizar.setText("Guardar");
                 btnEliminar.setEnabled(false);
@@ -627,7 +628,8 @@ public class ba_GestionUsuarios extends javax.swing.JFrame {
                 empleado.setTipoUsuario(tipoUsuario.toUpperCase());
                 empleado.setActivo(activo);
                 empleado.setCorreo(inputCorreo.getText());
-
+                empleado.setUsuario(inputUsuario.getText());
+                
                 controladorEmpleado.crear(empleado);
                 guardarLogin();
 
@@ -793,8 +795,8 @@ public class ba_GestionUsuarios extends javax.swing.JFrame {
     }//GEN-LAST:event_jPanel3KeyTyped
 
     private void jcomboxOrdenarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcomboxOrdenarActionPerformed
-          String selectValue = jcomboxOrdenar.getSelectedItem().toString();
-          ordenar(selectValue);
+        String selectValue = jcomboxOrdenar.getSelectedItem().toString();
+        ordenar(selectValue);
     }//GEN-LAST:event_jcomboxOrdenarActionPerformed
 
     private void ordenar(String seleccion) {

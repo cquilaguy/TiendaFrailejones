@@ -5,6 +5,8 @@ import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Date;
+import javax.swing.JOptionPane;
+import tiendafrailejones.modelo.Cliente;
 import tiendafrailejones.modelo.Deuda;
 import tiendafrailejones.modelo.interfaces.IDeudaAbonarListener;
 
@@ -15,9 +17,11 @@ import tiendafrailejones.modelo.interfaces.IDeudaAbonarListener;
 public class ab_AbonoDeuda extends javax.swing.JDialog {
 
     private IDeudaAbonarListener iDeudaAbonarListener;
-    private Long idCliente;
+    private Cliente cliente;
     private Deuda deuda = new Deuda();
     private static final String ABONO_VALUE = "A";
+    private BigDecimal totalDeuda;
+    private BigDecimal totalAbono;
 
     public ab_AbonoDeuda(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
@@ -43,9 +47,10 @@ public class ab_AbonoDeuda extends javax.swing.JDialog {
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
-        jLabel6 = new javax.swing.JLabel();
+        labelNombreCliente = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         inputDescripcion = new javax.swing.JTextArea();
+        labelAbonoExcedido = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Abono Deuda");
@@ -78,9 +83,9 @@ public class ab_AbonoDeuda extends javax.swing.JDialog {
 
         jPanel2.setBackground(new java.awt.Color(166, 85, 15));
 
-        jLabel6.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
-        jLabel6.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel6.setText("NombreCliente");
+        labelNombreCliente.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
+        labelNombreCliente.setForeground(new java.awt.Color(255, 255, 255));
+        labelNombreCliente.setText("NombreCliente");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -88,14 +93,14 @@ public class ab_AbonoDeuda extends javax.swing.JDialog {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addContainerGap(154, Short.MAX_VALUE)
-                .addComponent(jLabel6)
+                .addComponent(labelNombreCliente)
                 .addGap(150, 150, 150))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(16, 16, 16)
-                .addComponent(jLabel6)
+                .addComponent(labelNombreCliente)
                 .addContainerGap(19, Short.MAX_VALUE))
         );
 
@@ -103,14 +108,14 @@ public class ab_AbonoDeuda extends javax.swing.JDialog {
         inputDescripcion.setRows(5);
         jScrollPane1.setViewportView(inputDescripcion);
 
+        labelAbonoExcedido.setForeground(new java.awt.Color(204, 0, 0));
+        labelAbonoExcedido.setText("   ");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(75, 75, 75)
-                .addComponent(jLabel1))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(75, 75, 75)
                 .addComponent(inputValor, javax.swing.GroupLayout.PREFERRED_SIZE, 233, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -128,12 +133,19 @@ public class ab_AbonoDeuda extends javax.swing.JDialog {
                 .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btnGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(75, 75, 75)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(labelAbonoExcedido)
+                    .addComponent(jLabel1)))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(36, 36, 36)
+                .addGap(8, 8, 8)
+                .addComponent(labelAbonoExcedido)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(inputValor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -154,7 +166,7 @@ public class ab_AbonoDeuda extends javax.swing.JDialog {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 402, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 402, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -165,16 +177,22 @@ public class ab_AbonoDeuda extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
+ 
+        BigDecimal totalAbonoTemp = new BigDecimal(inputValor.getText());
+        if (totalAbonoTemp.floatValue() > totalDeuda.floatValue()) {
+            labelAbonoExcedido.setText("El valor del abono debe ser menor o igual a la deuda");
+            return;
+        }
+
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
         LocalDateTime now = LocalDateTime.now();
 
-        deuda.setIdCliente(Integer.valueOf(String.valueOf(idCliente)));
+        deuda.setIdCliente(Integer.valueOf(String.valueOf(cliente.getId())));
         deuda.setFecha(String.valueOf(dtf.format(now)));
         deuda.setAbonoDeuda(ABONO_VALUE);
         deuda.setTodalDeuda(new BigDecimal(inputValor.getText()));
         deuda.setDescripcion(inputDescripcion.getText());
 
-        
         iDeudaAbonarListener.abonar(deuda);
         this.dispose();
     }//GEN-LAST:event_btnGuardarActionPerformed
@@ -264,14 +282,6 @@ public class ab_AbonoDeuda extends javax.swing.JDialog {
         this.iDeudaAbonarListener = iDeudaAbonarListener;
     }
 
-    public Long getIdCliente() {
-        return idCliente;
-    }
-
-    public void setIdCliente(Long idCliente) {
-        this.idCliente = idCliente;
-    }
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnGuardar;
@@ -281,9 +291,44 @@ public class ab_AbonoDeuda extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel labelAbonoExcedido;
+    private javax.swing.JLabel labelNombreCliente;
     // End of variables declaration//GEN-END:variables
+
+    public Cliente getCliente() {
+        return cliente;
+    }
+
+    public void setCliente(Cliente cliente) {
+        this.cliente = cliente;
+        labelNombreCliente.setText(cliente.getNombre());
+    }
+
+    public Deuda getDeuda() {
+        return deuda;
+    }
+
+    public void setDeuda(Deuda deuda) {
+        this.deuda = deuda;
+    }
+
+    public BigDecimal getTotalDeuda() {
+        return totalDeuda;
+    }
+
+    public void setTotalDeuda(BigDecimal totalDeuda) {
+        this.totalDeuda = totalDeuda;
+    }
+
+    public BigDecimal getTotalAbono() {
+        return totalAbono;
+    }
+
+    public void setTotalAbono(BigDecimal totalAbono) {
+        this.totalAbono = totalAbono;
+    }
+
 }

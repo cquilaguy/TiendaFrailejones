@@ -119,8 +119,8 @@ public class c_Menu extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnClientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClientesActionPerformed
-        bb_AdminGestClientes adminGestClients = new bb_AdminGestClientes();
-        adminGestClients.setVisible(true);
+       cc_VerMasCliente ccCliente = new cc_VerMasCliente();
+       ccCliente.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnClientesActionPerformed
 

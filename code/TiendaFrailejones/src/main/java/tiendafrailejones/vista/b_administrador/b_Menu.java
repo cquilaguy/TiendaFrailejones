@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 package tiendafrailejones.vista.b_administrador;
 
 import UI.*;
@@ -172,8 +168,8 @@ public class b_Menu extends javax.swing.JFrame {
     }//GEN-LAST:event_btnGestionarUsuriosActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        AdminGestCustomer adminGestCustomer = new AdminGestCustomer();
-        adminGestCustomer.setVisible(true);
+        bb_AdminGestClientes bbAdminGestClientes = new bb_AdminGestClientes();
+        bbAdminGestClientes.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
 

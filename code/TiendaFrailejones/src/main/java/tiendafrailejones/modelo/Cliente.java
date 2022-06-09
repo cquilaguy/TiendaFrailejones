@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package tiendafrailejones.modelo;
 
 import java.math.BigDecimal;
@@ -11,6 +7,7 @@ public class Cliente extends Persona {
     private BigDecimal deuda;
     private String metodoPago;
     private String direccion;
+    private String permitirDeuda;
 
     public BigDecimal getDeuda() {
         return deuda;
@@ -34,6 +31,14 @@ public class Cliente extends Persona {
 
     public void setDireccion(String direccion) {
         this.direccion = direccion;
+    }
+
+    public String getPermitirDeuda() {
+        return permitirDeuda;
+    }
+
+    public void setPermitirDeuda(String permitirDeuda) {
+        this.permitirDeuda = permitirDeuda;
     }
 
 }
