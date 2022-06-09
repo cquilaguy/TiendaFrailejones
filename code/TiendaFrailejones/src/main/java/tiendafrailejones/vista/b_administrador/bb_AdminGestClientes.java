@@ -1,4 +1,4 @@
-package tiendafrailejones.vista.deuda;
+package tiendafrailejones.vista.b_administrador;
 
 import com.formdev.flatlaf.FlatLightLaf;
 import java.math.BigDecimal;
@@ -15,9 +15,9 @@ import tiendafrailejones.modelo.Empleado;
 import tiendafrailejones.modelo.Login;
 import tiendafrailejones.modelo.consultas.ConsultaDeuda;
 import tiendafrailejones.modelo.consultas.ConsultasCliente;
-import tiendafrailejones.vista.ui.empleado.ClienteMenu;
+import tiendafrailejones.vista.c_empleado.c_Menu;
 
-public class AdminGestClients extends javax.swing.JFrame {
+public class bb_AdminGestClientes extends javax.swing.JFrame {
 
     private Cliente cliente = new Cliente();
     private final ConsultasCliente consultasCliente = new ConsultasCliente();
@@ -28,7 +28,7 @@ public class AdminGestClients extends javax.swing.JFrame {
     private BigDecimal totalDeudas = BigDecimal.ZERO;
     private BigDecimal totalAbono = BigDecimal.ZERO;
 
-    public AdminGestClients() {
+    public bb_AdminGestClientes() {
         initComponents();
         this.setLocationRelativeTo(null);
         initTable();
@@ -389,7 +389,7 @@ public class AdminGestClients extends javax.swing.JFrame {
         if (isClienteSeleccionado()) {
             showDialog("Seleccione un cliente primero");
         } else {
-            AdminGestClientsDeuda adminGestClientsDeuda = new AdminGestClientsDeuda();
+            bba_VerMasCliente adminGestClientsDeuda = new bba_VerMasCliente();
             adminGestClientsDeuda.setVisible(true);
             adminGestClientsDeuda.setCliente(cliente);
             this.dispose();
@@ -406,7 +406,7 @@ public class AdminGestClients extends javax.swing.JFrame {
 
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        ClienteMenu clienteMenu = new ClienteMenu();
+        c_Menu clienteMenu = new c_Menu();
         clienteMenu.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jButton4ActionPerformed
@@ -481,7 +481,7 @@ public class AdminGestClients extends javax.swing.JFrame {
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(() -> {
-            new AdminGestClients().setVisible(true);
+            new bb_AdminGestClientes().setVisible(true);
         });
     }
 

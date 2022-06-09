@@ -2,8 +2,8 @@ package tiendafrailejones;
 
 import java.io.IOException;
 import tiendafrailejones.utils.AES;
-import tiendafrailejones.vista.deuda.AdminGestClients;
-import tiendafrailejones.vista.ui.login;
+import tiendafrailejones.vista.b_administrador.bb_AdminGestClientes;
+import tiendafrailejones.vista.a_general.login;
 
 /**carlos
  *

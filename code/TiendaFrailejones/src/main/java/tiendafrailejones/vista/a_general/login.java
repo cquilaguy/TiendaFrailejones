@@ -1,4 +1,4 @@
-package tiendafrailejones.vista.ui;
+package tiendafrailejones.vista.a_general;
 
 
 import java.io.IOException;
@@ -11,7 +11,8 @@ import tiendafrailejones.modelo.consultas.ConsultaContraseña;
 import tiendafrailejones.modelo.consultas.ConsultasLogin;
 import tiendafrailejones.utils.AES;
 import tiendafrailejones.utils.DataUser;
-import tiendafrailejones.vista.ui.empleado.ClienteMenu;
+import tiendafrailejones.vista.b_administrador.b_Menu;
+import tiendafrailejones.vista.c_empleado.c_Menu;
 
 public class login extends javax.swing.JFrame {
 
@@ -35,108 +36,21 @@ public class login extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel1 = new javax.swing.JPanel();
+        jPanel2 = new javax.swing.JPanel();
         jLabelInputEmail = new javax.swing.JLabel();
-        inputUsuario = new javax.swing.JTextField();
-        jLabelInputContraseña = new javax.swing.JLabel();
         btnLogin = new javax.swing.JButton();
+        inputUsuario = new javax.swing.JTextField();
         inputPassword = new javax.swing.JPasswordField();
         labelUsuarioOContraseña = new javax.swing.JLabel();
-        jPanel2 = new javax.swing.JPanel();
+        jLabelInputContraseña = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("FraileStore");
         setBackground(new java.awt.Color(204, 0, 0));
         setLocationByPlatform(true);
-        setMaximumSize(new java.awt.Dimension(1280, 720));
         setMinimumSize(new java.awt.Dimension(1280, 720));
-        setPreferredSize(new java.awt.Dimension(1280, 720));
         setResizable(false);
         setSize(new java.awt.Dimension(1280, 720));
-
-        jPanel1.setBackground(new java.awt.Color(255, 51, 51));
-        jPanel1.setAlignmentX(0.0F);
-        jPanel1.setAlignmentY(0.0F);
-        jPanel1.setMaximumSize(new java.awt.Dimension(320, 720));
-        jPanel1.setMinimumSize(new java.awt.Dimension(320, 720));
-        jPanel1.setPreferredSize(new java.awt.Dimension(320, 720));
-
-        jLabelInputEmail.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
-        jLabelInputEmail.setText("Correo Electrónico");
-
-        inputUsuario.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
-        inputUsuario.setAlignmentX(0.0F);
-        inputUsuario.setAlignmentY(0.0F);
-        inputUsuario.setBorder(null);
-        inputUsuario.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        inputUsuario.setMaximumSize(new java.awt.Dimension(300, 30));
-        inputUsuario.setMinimumSize(new java.awt.Dimension(300, 30));
-        inputUsuario.setPreferredSize(new java.awt.Dimension(300, 30));
-        inputUsuario.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                inputUsuarioActionPerformed(evt);
-            }
-        });
-
-        jLabelInputContraseña.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
-        jLabelInputContraseña.setText("Contraseña");
-
-        btnLogin.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
-        btnLogin.setText("INGRESAR");
-        btnLogin.setAlignmentY(0.0F);
-        btnLogin.setBorder(null);
-        btnLogin.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        btnLogin.setMaximumSize(new java.awt.Dimension(300, 30));
-        btnLogin.setMinimumSize(new java.awt.Dimension(300, 30));
-        btnLogin.setPreferredSize(new java.awt.Dimension(300, 30));
-        btnLogin.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnLoginActionPerformed(evt);
-            }
-        });
-
-        inputPassword.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
-        inputPassword.setAlignmentY(0.0F);
-        inputPassword.setBorder(null);
-        inputPassword.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        inputPassword.setMaximumSize(new java.awt.Dimension(300, 30));
-        inputPassword.setMinimumSize(new java.awt.Dimension(300, 30));
-        inputPassword.setPreferredSize(new java.awt.Dimension(300, 30));
-
-        labelUsuarioOContraseña.setForeground(new java.awt.Color(255, 0, 0));
-
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(inputUsuario, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabelInputEmail)
-                    .addComponent(jLabelInputContraseña)
-                    .addComponent(inputPassword, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnLogin, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(labelUsuarioOContraseña, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(14, Short.MAX_VALUE))
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(267, 267, 267)
-                .addComponent(jLabelInputEmail)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(inputUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jLabelInputContraseña, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(inputPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(btnLogin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(labelUsuarioOContraseña, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
 
         jPanel2.setBackground(new java.awt.Color(255, 51, 153));
         jPanel2.setAlignmentX(0.0F);
@@ -161,23 +75,85 @@ public class login extends javax.swing.JFrame {
             .addGap(0, 720, Short.MAX_VALUE)
         );
 
+        jLabelInputEmail.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        jLabelInputEmail.setText("Correo Electrónico");
+
+        btnLogin.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
+        btnLogin.setText("INGRESAR");
+        btnLogin.setAlignmentY(0.0F);
+        btnLogin.setBorder(null);
+        btnLogin.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btnLogin.setMaximumSize(new java.awt.Dimension(300, 30));
+        btnLogin.setMinimumSize(new java.awt.Dimension(300, 30));
+        btnLogin.setPreferredSize(new java.awt.Dimension(300, 30));
+        btnLogin.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLoginActionPerformed(evt);
+            }
+        });
+
+        inputUsuario.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        inputUsuario.setAlignmentX(0.0F);
+        inputUsuario.setAlignmentY(0.0F);
+        inputUsuario.setBorder(null);
+        inputUsuario.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        inputUsuario.setMaximumSize(new java.awt.Dimension(300, 30));
+        inputUsuario.setMinimumSize(new java.awt.Dimension(300, 30));
+        inputUsuario.setPreferredSize(new java.awt.Dimension(300, 30));
+        inputUsuario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                inputUsuarioActionPerformed(evt);
+            }
+        });
+
+        inputPassword.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        inputPassword.setAlignmentY(0.0F);
+        inputPassword.setBorder(null);
+        inputPassword.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        inputPassword.setMaximumSize(new java.awt.Dimension(300, 30));
+        inputPassword.setMinimumSize(new java.awt.Dimension(300, 30));
+        inputPassword.setPreferredSize(new java.awt.Dimension(300, 30));
+
+        labelUsuarioOContraseña.setForeground(new java.awt.Color(255, 0, 0));
+
+        jLabelInputContraseña.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        jLabelInputContraseña.setText("Contraseña");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 920, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 48, Short.MAX_VALUE)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(26, 26, 26)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(inputUsuario, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabelInputEmail)
+                    .addComponent(jLabelInputContraseña)
+                    .addComponent(inputPassword, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnLogin, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(labelUsuarioOContraseña, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(34, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 710, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabelInputEmail)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(inputUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jLabelInputContraseña, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(inputPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(btnLogin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(labelUsuarioOContraseña, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(203, 203, 203))
         );
 
         pack();
@@ -213,13 +189,13 @@ public class login extends javax.swing.JFrame {
             if (loginTmp.getUserType().equals("ADMINISTRADOR")) {
                 Boolean check = consultaContraseña.checkPassword(loginTmp.getPassword(), loginTmp);
                 if (check) {
-                    CambioPassword cambioPassword = new CambioPassword();
+                    a_CambioContrasena cambioPassword = new a_CambioContrasena();
                     cambioPassword.setControladorLogin(controladorLogin);
                     cambioPassword.setLogin(loginTmp);
                     cambioPassword.setVisible(true);
                     this.dispose();
                 } else {
-                    AdminMenu adminMenu = new AdminMenu();
+                    b_Menu adminMenu = new b_Menu();
                     adminMenu.setVisible(true);
                 }
 
@@ -227,13 +203,13 @@ public class login extends javax.swing.JFrame {
             } else if (loginTmp.getUserType().equals("EMPLEADO")) {
                 Boolean check = consultaContraseña.checkPassword(loginTmp.getPassword(), loginTmp);
                 if (check) {
-                    CambioPassword cambioPassword = new CambioPassword();
+                    a_CambioContrasena cambioPassword = new a_CambioContrasena();
                     cambioPassword.setControladorLogin(controladorLogin);
                     cambioPassword.setLogin(loginTmp);
                     cambioPassword.setVisible(true);
                     this.dispose();
                 } else {
-                    ClienteMenu clienteMenu = new ClienteMenu();
+                    c_Menu clienteMenu = new c_Menu();
                     clienteMenu.setVisible(true);
                 }
 
@@ -288,7 +264,6 @@ public class login extends javax.swing.JFrame {
     private javax.swing.JTextField inputUsuario;
     private javax.swing.JLabel jLabelInputContraseña;
     private javax.swing.JLabel jLabelInputEmail;
-    private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JLabel labelUsuarioOContraseña;
     // End of variables declaration//GEN-END:variables

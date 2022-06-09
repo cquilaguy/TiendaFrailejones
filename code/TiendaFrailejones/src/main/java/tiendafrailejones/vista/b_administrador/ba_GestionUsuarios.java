@@ -2,8 +2,9 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package tiendafrailejones.vista.ui;
+package tiendafrailejones.vista.b_administrador;
 
+import tiendafrailejones.vista.b_administrador.b_Menu;
 import UI.*;
 import com.formdev.flatlaf.FlatLightLaf;
 import java.awt.event.ItemEvent;
@@ -36,7 +37,7 @@ import tiendafrailejones.utils.TipoDocumentos;
  *
  * @author dfquintero
  */
-public class AdminGestUsers extends javax.swing.JFrame {
+public class ba_GestionUsuarios extends javax.swing.JFrame {
 
     private Empleado empleado = new Empleado();
     private final ConsultasEmpleado consultasEmpleado = new ConsultasEmpleado();
@@ -52,7 +53,7 @@ public class AdminGestUsers extends javax.swing.JFrame {
     private String tipoUsuario;
     private Integer activo = 1;
 
-    public AdminGestUsers() {
+    public ba_GestionUsuarios() {
         initComponents();
         this.setLocationRelativeTo(null);
         btnEliminar.setEnabled(false);
@@ -653,7 +654,7 @@ public class AdminGestUsers extends javax.swing.JFrame {
     }//GEN-LAST:event_btnEliminarActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        AdminMenu adminMenu = new AdminMenu();
+        b_Menu adminMenu = new b_Menu();
         adminMenu.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jButton4ActionPerformed
@@ -728,7 +729,7 @@ public class AdminGestUsers extends javax.swing.JFrame {
         try {
             login.setPassword(AES.singletonAes().encrypt(contrasena));
         } catch (IOException ex) {
-            Logger.getLogger(AdminGestUsers.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ba_GestionUsuarios.class.getName()).log(Level.SEVERE, null, ex);
         }
         controladorLogin.crearLoginParaUsaurio(login);
     }//GEN-LAST:event_btnRestaurarContrasenaActionPerformed
@@ -842,7 +843,7 @@ public class AdminGestUsers extends javax.swing.JFrame {
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(() -> {
-            new AdminGestUsers().setVisible(true);
+            new ba_GestionUsuarios().setVisible(true);
         });
     }
 

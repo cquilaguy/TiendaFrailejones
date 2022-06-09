@@ -2,8 +2,10 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package tiendafrailejones.vista.deuda;
+package tiendafrailejones.vista.b_administrador;
 
+import tiendafrailejones.vista.a_general.ab_AbonoDeuda;
+import tiendafrailejones.vista.b_administrador.bb_AdminGestClientes;
 import UI.*;
 import com.formdev.flatlaf.FlatLightLaf;
 import java.awt.Color;
@@ -23,12 +25,13 @@ import tiendafrailejones.modelo.Deuda;
 import tiendafrailejones.modelo.consultas.ConsultaDeuda;
 import tiendafrailejones.modelo.interfaces.IDeudaAbonarListener;
 import tiendafrailejones.modelo.interfaces.IDeudaCrearListener;
+import tiendafrailejones.vista.a_general.ab_AgregarDeuda;
 
 /**
  *
  * @author JnerdQ
  */
-public class AdminGestClientsDeuda extends javax.swing.JFrame
+public class bba_VerMasCliente extends javax.swing.JFrame
         implements IDeudaCrearListener, IDeudaAbonarListener {
 
     private ConsultaDeuda consultaDeuda = new ConsultaDeuda();
@@ -39,7 +42,7 @@ public class AdminGestClientsDeuda extends javax.swing.JFrame
     private BigDecimal totalDeudas = BigDecimal.ZERO;
     private BigDecimal totalAbono = BigDecimal.ZERO;
 
-    public AdminGestClientsDeuda() {
+    public bba_VerMasCliente() {
         initComponents();
         this.setResizable(false);
         this.setLocationRelativeTo(null);
@@ -302,20 +305,20 @@ public class AdminGestClientsDeuda extends javax.swing.JFrame
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        DeudaCliente deudaCliente = new DeudaCliente(this, rootPaneCheckingEnabled);
+        ab_AgregarDeuda deudaCliente = new ab_AgregarDeuda(this, rootPaneCheckingEnabled);
         deudaCliente.setIdCliente(cliente.getId());
         deudaCliente.setiDeudaCrearListener(this);
         deudaCliente.setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void btnVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVolverActionPerformed
-        AdminGestClients adminGestClients = new AdminGestClients();
+        bb_AdminGestClientes adminGestClients = new bb_AdminGestClientes();
         adminGestClients.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnVolverActionPerformed
 
     private void btnAbonarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAbonarActionPerformed
-        AbonoDeuda abonoDeuda = new AbonoDeuda(this, rootPaneCheckingEnabled);
+        ab_AbonoDeuda abonoDeuda = new ab_AbonoDeuda(this, rootPaneCheckingEnabled);
         abonoDeuda.setIdCliente(cliente.getId());
         abonoDeuda.setiDeudaAbonarListener(this);
         abonoDeuda.setVisible(true);
@@ -334,7 +337,7 @@ public class AdminGestClientsDeuda extends javax.swing.JFrame
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(() -> {
-            new AdminGestClientsDeuda().setVisible(true);
+            new bba_VerMasCliente().setVisible(true);
         });
     }
 

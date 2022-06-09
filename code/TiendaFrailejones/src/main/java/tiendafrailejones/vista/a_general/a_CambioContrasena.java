@@ -2,9 +2,10 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package tiendafrailejones.vista.ui;
+package tiendafrailejones.vista.a_general;
 
 
+import tiendafrailejones.vista.a_general.login;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -13,19 +14,20 @@ import tiendafrailejones.controlador.ControladorLogin;
 import tiendafrailejones.modelo.Login;
 import tiendafrailejones.modelo.consultas.ConsultasLogin;
 import tiendafrailejones.utils.AES;
-import tiendafrailejones.vista.ui.empleado.ClienteMenu;
+import tiendafrailejones.vista.b_administrador.b_Menu;
+import tiendafrailejones.vista.c_empleado.c_Menu;
 
 /**
  *
  * @author alan
  */
-public class CambioPassword extends javax.swing.JFrame {
+public class a_CambioContrasena extends javax.swing.JFrame {
 
 //    private final ConsultasLogin consultasLogin = new ConsultasLogin();
     private ControladorLogin controladorLogin;
     private Login login;
 
-    public CambioPassword() {
+    public a_CambioContrasena() {
         initComponents();
         this.setLocationRelativeTo(null);
     }
@@ -139,7 +141,7 @@ public class CambioPassword extends javax.swing.JFrame {
             try {
                 pass = AES.singletonAes().encrypt(inputNuevaConstrasena.getText());
             } catch (IOException ex) {
-                Logger.getLogger(CambioPassword.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(a_CambioContrasena.class.getName()).log(Level.SEVERE, null, ex);
             }
             login.setPassword(pass);
             controladorLogin.actualizarLogin(login);
@@ -154,10 +156,10 @@ public class CambioPassword extends javax.swing.JFrame {
 
     private void switchWindowAdminOrUser() {
         if (login.getUserType().equalsIgnoreCase("ADMISNITRADOR")) {
-            AdminMenu adminMenu = new AdminMenu();
+            b_Menu adminMenu = new b_Menu();
             adminMenu.setVisible(true);
         } else if (login.getUserType().equalsIgnoreCase("EMPLEADO")) {
-            ClienteMenu clienteMenu = new ClienteMenu();
+            c_Menu clienteMenu = new c_Menu();
             clienteMenu.setVisible(true);
         }
     }
@@ -186,20 +188,23 @@ public class CambioPassword extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(CambioPassword.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(a_CambioContrasena.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(CambioPassword.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(a_CambioContrasena.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(CambioPassword.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(a_CambioContrasena.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(CambioPassword.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(a_CambioContrasena.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new CambioPassword().setVisible(true);
+                new a_CambioContrasena().setVisible(true);
             }
         });
     }

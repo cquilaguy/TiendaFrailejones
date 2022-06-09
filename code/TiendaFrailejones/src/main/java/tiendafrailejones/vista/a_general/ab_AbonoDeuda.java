@@ -1,4 +1,4 @@
-package tiendafrailejones.vista.deuda;
+package tiendafrailejones.vista.a_general;
 
 import UI.*;
 import java.math.BigDecimal;
@@ -12,14 +12,14 @@ import tiendafrailejones.modelo.interfaces.IDeudaAbonarListener;
  *
  * @author JnerdQ
  */
-public class AbonoDeuda extends javax.swing.JDialog {
+public class ab_AbonoDeuda extends javax.swing.JDialog {
 
     private IDeudaAbonarListener iDeudaAbonarListener;
     private Long idCliente;
     private Deuda deuda = new Deuda();
     private static final String ABONO_VALUE = "A";
 
-    public AbonoDeuda(java.awt.Frame parent, boolean modal) {
+    public ab_AbonoDeuda(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
         this.setResizable(false);
@@ -154,7 +154,7 @@ public class AbonoDeuda extends javax.swing.JDialog {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 402, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 402, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -204,14 +204,30 @@ public class AbonoDeuda extends javax.swing.JDialog {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(AbonoDeuda.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ab_AbonoDeuda.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(AbonoDeuda.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ab_AbonoDeuda.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(AbonoDeuda.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ab_AbonoDeuda.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(AbonoDeuda.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ab_AbonoDeuda.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
@@ -232,7 +248,7 @@ public class AbonoDeuda extends javax.swing.JDialog {
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                AbonoDeuda dialog = new AbonoDeuda(new javax.swing.JFrame(), true);
+                ab_AbonoDeuda dialog = new ab_AbonoDeuda(new javax.swing.JFrame(), true);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {

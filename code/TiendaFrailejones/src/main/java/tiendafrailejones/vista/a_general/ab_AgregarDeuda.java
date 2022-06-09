@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JDialog.java to edit this template
  */
-package tiendafrailejones.vista.deuda;
+package tiendafrailejones.vista.a_general;
 
 import UI.*;
 import java.math.BigDecimal;
@@ -15,14 +15,14 @@ import tiendafrailejones.modelo.Deuda;
 import tiendafrailejones.modelo.consultas.ConsultaDeuda;
 import tiendafrailejones.modelo.interfaces.IDeudaCrearListener;
 
-public class DeudaCliente extends javax.swing.JDialog {
+public class ab_AgregarDeuda extends javax.swing.JDialog {
 
     private IDeudaCrearListener iDeudaCrearListener;
     private Long idCliente;
     private Deuda deuda = new Deuda();
     private static final String DEUDA_VALUE = "D";
 
-    public DeudaCliente(java.awt.Frame parent, boolean modal) {
+    public ab_AgregarDeuda(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
         this.setResizable(false);
@@ -165,14 +165,22 @@ public class DeudaCliente extends javax.swing.JDialog {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(DeudaCliente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ab_AgregarDeuda.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(DeudaCliente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ab_AgregarDeuda.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(DeudaCliente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ab_AgregarDeuda.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(DeudaCliente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ab_AgregarDeuda.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
@@ -185,7 +193,7 @@ public class DeudaCliente extends javax.swing.JDialog {
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                DeudaCliente dialog = new DeudaCliente(new javax.swing.JFrame(), true);
+                ab_AgregarDeuda dialog = new ab_AgregarDeuda(new javax.swing.JFrame(), true);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {

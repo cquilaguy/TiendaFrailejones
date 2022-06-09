@@ -2,23 +2,24 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package tiendafrailejones.vista.ui;
+package tiendafrailejones.vista.b_administrador;
 
 import UI.*;
 import com.formdev.flatlaf.FlatLightLaf;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
+import tiendafrailejones.vista.pendiente.AdminGestCustomer;
 
 /**
  *
  * @author dfquintero
  */
-public class AdminMenu extends javax.swing.JFrame {
+public class b_Menu extends javax.swing.JFrame {
 
     /**
      * Creates new form AdminMenu
      */
-    public AdminMenu() {
+    public b_Menu() {
         initComponents();
         this.setLocationRelativeTo(null);
     }
@@ -44,10 +45,8 @@ public class AdminMenu extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("FraileStore");
         setBackground(new java.awt.Color(209, 217, 180));
-        setMaximumSize(new java.awt.Dimension(1280, 720));
         setMinimumSize(new java.awt.Dimension(1280, 720));
         setName("FraileStore"); // NOI18N
-        setPreferredSize(new java.awt.Dimension(1280, 720));
         setResizable(false);
 
         jButton1.setBackground(new java.awt.Color(31, 106, 115));
@@ -167,7 +166,7 @@ public class AdminMenu extends javax.swing.JFrame {
 
     private void btnGestionarUsuriosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGestionarUsuriosActionPerformed
         // TODO add your handling code here:
-        AdminGestUsers adminGestUsers = new AdminGestUsers();
+        ba_GestionUsuarios adminGestUsers = new ba_GestionUsuarios();
         adminGestUsers.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnGestionarUsuriosActionPerformed
@@ -191,7 +190,7 @@ public class AdminMenu extends javax.swing.JFrame {
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(() -> {
-            new AdminMenu().setVisible(true);
+            new b_Menu().setVisible(true);
         });
     }
 
