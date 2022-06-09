@@ -1,15 +1,25 @@
 package tiendafrailejones.vista.b_administrador;
 
 import com.formdev.flatlaf.FlatLightLaf;
+import java.io.BufferedOutputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.math.BigDecimal;
 import java.sql.Array;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
+import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.table.DefaultTableModel;
+import org.apache.poi.xssf.usermodel.XSSFCell;
+import org.apache.poi.xssf.usermodel.XSSFRow;
+import org.apache.poi.xssf.usermodel.XSSFSheet;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import tiendafrailejones.controlador.ControladorCliente;
 import tiendafrailejones.controlador.ControladorDeuda;
 import tiendafrailejones.controlador.ControladorEmpleado;
@@ -22,6 +32,7 @@ import tiendafrailejones.modelo.consultas.ConsultaDeuda;
 import tiendafrailejones.modelo.consultas.ConsultasCliente;
 import tiendafrailejones.modelo.consultas.ConsultasEmpleado;
 import tiendafrailejones.modelo.consultas.ConsultasLogin;
+import tiendafrailejones.utils.ExportToExcel;
 import tiendafrailejones.vista.c_empleado.c_Menu;
 
 public class bb_AdminGestClientes extends javax.swing.JFrame {
@@ -119,6 +130,7 @@ public class bb_AdminGestClientes extends javax.swing.JFrame {
         btnEliminar = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
         btnCrearActualizar = new javax.swing.JButton();
+        btnExportExcel = new javax.swing.JButton();
         jPanel4 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tablaClientes = new javax.swing.JTable();
@@ -274,6 +286,16 @@ public class bb_AdminGestClientes extends javax.swing.JFrame {
             }
         });
 
+        btnExportExcel.setBackground(new java.awt.Color(130, 188, 0));
+        btnExportExcel.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btnExportExcel.setForeground(new java.awt.Color(255, 255, 255));
+        btnExportExcel.setText("Exportar excel");
+        btnExportExcel.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnExportExcelActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
@@ -313,6 +335,8 @@ public class bb_AdminGestClientes extends javax.swing.JFrame {
                 .addGap(28, 28, 28))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnExportExcel, javax.swing.GroupLayout.PREFERRED_SIZE, 193, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(35, 35, 35)
                 .addComponent(bntVerMas, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(31, 31, 31)
                 .addComponent(btnCrearActualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -350,7 +374,8 @@ public class bb_AdminGestClientes extends javax.swing.JFrame {
                     .addComponent(bntVerMas, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnCrearActualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnCrearActualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnExportExcel, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(17, 17, 17))
         );
 
@@ -672,6 +697,10 @@ public class bb_AdminGestClientes extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_inputIdentificacionActionPerformed
 
+    private void btnExportExcelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExportExcelActionPerformed
+        ExportToExcel.export(defaultTableModel);
+    }//GEN-LAST:event_btnExportExcelActionPerformed
+
     private void verificarSiEsDigito(java.awt.event.KeyEvent evt) {
         char c = evt.getKeyChar();
         if (!Character.isDigit(c)) {
@@ -766,11 +795,13 @@ public class bb_AdminGestClientes extends javax.swing.JFrame {
         }
     }
 
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton bntVerMas;
     private javax.swing.JButton btnBuscar;
     private javax.swing.JButton btnCrearActualizar;
     private javax.swing.JButton btnEliminar;
+    private javax.swing.JButton btnExportExcel;
     private javax.swing.JButton btnQuitar;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JTextField inputBuscar;
