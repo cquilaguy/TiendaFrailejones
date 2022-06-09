@@ -187,6 +187,11 @@ public class bb_AdminGestClientes extends javax.swing.JFrame {
 
         jLabel3.setText("Tipo de Documento");
 
+        inputIdentificacion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                inputIdentificacionActionPerformed(evt);
+            }
+        });
         inputIdentificacion.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 inputIdentificacionKeyTyped(evt);
@@ -655,6 +660,10 @@ public class bb_AdminGestClientes extends javax.swing.JFrame {
         String evento = jComboBoxOrdenar.getSelectedItem().toString();
         ordenar(evento);
     }//GEN-LAST:event_jComboBoxOrdenarActionPerformed
+
+    private void inputIdentificacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_inputIdentificacionActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_inputIdentificacionActionPerformed
 
     private void verificarSiEsDigito(java.awt.event.KeyEvent evt) {
         char c = evt.getKeyChar();

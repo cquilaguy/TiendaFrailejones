@@ -259,6 +259,7 @@
         </Component>
         <Component class="javax.swing.JTextField" name="inputIdentificacion">
           <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="inputIdentificacionActionPerformed"/>
             <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="inputIdentificacionKeyTyped"/>
           </Events>
         </Component>

@@ -76,6 +76,11 @@ public class ab_AbonoDeuda extends javax.swing.JDialog {
                 inputValorActionPerformed(evt);
             }
         });
+        inputValor.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                inputValorKeyTyped(evt);
+            }
+        });
 
         jLabel1.setText("Valor");
 
@@ -205,6 +210,17 @@ public class ab_AbonoDeuda extends javax.swing.JDialog {
         this.dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    private void inputValorKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_inputValorKeyTyped
+        verificarSiEsDigito(evt);
+    }//GEN-LAST:event_inputValorKeyTyped
+
+    private void verificarSiEsDigito(java.awt.event.KeyEvent evt) {
+        char c = evt.getKeyChar();
+        if (!Character.isDigit(c)) {
+            evt.consume();
+        }
+    }
+    
     /**
      * @param args the command line arguments
      */

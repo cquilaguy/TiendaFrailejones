@@ -73,6 +73,11 @@ public class ab_AgregarDeuda extends javax.swing.JDialog {
                 inputValorActionPerformed(evt);
             }
         });
+        inputValor.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                inputValorKeyTyped(evt);
+            }
+        });
         jPanel1.add(inputValor, new org.netbeans.lib.awtextra.AbsoluteConstraints(75, 125, 233, -1));
 
         jLabel1.setText("Valor");
@@ -128,7 +133,7 @@ public class ab_AgregarDeuda extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
-        
+
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
         LocalDateTime now = LocalDateTime.now();
 
@@ -147,12 +152,20 @@ public class ab_AgregarDeuda extends javax.swing.JDialog {
     }//GEN-LAST:event_inputValorActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-       this.dispose();
+        this.dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
+    private void inputValorKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_inputValorKeyTyped
+         verificarSiEsDigito(evt);
+    }//GEN-LAST:event_inputValorKeyTyped
+
+    private void verificarSiEsDigito(java.awt.event.KeyEvent evt) {
+        char c = evt.getKeyChar();
+        if (!Character.isDigit(c)) {
+            evt.consume();
+        }
+    }
+
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -235,5 +248,4 @@ public class ab_AgregarDeuda extends javax.swing.JDialog {
         labelNombreCliente.setText(this.cliente.getNombre());
     }
 
-    
 }
