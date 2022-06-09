@@ -216,7 +216,6 @@ public class cc_VerMasCliente extends javax.swing.JFrame
         jScrollPane1.setViewportView(tabla);
 
         nombreCliente.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        nombreCliente.setText("Nombre cliente");
 
         jButton1.setBackground(new java.awt.Color(255, 67, 56));
         jButton1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
@@ -260,8 +259,6 @@ public class cc_VerMasCliente extends javax.swing.JFrame
         });
 
         jLabel5.setText("Identificacion");
-
-        identificacionCliente.setText("Identificacion");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -355,7 +352,7 @@ public class cc_VerMasCliente extends javax.swing.JFrame
             JOptionPane.showMessageDialog(null, "Debe seleccionar un cliente primero");
         } else {
             usuarioNoHabilitadoParaDeuda();
-            
+
         }
 
 
@@ -365,7 +362,7 @@ public class cc_VerMasCliente extends javax.swing.JFrame
         if (cliente.getPermitirDeuda().equalsIgnoreCase("N")) {
             JOptionPane.showMessageDialog(null, "Usuario no habilitado para generar deuda");
             return;
-        }else{
+        } else {
             ab_AgregarDeuda deudaCliente = new ab_AgregarDeuda(this, rootPaneCheckingEnabled);
             deudaCliente.setCliente(cliente);
             deudaCliente.setiDeudaCrearListener(this);
@@ -405,6 +402,9 @@ public class cc_VerMasCliente extends javax.swing.JFrame
         } else {
             nombreCliente.setText(cliente.getNombre());
             identificacionCliente.setText(cliente.getIdentificacion());
+            llenarTabla();
+            calcularTotalAbono();
+            setBackgrounFila();
         }
     }//GEN-LAST:event_btnBuscarActionPerformed
 
