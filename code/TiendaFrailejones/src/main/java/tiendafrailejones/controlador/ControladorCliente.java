@@ -6,10 +6,11 @@ import tiendafrailejones.modelo.consultas.ConsultasEmpleado;
 import tiendafrailejones.modelo.Empleado;
 import tiendafrailejones.modelo.consultas.ConsultasCliente;
 import tiendafrailejones.modelo.interfaces.ICliente;
+import tiendafrailejones.modelo.interfaces.IClienteOrdenar;
 import tiendafrailejones.modelo.interfaces.IEmpleado;
 
 
-public class ControladorCliente implements ICliente{
+public class ControladorCliente implements ICliente, IClienteOrdenar{
     
     private ConsultasCliente consultasCliente;
 
@@ -47,6 +48,16 @@ public class ControladorCliente implements ICliente{
     @Override
     public List<Cliente> buscar(String parametros) {
         return consultasCliente.buscar(parametros);
+    }
+
+    @Override
+    public List<Cliente> ordenarPorNombreAsc() {
+        return consultasCliente.ordenarPorNombreAsc();
+    }
+
+    @Override
+    public List<Cliente> ordenarPorNombreDesc() {
+        return consultasCliente.ordenarPorNombreDesc();
     }
     
     

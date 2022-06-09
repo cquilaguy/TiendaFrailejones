@@ -9,6 +9,7 @@ import com.formdev.flatlaf.FlatLightLaf;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import java.util.logging.Level;
@@ -22,6 +23,7 @@ import javax.swing.UnsupportedLookAndFeelException;
 import javax.swing.table.DefaultTableModel;
 import tiendafrailejones.controlador.ControladorEmpleado;
 import tiendafrailejones.controlador.ControladorLogin;
+import tiendafrailejones.modelo.Cliente;
 import tiendafrailejones.modelo.Empleado;
 import tiendafrailejones.modelo.Login;
 import tiendafrailejones.modelo.consultas.ConsultasEmpleado;
@@ -66,7 +68,7 @@ public class AdminGestUsers extends javax.swing.JFrame {
         defaultTableModel = new DefaultTableModel() {
             @Override
             public boolean isCellEditable(int row, int column) {
-                return false; // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/OverriddenMethodBody
+                return false;
             }
         };
 
@@ -140,10 +142,11 @@ public class AdminGestUsers extends javax.swing.JFrame {
         jPanel4 = new javax.swing.JPanel();
         inputBuscar = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
-        jComboBox2 = new javax.swing.JComboBox<>();
+        jcomboxOrdenar = new javax.swing.JComboBox<>();
         jScrollPane2 = new javax.swing.JScrollPane();
         tablaEmpleados = new javax.swing.JTable();
         jButton2 = new javax.swing.JButton();
+        jButton3 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("FraileStore");
@@ -214,6 +217,11 @@ public class AdminGestUsers extends javax.swing.JFrame {
         );
 
         jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder("Información de Usuario"));
+        jPanel3.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jPanel3KeyTyped(evt);
+            }
+        });
 
         jLabel2.setText("Nombre Completo");
 
@@ -224,8 +232,27 @@ public class AdminGestUsers extends javax.swing.JFrame {
                 inputIdentificacionActionPerformed(evt);
             }
         });
+        inputIdentificacion.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                inputIdentificacionKeyPressed(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                inputIdentificacionKeyTyped(evt);
+            }
+        });
 
         jLabel4.setText("Número de Documento");
+
+        inputTelefono.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                inputTelefonoActionPerformed(evt);
+            }
+        });
+        inputTelefono.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                inputTelefonoKeyTyped(evt);
+            }
+        });
 
         jLabel5.setText("Telefono");
 
@@ -440,8 +467,13 @@ public class AdminGestUsers extends javax.swing.JFrame {
         jLabel6.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel6.setText("Buscar");
 
-        jComboBox2.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jcomboxOrdenar.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jcomboxOrdenar.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Ordenar por nombre Ascendete", "Ordenar por nombre Descendente", "Solo Administradores", "Solo empleados" }));
+        jcomboxOrdenar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jcomboxOrdenarActionPerformed(evt);
+            }
+        });
 
         tablaEmpleados.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -468,6 +500,13 @@ public class AdminGestUsers extends javax.swing.JFrame {
             }
         });
 
+        jButton3.setText("Quitar filtros");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
@@ -481,12 +520,14 @@ public class AdminGestUsers extends javax.swing.JFrame {
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addComponent(jLabel6)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jcomboxOrdenar, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(inputBuscar, javax.swing.GroupLayout.DEFAULT_SIZE, 656, Short.MAX_VALUE)
+                        .addComponent(inputBuscar, javax.swing.GroupLayout.DEFAULT_SIZE, 631, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jButton2)
-                        .addGap(142, 142, 142))))
+                        .addGap(18, 18, 18)
+                        .addComponent(jButton3)
+                        .addGap(40, 40, 40))))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -494,12 +535,13 @@ public class AdminGestUsers extends javax.swing.JFrame {
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jLabel6)
-                        .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jcomboxOrdenar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addContainerGap()
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(inputBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButton2))))
+                            .addComponent(jButton2)
+                            .addComponent(jButton3))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane2)
                 .addContainerGap())
@@ -550,13 +592,14 @@ public class AdminGestUsers extends javax.swing.JFrame {
     private void btnCrearActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCrearActualizarActionPerformed
         try {
 
+            verificarCampos();
             Empleado emp = controladorEmpleado.existePorId(Long.valueOf(inputIdentificacion.getText()));
 
             System.out.println(Objects.equals(emp.getIdentificacion(), inputIdentificacion.getText()));
             if (!actualizar && emp != null && Objects.equals(emp.getIdentificacion(), inputIdentificacion.getText())) {
                 JOptionPane.showMessageDialog(null, "Usuario ya existe con ese numero de identificación");
             } else if (empleado.getId() != null && actualizar) {  // Actualizar
-                verificarCampos();
+
                 empleado.setId(empleado.getId());
                 empleado.setNombre(inputNombre.getText());
                 empleado.setTelefono(inputTelefono.getText());
@@ -574,7 +617,6 @@ public class AdminGestUsers extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(null, "Se ha actualizado el registro");
             } else { // Crear
 
-                verificarCampos();
                 verificarCorreos();
                 verificarCamposLogin();
                 empleado.setNombre(inputNombre.getText());
@@ -587,7 +629,6 @@ public class AdminGestUsers extends javax.swing.JFrame {
 
                 controladorEmpleado.crear(empleado);
                 guardarLogin();
-                
 
                 llenarGuardarTabla();
                 limpiarCampos();
@@ -697,9 +738,79 @@ public class AdminGestUsers extends javax.swing.JFrame {
     }//GEN-LAST:event_inputIdentificacionActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        
+
+        if (inputBuscar.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Debe ingresar número de indentificacion o nombre");
+            return;
+        }
+
+        List<Empleado> empleados = consultasEmpleado.buscar(inputBuscar.getText());
+
+        if (empleados.isEmpty()) {
+            JOptionPane.showMessageDialog(null, "No existe empleado (s) que concidan con los parametro de busqueda");
+        } else {
+            defaultTableModel.setRowCount(0);
+            for (Empleado emp : empleados) {
+                String[] empleadoDatos = new String[8];
+                empleadoDatos[0] = String.valueOf(emp.getId());
+                empleadoDatos[1] = emp.getNombre();
+                empleadoDatos[2] = emp.getTelefono();
+                empleadoDatos[3] = emp.getIdentificacion();
+                empleadoDatos[4] = emp.getTipoIdentificacion();
+                empleadoDatos[5] = emp.getTipoUsuario();
+                empleadoDatos[6] = (emp.getActivo().equals(1)) ? "ACTIVO" : "INACTIVO";
+                empleadoDatos[7] = emp.getCorreo();
+                defaultTableModel.addRow(empleadoDatos);
+            }
+
+        }
+
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        llenarTabla();
+    }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void inputIdentificacionKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_inputIdentificacionKeyPressed
+
+    }//GEN-LAST:event_inputIdentificacionKeyPressed
+
+    private void inputTelefonoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_inputTelefonoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_inputTelefonoActionPerformed
+
+    private void inputIdentificacionKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_inputIdentificacionKeyTyped
+        verificarSiEsDigito(evt);
+    }//GEN-LAST:event_inputIdentificacionKeyTyped
+
+    private void inputTelefonoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_inputTelefonoKeyTyped
+        verificarSiEsDigito(evt);
+    }//GEN-LAST:event_inputTelefonoKeyTyped
+
+    private void jPanel3KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jPanel3KeyTyped
+
+    }//GEN-LAST:event_jPanel3KeyTyped
+
+    private void jcomboxOrdenarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcomboxOrdenarActionPerformed
+          String selectValue = jcomboxOrdenar.getSelectedItem().toString();
+          ordenar(selectValue);
+    }//GEN-LAST:event_jcomboxOrdenarActionPerformed
+
+    private void ordenar(String seleccion) {
+
+        List<Empleado> empleados = new ArrayList<>();
+        if (seleccion.equalsIgnoreCase("Ordenar por nombre Ascendete")) {
+            empleados = controladorEmpleado.ordenarPorNombreAsc();
+        } else if (seleccion.equalsIgnoreCase("Ordenar por nombre Descendente")) {
+            empleados = controladorEmpleado.ordenarPorNombreDesc();
+        } else if (seleccion.equalsIgnoreCase("Solo Administradores")) {
+            empleados = controladorEmpleado.soloAdministradores();
+        } else if (seleccion.equalsIgnoreCase("Solo empleados")) {
+            empleados = controladorEmpleado.soloEmpleados();
+
+        }
+
         defaultTableModel.setRowCount(0);
-        List<Empleado> empleados = consultasEmpleado.buscar(inputBuscar.getText());;
         for (Empleado emp : empleados) {
             String[] empleadoDatos = new String[8];
             empleadoDatos[0] = String.valueOf(emp.getId());
@@ -712,11 +823,15 @@ public class AdminGestUsers extends javax.swing.JFrame {
             empleadoDatos[7] = emp.getCorreo();
             defaultTableModel.addRow(empleadoDatos);
         }
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }
 
-    /**
-     * @param args the command line arguments
-     */
+    private void verificarSiEsDigito(java.awt.event.KeyEvent evt) {
+        char c = evt.getKeyChar();
+        if (!Character.isDigit(c)) {
+            evt.consume();
+        }
+    }
+
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         try {
@@ -788,9 +903,9 @@ public class AdminGestUsers extends javax.swing.JFrame {
     private javax.swing.JTextField inputUsuario;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
-    private javax.swing.JComboBox<String> jComboBox2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
@@ -807,6 +922,7 @@ public class AdminGestUsers extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JComboBox<String> jcomboxOrdenar;
     private javax.swing.JComboBox<String> jcomboxTipoID;
     private javax.swing.JComboBox<String> jcomboxTipoUsuario;
     private javax.swing.JTable tablaEmpleados;

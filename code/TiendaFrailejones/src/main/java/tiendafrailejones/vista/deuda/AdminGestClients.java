@@ -1,6 +1,5 @@
 package tiendafrailejones.vista.deuda;
 
-import UI.*;
 import com.formdev.flatlaf.FlatLightLaf;
 import java.math.BigDecimal;
 import java.util.List;
@@ -16,6 +15,7 @@ import tiendafrailejones.modelo.Empleado;
 import tiendafrailejones.modelo.Login;
 import tiendafrailejones.modelo.consultas.ConsultaDeuda;
 import tiendafrailejones.modelo.consultas.ConsultasCliente;
+import tiendafrailejones.vista.ui.empleado.ClienteMenu;
 
 public class AdminGestClients extends javax.swing.JFrame {
 
@@ -106,6 +106,7 @@ public class AdminGestClients extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         jComboBox3 = new javax.swing.JComboBox<>();
         buscar = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("FraileStore");
@@ -144,7 +145,7 @@ public class AdminGestClients extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 843, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -342,6 +343,13 @@ public class AdminGestClients extends javax.swing.JFrame {
             }
         });
 
+        jButton1.setText("Quitar filtros");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
@@ -349,7 +357,7 @@ public class AdminGestClients extends javax.swing.JFrame {
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 1251, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1)
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addComponent(jLabel6)
                         .addGap(24, 24, 24)
@@ -357,7 +365,10 @@ public class AdminGestClients extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addComponent(inputBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 678, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(26, 26, 26)
-                        .addComponent(buscar)))
+                        .addComponent(buscar)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButton1)
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         jPanel4Layout.setVerticalGroup(
@@ -367,7 +378,8 @@ public class AdminGestClients extends javax.swing.JFrame {
                     .addComponent(jLabel6)
                     .addComponent(inputBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(buscar))
+                    .addComponent(buscar)
+                    .addComponent(jButton1))
                 .addGap(9, 9, 9)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 322, Short.MAX_VALUE)
                 .addGap(76, 76, 76))
@@ -422,7 +434,9 @@ public class AdminGestClients extends javax.swing.JFrame {
 
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        
+        ClienteMenu clienteMenu = new ClienteMenu();
+        clienteMenu.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void inputBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_inputBuscarActionPerformed
@@ -461,17 +475,33 @@ public class AdminGestClients extends javax.swing.JFrame {
     }//GEN-LAST:event_tablaClientesMouseClicked
 
     private void buscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscarActionPerformed
-        defaultTableModel.setRowCount(0);
-        List<Cliente> clientes = controladorCliente.buscar(inputBuscar.getText());
-        for (Cliente cli : clientes) {
-            String[] clienteDatos = new String[4];
-            clienteDatos[0] = String.valueOf(cli.getId());
-            clienteDatos[1] = cli.getNombre();
-            clienteDatos[2] = cli.getIdentificacion();
-            clienteDatos[3] = calcularTotalAbono(cli.getId());
-            defaultTableModel.addRow(clienteDatos);
+
+        if (inputBuscar.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Debe ingresar número de identificación o nombre");
+            return;
         }
+
+        List<Cliente> clientes = controladorCliente.buscar(inputBuscar.getText());
+        if (clientes.isEmpty()) {
+            JOptionPane.showMessageDialog(null, "No hay coincidencias");
+            return;
+        } else {
+            defaultTableModel.setRowCount(0);
+            for (Cliente cli : clientes) {
+                String[] clienteDatos = new String[4];
+                clienteDatos[0] = String.valueOf(cli.getId());
+                clienteDatos[1] = cli.getNombre();
+                clienteDatos[2] = cli.getIdentificacion();
+                clienteDatos[3] = calcularTotalAbono(cli.getId());
+                defaultTableModel.addRow(clienteDatos);
+            }
+        }
+
     }//GEN-LAST:event_buscarActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        llenarTabla();
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     private Cliente getCliente(Long id) {
         return controladorCliente.existePorId(id);
@@ -531,6 +561,7 @@ public class AdminGestClients extends javax.swing.JFrame {
     private javax.swing.JTextField inputNombre;
     private javax.swing.JTextField inputNumeroDocumento;
     private javax.swing.JTextField inputTelefono;
+    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;

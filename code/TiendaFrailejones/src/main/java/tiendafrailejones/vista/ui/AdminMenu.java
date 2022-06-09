@@ -32,7 +32,7 @@ public class AdminMenu extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        btnGestionarClientes = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         btnGestionarUsurios = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
@@ -50,13 +50,13 @@ public class AdminMenu extends javax.swing.JFrame {
         setPreferredSize(new java.awt.Dimension(1280, 720));
         setResizable(false);
 
-        btnGestionarClientes.setBackground(new java.awt.Color(31, 106, 115));
-        btnGestionarClientes.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        btnGestionarClientes.setForeground(new java.awt.Color(255, 255, 255));
-        btnGestionarClientes.setText("CLIENTES");
-        btnGestionarClientes.addActionListener(new java.awt.event.ActionListener() {
+        jButton1.setBackground(new java.awt.Color(31, 106, 115));
+        jButton1.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        jButton1.setForeground(new java.awt.Color(255, 255, 255));
+        jButton1.setText("CLIENTES");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnGestionarClientesActionPerformed(evt);
+                jButton1ActionPerformed(evt);
             }
         });
 
@@ -139,7 +139,7 @@ public class AdminMenu extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnGestionarClientes, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnGestionarUsurios, javax.swing.GroupLayout.PREFERRED_SIZE, 700, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(277, 277, 277))
         );
@@ -150,7 +150,7 @@ public class AdminMenu extends javax.swing.JFrame {
                 .addGap(50, 50, 50)
                 .addComponent(btnGestionarUsurios, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(btnGestionarClientes, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -172,11 +172,11 @@ public class AdminMenu extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_btnGestionarUsuriosActionPerformed
 
-    private void btnGestionarClientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGestionarClientesActionPerformed
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         AdminGestCustomer adminGestCustomer = new AdminGestCustomer();
         adminGestCustomer.setVisible(true);
         this.dispose();
-    }//GEN-LAST:event_btnGestionarClientesActionPerformed
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -196,8 +196,8 @@ public class AdminMenu extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnGestionarClientes;
     private javax.swing.JButton btnGestionarUsurios;
+    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
