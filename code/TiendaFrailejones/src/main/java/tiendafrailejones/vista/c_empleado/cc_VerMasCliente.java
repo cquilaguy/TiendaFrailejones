@@ -362,8 +362,9 @@ public class cc_VerMasCliente extends javax.swing.JFrame
             llenarTabla();
             calcularTotalAbono();
             setBackgrounFila();
-identificacionCliente//GEN-LAST:event_btnBuscarActionPerformed
-
+        }
+    }
+    
     public boolean existeCliente() {
         return cliente == null || cliente.getId() == null;
     }
