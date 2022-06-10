@@ -37,28 +37,32 @@ public class login extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel2 = new javax.swing.JPanel();
-        jLabelInputEmail = new javax.swing.JLabel();
-        btnLogin = new javax.swing.JButton();
-        inputUsuario = new javax.swing.JTextField();
-        inputPassword = new javax.swing.JPasswordField();
         labelUsuarioOContraseña = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
+        inputUsuario = new javax.swing.JTextField();
+        jLabelInputEmail = new javax.swing.JLabel();
         jLabelInputContraseña = new javax.swing.JLabel();
+        inputPassword = new javax.swing.JPasswordField();
+        btnLogin = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("FraileStore");
-        setBackground(new java.awt.Color(204, 0, 0));
         setLocationByPlatform(true);
+        setMaximumSize(new java.awt.Dimension(1280, 720));
         setMinimumSize(new java.awt.Dimension(1280, 720));
+        setName("a_LogIn"); // NOI18N
+        setUndecorated(true);
+        setPreferredSize(new java.awt.Dimension(1280, 720));
         setResizable(false);
         setSize(new java.awt.Dimension(1280, 720));
 
-        jPanel2.setBackground(new java.awt.Color(255, 51, 153));
+        jPanel2.setBackground(javax.swing.UIManager.getDefaults().getColor("Actions.Blue"));
         jPanel2.setAlignmentX(0.0F);
         jPanel2.setAlignmentY(0.0F);
         jPanel2.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jPanel2.setFocusable(false);
-        jPanel2.setMaximumSize(new java.awt.Dimension(950, 720));
-        jPanel2.setMinimumSize(new java.awt.Dimension(950, 720));
+        jPanel2.setMaximumSize(new java.awt.Dimension(960, 720));
+        jPanel2.setMinimumSize(new java.awt.Dimension(960, 720));
         jPanel2.setName("INTRO_IMG"); // NOI18N
         jPanel2.setPreferredSize(new java.awt.Dimension(950, 720));
         jPanel2.setRequestFocusEnabled(false);
@@ -68,92 +72,120 @@ public class login extends javax.swing.JFrame {
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGap(0, 960, Short.MAX_VALUE)
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 720, Short.MAX_VALUE)
         );
 
-        jLabelInputEmail.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
-        jLabelInputEmail.setText("Correo Electrónico");
+        labelUsuarioOContraseña.setForeground(new java.awt.Color(255, 0, 0));
 
-        btnLogin.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
-        btnLogin.setText("INGRESAR");
-        btnLogin.setAlignmentY(0.0F);
-        btnLogin.setBorder(null);
-        btnLogin.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        btnLogin.setMaximumSize(new java.awt.Dimension(300, 30));
-        btnLogin.setMinimumSize(new java.awt.Dimension(300, 30));
-        btnLogin.setPreferredSize(new java.awt.Dimension(300, 30));
-        btnLogin.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnLoginActionPerformed(evt);
-            }
-        });
+        jLabel1.setBackground(new java.awt.Color(12, 91, 99));
+        jLabel1.setText("img_isologo");
 
-        inputUsuario.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        inputUsuario.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         inputUsuario.setAlignmentX(0.0F);
         inputUsuario.setAlignmentY(0.0F);
         inputUsuario.setBorder(null);
         inputUsuario.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        inputUsuario.setMaximumSize(new java.awt.Dimension(300, 30));
-        inputUsuario.setMinimumSize(new java.awt.Dimension(300, 30));
-        inputUsuario.setPreferredSize(new java.awt.Dimension(300, 30));
+        inputUsuario.setMaximumSize(new java.awt.Dimension(310, 30));
+        inputUsuario.setMinimumSize(new java.awt.Dimension(310, 30));
+        inputUsuario.setPreferredSize(new java.awt.Dimension(320, 30));
         inputUsuario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 inputUsuarioActionPerformed(evt);
             }
         });
 
-        inputPassword.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
-        inputPassword.setAlignmentY(0.0F);
-        inputPassword.setBorder(null);
-        inputPassword.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        inputPassword.setMaximumSize(new java.awt.Dimension(300, 30));
-        inputPassword.setMinimumSize(new java.awt.Dimension(300, 30));
-        inputPassword.setPreferredSize(new java.awt.Dimension(300, 30));
-
-        labelUsuarioOContraseña.setForeground(new java.awt.Color(255, 0, 0));
+        jLabelInputEmail.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        jLabelInputEmail.setText("Correo Electrónico");
+        jLabelInputEmail.setMaximumSize(new java.awt.Dimension(310, 30));
+        jLabelInputEmail.setMinimumSize(new java.awt.Dimension(310, 1));
+        jLabelInputEmail.setRequestFocusEnabled(false);
 
         jLabelInputContraseña.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
         jLabelInputContraseña.setText("Contraseña");
+        jLabelInputContraseña.setMaximumSize(new java.awt.Dimension(310, 30));
+        jLabelInputContraseña.setMinimumSize(new java.awt.Dimension(310, 1));
+        jLabelInputContraseña.setRequestFocusEnabled(false);
+
+        inputPassword.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        inputPassword.setAlignmentY(0.0F);
+        inputPassword.setBorder(null);
+        inputPassword.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        inputPassword.setMaximumSize(new java.awt.Dimension(310, 30));
+        inputPassword.setMinimumSize(new java.awt.Dimension(310, 30));
+        inputPassword.setPreferredSize(new java.awt.Dimension(320, 30));
+        inputPassword.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                inputPasswordActionPerformed(evt);
+            }
+        });
+
+        btnLogin.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        btnLogin.setText("INGRESAR");
+        btnLogin.setAlignmentY(0.0F);
+        btnLogin.setBorder(null);
+        btnLogin.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btnLogin.setMaximumSize(new java.awt.Dimension(310, 50));
+        btnLogin.setMinimumSize(new java.awt.Dimension(310, 50));
+        btnLogin.setPreferredSize(new java.awt.Dimension(320, 30));
+        btnLogin.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLoginActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 920, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(26, 26, 26)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(inputUsuario, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabelInputEmail)
-                    .addComponent(jLabelInputContraseña)
-                    .addComponent(inputPassword, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnLogin, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(labelUsuarioOContraseña, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(34, Short.MAX_VALUE))
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 960, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(26, 26, 26)
+                                .addComponent(labelUsuarioOContraseña, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabelInputEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(inputPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(btnLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabelInputContraseña, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(inputUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabelInputEmail)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(inputUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jLabelInputContraseña, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(inputPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(btnLogin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(labelUsuarioOContraseña, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(203, 203, 203))
+                .addGap(0, 0, 0)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabelInputEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(inputUsuario, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabelInputContraseña, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(inputPassword, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(labelUsuarioOContraseña, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(205, 205, 205))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))))
         );
 
         pack();
@@ -219,6 +251,10 @@ public class login extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnLoginActionPerformed
 
+    private void inputPasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_inputPasswordActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_inputPasswordActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -262,6 +298,7 @@ public class login extends javax.swing.JFrame {
     private javax.swing.JButton btnLogin;
     private javax.swing.JPasswordField inputPassword;
     private javax.swing.JTextField inputUsuario;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabelInputContraseña;
     private javax.swing.JLabel jLabelInputEmail;
     private javax.swing.JPanel jPanel2;
