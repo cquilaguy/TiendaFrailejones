@@ -29,7 +29,7 @@ public class ExportToExcel {
             if (DetectOS.IS_WINDOWS) {
                 excelFileChooser = new JFileChooser("C:\\");
             }else if (DetectOS.IS_UNIX) {
-                excelFileChooser = new JFileChooser("/home/alan/Documents");
+                excelFileChooser = new JFileChooser("/home/");
             }
 
             FileNameExtensionFilter fnef = new FileNameExtensionFilter("Files", "xls", "xlsx", "xlsm");
