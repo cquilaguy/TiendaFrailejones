@@ -46,7 +46,7 @@ public class c_Menu extends javax.swing.JFrame {
 
         btnClientes.setFont(new java.awt.Font("Segoe UI Semibold", 1, 24)); // NOI18N
         btnClientes.setForeground(new java.awt.Color(51, 51, 51));
-        btnClientes.setText("CLIENTES");
+        btnClientes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/btn_b_clientes.png"))); // NOI18N
         btnClientes.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btnClientes.setMaximumSize(new java.awt.Dimension(250, 290));
         btnClientes.setMinimumSize(new java.awt.Dimension(250, 290));
@@ -58,7 +58,7 @@ public class c_Menu extends javax.swing.JFrame {
 
         jButton2.setFont(new java.awt.Font("Segoe UI Semibold", 1, 24)); // NOI18N
         jButton2.setForeground(new java.awt.Color(51, 51, 51));
-        jButton2.setText("INVENTARIO");
+        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/btn_b_inventario.png"))); // NOI18N
         jButton2.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jButton2.setMaximumSize(new java.awt.Dimension(250, 290));
         jButton2.setMinimumSize(new java.awt.Dimension(250, 290));
@@ -91,6 +91,7 @@ public class c_Menu extends javax.swing.JFrame {
 
         jButton7.setFont(new java.awt.Font("Segoe UI Semibold", 1, 36)); // NOI18N
         jButton7.setForeground(javax.swing.UIManager.getDefaults().getColor("Actions.Green"));
+        jButton7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/btn_perfil.png"))); // NOI18N
         jButton7.setText("PERFIL");
         jButton7.setToolTipText("");
         jButton7.setMaximumSize(new java.awt.Dimension(250, 290));
@@ -104,7 +105,7 @@ public class c_Menu extends javax.swing.JFrame {
 
         btnCerrar.setFont(new java.awt.Font("Segoe UI Semibold", 1, 36)); // NOI18N
         btnCerrar.setForeground(javax.swing.UIManager.getDefaults().getColor("Actions.Red"));
-        btnCerrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/btn_close.png"))); // NOI18N
+        btnCerrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/btn_cerrar.png"))); // NOI18N
         btnCerrar.setToolTipText("");
         btnCerrar.setMaximumSize(new java.awt.Dimension(250, 290));
         btnCerrar.setMinimumSize(new java.awt.Dimension(250, 290));
