@@ -586,6 +586,8 @@ public class bb_AdminGestClientes extends javax.swing.JFrame {
             jcomboxTipoID.setSelectedItem(cliente.getTipoIdentificacion());
             jComboBoxPermitirDeuda.setSelectedItem(cliente.getPermitirDeuda().equalsIgnoreCase("S") ? "Sí" : "No");
             actualizar = true;
+            inputIdentificacion.setEnabled(false);
+            jcomboxTipoID.setEnabled(false);
             btnCrearActualizar.setText("Actualizar");
             habilitarBotonEliminar();
         }
@@ -628,6 +630,8 @@ public class bb_AdminGestClientes extends javax.swing.JFrame {
         limpiarCampos();
         deshabilitarBotonEliminar();
         btnCrearActualizar.setText("Guardar");
+        inputIdentificacion.setEnabled(true);
+        jcomboxTipoID.setEnabled(true);
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void btnCrearActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCrearActualizarActionPerformed
@@ -795,7 +799,7 @@ public class bb_AdminGestClientes extends javax.swing.JFrame {
         }
     }
 
-    
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton bntVerMas;
     private javax.swing.JButton btnBuscar;
