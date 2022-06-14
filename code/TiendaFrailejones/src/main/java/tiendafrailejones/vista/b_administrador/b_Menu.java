@@ -1,9 +1,10 @@
 package tiendafrailejones.vista.b_administrador;
 
-import UI.*;
+
 import com.formdev.flatlaf.FlatLightLaf;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
+import tiendafrailejones.vista.a_general.login;
 import tiendafrailejones.vista.pendiente.AdminGestCustomer;
 
 /**
@@ -35,7 +36,7 @@ public class b_Menu extends javax.swing.JFrame {
         jButton2 = new javax.swing.JButton();
         btnGestionarUsurios = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
-        jButton6 = new javax.swing.JButton();
+        btnCerrar = new javax.swing.JButton();
         jButton7 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -116,17 +117,16 @@ public class b_Menu extends javax.swing.JFrame {
             }
         });
 
-        jButton6.setFont(new java.awt.Font("Segoe UI Semibold", 1, 36)); // NOI18N
-        jButton6.setForeground(javax.swing.UIManager.getDefaults().getColor("Actions.Red"));
-        jButton6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/btn_close.png"))); // NOI18N
-        jButton6.setToolTipText("");
-        jButton6.setLabel("");
-        jButton6.setMaximumSize(new java.awt.Dimension(250, 290));
-        jButton6.setMinimumSize(new java.awt.Dimension(250, 290));
-        jButton6.setPreferredSize(new java.awt.Dimension(250, 290));
-        jButton6.addActionListener(new java.awt.event.ActionListener() {
+        btnCerrar.setFont(new java.awt.Font("Segoe UI Semibold", 1, 36)); // NOI18N
+        btnCerrar.setForeground(javax.swing.UIManager.getDefaults().getColor("Actions.Red"));
+        btnCerrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/btn_close.png"))); // NOI18N
+        btnCerrar.setToolTipText("");
+        btnCerrar.setMaximumSize(new java.awt.Dimension(250, 290));
+        btnCerrar.setMinimumSize(new java.awt.Dimension(250, 290));
+        btnCerrar.setPreferredSize(new java.awt.Dimension(250, 290));
+        btnCerrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton6ActionPerformed(evt);
+                btnCerrarActionPerformed(evt);
             }
         });
 
@@ -162,7 +162,7 @@ public class b_Menu extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(btnCerrar, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(243, 243, 243))
         );
         layout.setVerticalGroup(
@@ -177,7 +177,7 @@ public class b_Menu extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 290, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 290, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnCerrar, javax.swing.GroupLayout.PREFERRED_SIZE, 290, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnGestionarUsurios, javax.swing.GroupLayout.PREFERRED_SIZE, 290, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(18, Short.MAX_VALUE))
         );
@@ -186,7 +186,6 @@ public class b_Menu extends javax.swing.JFrame {
         jButton2.getAccessibleContext().setAccessibleName("");
         btnGestionarUsurios.getAccessibleContext().setAccessibleName("");
         jButton4.getAccessibleContext().setAccessibleName("");
-        jButton6.getAccessibleContext().setAccessibleName("");
         jButton7.getAccessibleContext().setAccessibleName("");
 
         pack();
@@ -209,12 +208,14 @@ public class b_Menu extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton6ActionPerformed
+    private void btnCerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCerrarActionPerformed
+        login login1 = new login();
+        login1.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_btnCerrarActionPerformed
 
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
-        // TODO add your handling code here:
+        
     }//GEN-LAST:event_jButton7ActionPerformed
 
     /**
@@ -235,11 +236,11 @@ public class b_Menu extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnCerrar;
     private javax.swing.JButton btnGestionarUsurios;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton6;
     private javax.swing.JButton jButton7;
     private javax.swing.JLabel jLabel_LogoW;
     private javax.swing.JPanel jPanel1;
