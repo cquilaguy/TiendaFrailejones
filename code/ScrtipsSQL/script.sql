@@ -112,3 +112,6 @@ CREATE TABLE logData(
 	user_id int not null, 
 	date datetime not null
 );
+
+ALTER TABLE cliente 
+ADD activo SMALLINT UNSIGNED DEFAULT 1 NOT NULL;
