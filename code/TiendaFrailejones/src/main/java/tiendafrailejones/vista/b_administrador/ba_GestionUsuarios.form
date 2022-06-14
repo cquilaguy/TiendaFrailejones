@@ -93,7 +93,7 @@
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="1" attributes="0">
-                  <EmptySpace pref="1121" max="32767" attributes="0"/>
+                  <EmptySpace pref="1089" max="32767" attributes="0"/>
                   <Component id="jButton4" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>
@@ -104,7 +104,7 @@
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
                   <Component id="jButton4" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace pref="53" max="32767" attributes="0"/>
+                  <EmptySpace pref="50" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -272,7 +272,7 @@
             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
               <StringArray count="3">
                 <StringItem index="0" value="C&#xc9;DULA"/>
-                <StringItem index="1" value="C&#xc9;DULA DE EXTRANJERIA"/>
+                <StringItem index="1" value="C&#xc9;DULA DE EXTRANJER&#xcd;A"/>
                 <StringItem index="2" value="PASAPORTE"/>
               </StringArray>
             </Property>

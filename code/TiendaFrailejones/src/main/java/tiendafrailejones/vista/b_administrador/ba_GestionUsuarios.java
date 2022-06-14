@@ -171,7 +171,7 @@ public class ba_GestionUsuarios extends javax.swing.JFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(1121, Short.MAX_VALUE)
+                .addContainerGap(1089, Short.MAX_VALUE)
                 .addComponent(jButton4)
                 .addContainerGap())
         );
@@ -180,7 +180,7 @@ public class ba_GestionUsuarios extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(25, 25, 25)
                 .addComponent(jButton4)
-                .addContainerGap(53, Short.MAX_VALUE))
+                .addContainerGap(50, Short.MAX_VALUE))
         );
 
         jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder("Información de Usuario"));
@@ -228,7 +228,7 @@ public class ba_GestionUsuarios extends javax.swing.JFrame {
         jLabel5.setText("Telefono");
 
         jcomboxTipoID.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jcomboxTipoID.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "CÉDULA", "CÉDULA DE EXTRANJERIA", "PASAPORTE" }));
+        jcomboxTipoID.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "CÉDULA", "CÉDULA DE EXTRANJERÍA", "PASAPORTE" }));
         jcomboxTipoID.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 jcomboxTipoIDItemStateChanged(evt);
