@@ -39,10 +39,8 @@ public class c_Menu extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("FraileStore - Empleado");
-        setMaximumSize(new java.awt.Dimension(1280, 720));
         setMinimumSize(new java.awt.Dimension(1280, 720));
         setName("FraileStore"); // NOI18N
-        setPreferredSize(new java.awt.Dimension(1280, 720));
         setResizable(false);
 
         btnClientes.setFont(new java.awt.Font("Segoe UI Semibold", 1, 24)); // NOI18N
@@ -71,7 +69,7 @@ public class c_Menu extends javax.swing.JFrame {
 
         jLabel_LogoW.setFont(new java.awt.Font("Segoe UI Historic", 1, 48)); // NOI18N
         jLabel_LogoW.setForeground(new java.awt.Color(249, 241, 241));
-        jLabel_LogoW.setText("FraileStore");
+        jLabel_LogoW.setIcon(new javax.swing.ImageIcon(getClass().getResource("/isologo_w.png"))); // NOI18N
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -85,8 +83,8 @@ public class c_Menu extends javax.swing.JFrame {
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addGap(7, 7, 7)
-                .addComponent(jLabel_LogoW, javax.swing.GroupLayout.DEFAULT_SIZE, 87, Short.MAX_VALUE)
+                .addContainerGap()
+                .addComponent(jLabel_LogoW, javax.swing.GroupLayout.DEFAULT_SIZE, 88, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -105,7 +103,7 @@ public class c_Menu extends javax.swing.JFrame {
 
         jButton6.setFont(new java.awt.Font("Segoe UI Semibold", 1, 36)); // NOI18N
         jButton6.setForeground(javax.swing.UIManager.getDefaults().getColor("Actions.Red"));
-        jButton6.setText("CERRAR");
+        jButton6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/btn_close.png"))); // NOI18N
         jButton6.setToolTipText("");
         jButton6.setMaximumSize(new java.awt.Dimension(250, 290));
         jButton6.setMinimumSize(new java.awt.Dimension(250, 290));
