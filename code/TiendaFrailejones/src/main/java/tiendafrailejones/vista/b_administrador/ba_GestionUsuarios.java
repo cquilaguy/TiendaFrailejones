@@ -590,7 +590,7 @@ public class ba_GestionUsuarios extends javax.swing.JFrame {
                 empleado.setTelefono(inputTelefono.getText());
                 empleado.setIdentificacion(inputIdentificacion.getText());
                 empleado.setTipoIdentificacion(jcomboxTipoID.getPrototypeDisplayValue());
-                empleado.setTipoUsuario(empleado.getTipoUsuario().toUpperCase());
+                empleado.setTipoUsuario(jcomboxTipoUsuario.getSelectedItem().toString());
                 empleado.setTipoIdentificacion(tipoDocumento);
                 empleado.setCorreo(inputCorreo.getText());
                 empleado.setUsuario(inputUsuario.getText());
@@ -635,6 +635,7 @@ public class ba_GestionUsuarios extends javax.swing.JFrame {
         login.setActivo(0l);
         controladorLogin.actualizarLogin(login);
         controladorEmpleado.actualizar(empleado);
+        btnEliminar.setEnabled(false);
         limpiarCampos();
         llenarGuardarTabla();
     }//GEN-LAST:event_btnEliminarActionPerformed
