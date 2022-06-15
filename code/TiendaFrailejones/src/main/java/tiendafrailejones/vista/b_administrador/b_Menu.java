@@ -1,7 +1,7 @@
 package tiendafrailejones.vista.b_administrador;
 
-
 import com.formdev.flatlaf.FlatLightLaf;
+import javax.swing.JOptionPane;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 import tiendafrailejones.vista.a_general.login;
@@ -90,6 +90,11 @@ public class b_Menu extends javax.swing.JFrame {
         jButton2.setMaximumSize(new java.awt.Dimension(250, 290));
         jButton2.setMinimumSize(new java.awt.Dimension(250, 290));
         jButton2.setPreferredSize(new java.awt.Dimension(250, 290));
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         btnGestionarUsurios.setFont(new java.awt.Font("Segoe UI Semibold", 1, 36)); // NOI18N
         btnGestionarUsurios.setForeground(new java.awt.Color(12, 91, 99));
@@ -182,17 +187,11 @@ public class b_Menu extends javax.swing.JFrame {
                 .addContainerGap(18, Short.MAX_VALUE))
         );
 
-        jButton1.getAccessibleContext().setAccessibleName("");
-        jButton2.getAccessibleContext().setAccessibleName("");
-        btnGestionarUsurios.getAccessibleContext().setAccessibleName("");
-        jButton4.getAccessibleContext().setAccessibleName("");
-        jButton7.getAccessibleContext().setAccessibleName("");
-
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        // TODO add your handling code here:
+        JOptionPane.showMessageDialog(null, "En construccion");
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void btnGestionarUsuriosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGestionarUsuriosActionPerformed
@@ -215,8 +214,13 @@ public class b_Menu extends javax.swing.JFrame {
     }//GEN-LAST:event_btnCerrarActionPerformed
 
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
-        
+        JOptionPane.showMessageDialog(null, "En construccion");
+
     }//GEN-LAST:event_jButton7ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        JOptionPane.showMessageDialog(null, "En construccion");
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments

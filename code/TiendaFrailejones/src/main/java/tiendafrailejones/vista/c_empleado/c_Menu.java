@@ -1,8 +1,8 @@
 package tiendafrailejones.vista.c_empleado;
 
-
 import com.formdev.flatlaf.FlatLightLaf;
 import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 import tiendafrailejones.vista.a_general.login;
@@ -13,13 +13,12 @@ import tiendafrailejones.vista.b_administrador.bb_AdminGestClientes;
  * @author dfquintero
  */
 public class c_Menu extends javax.swing.JFrame {
-    
-    
+
     public c_Menu() {
         initComponents();
         this.setResizable(false);
         this.setLocationRelativeTo(null);
-     
+
     }
 
     /**
@@ -62,6 +61,11 @@ public class c_Menu extends javax.swing.JFrame {
         jButton2.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jButton2.setMaximumSize(new java.awt.Dimension(250, 290));
         jButton2.setMinimumSize(new java.awt.Dimension(250, 290));
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         jPanel1.setBackground(new java.awt.Color(2, 125, 68));
         jPanel1.setMaximumSize(new java.awt.Dimension(1280, 100));
@@ -153,13 +157,13 @@ public class c_Menu extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnClientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClientesActionPerformed
-       cc_VerMasCliente ccCliente = new cc_VerMasCliente();
-       ccCliente.setVisible(true);
+        cc_VerMasCliente ccCliente = new cc_VerMasCliente();
+        ccCliente.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnClientesActionPerformed
 
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
-        // TODO add your handling code here:
+        JOptionPane.showMessageDialog(null, "En construccion");
     }//GEN-LAST:event_jButton7ActionPerformed
 
     private void btnCerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCerrarActionPerformed
@@ -168,16 +172,20 @@ public class c_Menu extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_btnCerrarActionPerformed
 
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        JOptionPane.showMessageDialog(null, "En construccion");
+    }//GEN-LAST:event_jButton2ActionPerformed
+
     /**
      * @param args the command line arguments
      */
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         try {
-    UIManager.setLookAndFeel( new FlatLightLaf() );
-} catch( UnsupportedLookAndFeelException ex ) {
-    System.err.println( "Failed to initialize LaF" );
-}
+            UIManager.setLookAndFeel(new FlatLightLaf());
+        } catch (UnsupportedLookAndFeelException ex) {
+            System.err.println("Failed to initialize LaF");
+        }
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(() -> {

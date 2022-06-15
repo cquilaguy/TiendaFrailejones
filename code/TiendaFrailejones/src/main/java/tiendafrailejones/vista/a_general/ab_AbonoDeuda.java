@@ -70,12 +70,12 @@ public class ab_AbonoDeuda extends javax.swing.JDialog {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(labelNombreCliente)
-                .addContainerGap(151, Short.MAX_VALUE))
+                .addContainerGap(129, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap(19, Short.MAX_VALUE)
+                .addContainerGap(22, Short.MAX_VALUE)
                 .addComponent(labelNombreCliente)
                 .addContainerGap())
         );
@@ -168,7 +168,8 @@ public class ab_AbonoDeuda extends javax.swing.JDialog {
  
         BigDecimal totalAbonoTemp = new BigDecimal(inputValor.getText());
         if (totalAbonoTemp.floatValue() > totalDeuda.floatValue()) {
-            labelAbonoExcedido.setText("El valor del abono debe ser menor o igual a la deuda");
+            JOptionPane.showMessageDialog(null, "El valor del abono debe ser menor o igual a la deuda");
+//            labelAbonoExcedido.setText("El valor del abono debe ser menor o igual a la deuda");
             return;
         }
 
