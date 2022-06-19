@@ -6,6 +6,7 @@ import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 import tiendafrailejones.vista.a_general.login;
 import tiendafrailejones.vista.pendiente.AdminGestCustomer;
+import tiendafrailejones.vista.pendiente.InventarioProducto;
 
 /**
  *
@@ -219,7 +220,9 @@ public class b_Menu extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton7ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        JOptionPane.showMessageDialog(null, "En construccion");
+        InventarioProducto ventanaInventario = new InventarioProducto();
+        ventanaInventario.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
