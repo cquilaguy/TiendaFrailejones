@@ -29,6 +29,7 @@ import tiendafrailejones.modelo.Categoria;
 import tiendafrailejones.modelo.Cliente;
 import tiendafrailejones.modelo.Empleado;
 import tiendafrailejones.modelo.Login;
+import tiendafrailejones.modelo.Producto;
 import tiendafrailejones.modelo.consultas.ConsultasCategoria;
 import tiendafrailejones.modelo.consultas.ConsultasEmpleado;
 import tiendafrailejones.modelo.consultas.ConsultasLogin;
@@ -102,7 +103,20 @@ public class ba_GestionCategorias extends javax.swing.JFrame {
             defaultTableModel.addRow(categoriaDatos);
         }
     }
+    private void llenarDatos(List<Categoria> categorias) {
+        for (Categoria cate : categorias) {
+            String[] categoriaDatos = new String[9];
+            categoriaDatos[0] = String.valueOf(cate.getId());
+            categoriaDatos[1] = cate.getNombre();
+            categoriaDatos[2] = cate.getDescripcion();
+            
+            defaultTableModel.addRow(categoriaDatos);
+        }
+    }
 
+    private void vaciarTabla() {
+        defaultTableModel.setRowCount(0);
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -440,37 +454,28 @@ public class ba_GestionCategorias extends javax.swing.JFrame {
     }//GEN-LAST:event_tablaCategoriasMouseClicked
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        limpiarCampos();
         
+        btnCrearActualizar.setText("Guardar");
+               
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-/*
+
         if (inputBuscar.getText().isEmpty()) {
-            JOptionPane.showMessageDialog(null, "Debe ingresar número de indentificacion o nombre");
+            JOptionPane.showMessageDialog(null, "Debe ingresar nombre marca o categoría");
             return;
         }
 
-        List<Empleado> empleados = consultasEmpleado.buscar(inputBuscar.getText());
-
-        if (empleados.isEmpty()) {
-            JOptionPane.showMessageDialog(null, "No existe empleado (s) que concidan con los parametro de busqueda");
+        List<Categoria> categorias = controladorCategoria.buscar(inputBuscar.getText());
+        if (categorias.isEmpty()) {
+            JOptionPane.showMessageDialog(null, "No hay coincidencias");
+            return;
         } else {
-            defaultTableModel.setRowCount(0);
-            for (Empleado emp : empleados) {
-                String[] empleadoDatos = new String[8];
-                empleadoDatos[0] = String.valueOf(emp.getId());
-                empleadoDatos[1] = emp.getNombre();
-                empleadoDatos[2] = emp.getTelefono();
-                empleadoDatos[3] = emp.getIdentificacion();
-                empleadoDatos[4] = emp.getTipoIdentificacion();
-                empleadoDatos[5] = emp.getTipoUsuario();
-                empleadoDatos[6] = (emp.getActivo().equals(1)) ? "ACTIVO" : "INACTIVO";
-                empleadoDatos[7] = emp.getCorreo();
-                defaultTableModel.addRow(empleadoDatos);
-            }
-
+            vaciarTabla();
+            llenarDatos(categorias);
         }
-*/
+
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed

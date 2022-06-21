@@ -17,4 +17,5 @@ public interface ICategoria {
     void actualizar(Categoria categoria);
     Categoria existePorNombre(String Nombre); 
     List<Categoria> obtenetTodasLasCategorias();
+    List<Categoria> buscar(String parametros);
 }

@@ -14,6 +14,7 @@ import java.util.List;
 import tiendafrailejones.modelo.Categoria;
 import tiendafrailejones.modelo.Cliente;
 import tiendafrailejones.modelo.Conexion;
+import tiendafrailejones.modelo.Producto;
 import tiendafrailejones.modelo.interfaces.ICategoria;
 
 /**
@@ -137,7 +138,40 @@ public class ConsultasCategoria extends Conexion implements ICategoria{
             }
         }
     }
+    
+    @Override
+    public List<Categoria> buscar(String parametros){
+        List<Categoria> categorias = new ArrayList<>();
+        PreparedStatement ps = null;
+        ResultSet resultSet = null;
+        Connection connection = getConexion();
+        String sql = "SELECT * FROM categoria WHERE nombre like ?";
 
+        try {
+            ps = connection.prepareStatement(sql);
+            ps.setString(1, "%" + parametros + "%");
+            resultSet = ps.executeQuery();
+            while (resultSet.next()) {
+
+                Categoria categoria = new Categoria();
+                categoria.setId(resultSet.getLong("id"));
+                categoria.setNombre(resultSet.getString("nombre"));
+                categoria.setDescripcion(resultSet.getString("descripcion"));
+                categorias.add(categoria);
+
+            }
+            return categorias;
+        } catch (SQLException e) {
+            System.err.println(e);
+            return categorias;
+        } finally {
+            try {
+                connection.close();
+            } catch (SQLException e) {
+                System.err.println(e);
+            }
+        }
+    }
  
     
 }

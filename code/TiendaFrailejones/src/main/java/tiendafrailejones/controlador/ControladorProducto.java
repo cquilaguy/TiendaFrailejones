@@ -64,8 +64,14 @@ public class ControladorProducto implements IProducto {
         return consultasProducto.elementosTablaRegistro(producto, id);
     }
     
-
     
-
-   
+    @Override
+    public int obtenerCantidadPorId(Producto producto){
+        return consultasProducto.obtenerCantidadPorId(producto);
+    }
+    
+    @Override
+    public List<Producto> buscar(String parametros){
+        return consultasProducto.buscar(parametros);
+    }
 }

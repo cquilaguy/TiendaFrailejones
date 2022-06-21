@@ -7,6 +7,7 @@ package tiendafrailejones.controlador;
 
 import java.util.List;
 import tiendafrailejones.modelo.Categoria;
+import tiendafrailejones.modelo.Producto;
 import tiendafrailejones.modelo.consultas.ConsultasCategoria;
 import tiendafrailejones.modelo.interfaces.ICategoria;
 
@@ -40,6 +41,10 @@ public class ControladorCategoria  implements ICategoria{
     @Override
     public List<Categoria> obtenetTodasLasCategorias() {
         return consultasCategoria.obtenetTodasLasCategorias();   
+    }
+    
+    public List<Categoria> buscar(String parametros){
+        return consultasCategoria.buscar(parametros);
     }
     
 

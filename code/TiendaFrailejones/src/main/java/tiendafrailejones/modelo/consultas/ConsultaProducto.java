@@ -267,13 +267,14 @@ public class ConsultaProducto extends Conexion implements IProducto{
        java.sql.Date fecha = new java.sql.Date(producto.getFechaIngreso().getTime());
         PreparedStatement ps = null;
         Connection connection = getConexion();
-        String sql = "INSERT INTO registro (id_producto, id_categoria, fecha_cambio) "
-                + "VALUES (?, ?, ?)";
+        String sql = "INSERT INTO registro (id_producto, id_categoria, cantidad_producto, fecha_cambio) "
+                + "VALUES (?, ?, ?, ?)";
         try {
             ps = connection.prepareStatement(sql);
             ps.setLong(1, producto.getId());
             ps.setLong(2, id );
-            ps.setDate(3, fecha);       
+            ps.setInt(3, producto.getStock() );
+            ps.setDate(4, fecha);       
             ps.execute();
             return true;
             
@@ -289,8 +290,83 @@ public class ConsultaProducto extends Conexion implements IProducto{
         }
     
     }
+        @Override
+        public int obtenerCantidadPorId(Producto producto){
+        int cantidadProducto = 0;
+        PreparedStatement ps = null;
+        ResultSet resultSet = null;
+        Connection connection = getConexion();
+        String sql = "SELECT stock FROM productos WHERE id=? ";
+        try {
+            ps = connection.prepareStatement(sql);
+            ps.setLong(1,producto.getId());
+            resultSet = ps.executeQuery();
 
+            if (resultSet.next()) {
+                cantidadProducto = resultSet.getInt("stock");
+                System.out.println(cantidadProducto);
+                return cantidadProducto;
+            }
+            
+            return cantidadProducto;
+        } catch (SQLException e) {
+            
+            System.err.println(e);
+            
+            return cantidadProducto;
+        } finally {
+            try {
+                connection.close();
+            } catch (SQLException e) {
+                System.err.println(e);
+            }
+        }  
+        }
 
+        public List<Producto> buscar(String parametros){
+        List<Producto> productos = new ArrayList<>();
+        PreparedStatement ps = null;
+        ResultSet resultSet = null;
+        Connection connection = getConexion();
+        String sql = "SELECT * FROM productos WHERE nombre like ? OR marca like ? OR nombre_categoria like ? AND activo = 1";
+
+        try {
+            ps = connection.prepareStatement(sql);
+            ps.setString(1, "%" + parametros + "%");
+            ps.setString(2, "%" + parametros + "%");
+            ps.setString(3, "%" + parametros + "%");
+            resultSet = ps.executeQuery();
+            while (resultSet.next()) {
+
+                Producto producto = new Producto();
+                producto.setId(resultSet.getLong("id"));
+                producto.setNombre(resultSet.getString("nombre"));
+                producto.setIdCategoria(resultSet.getLong("categoria_id"));
+                producto.setNombreCategoria(resultSet.getString("nombre_categoria"));
+                producto.setPrecioCompra(resultSet.getInt("precio_compra"));
+                producto.setPrecioVenta(resultSet.getInt("precio_venta"));
+                producto.setFechaIngreso(resultSet.getDate("fecha_ingreso"));
+                producto.setStock(resultSet.getInt("stock"));
+                producto.setMarca(resultSet.getString("marca"));
+                producto.setNombreProveedor(resultSet.getString("nombre_proveedor"));
+                producto.setActivo(resultSet.getInt("activo"));
+
+                productos.add(producto);
+
+            }
+            return productos;
+        } catch (SQLException e) {
+            System.err.println(e);
+            return productos;
+        } finally {
+            try {
+                connection.close();
+            } catch (SQLException e) {
+                System.err.println(e);
+            }
+        }
+        
+        }
     
     
 }
