@@ -1,7 +1,7 @@
 
 -- Crear la base de datos
-CREATE DATABASE tiendafrailejones;
-
+-- CREATE DATABASE tiendafrailejones;
+-- Drop DATABASE tiendafrailejones;
 -- Crear un nuevo usuario
 CREATE USER 'admin'@'localhost' IDENTIFIED BY 'admin';
 
@@ -21,7 +21,7 @@ CREATE TABLE empleado(
 	identificacion VARCHAR(200) NOT NULL, 
 	tipo_Identificacion VARCHAR(200) NOT NULL,
 	tipo_usuario VARCHAR(200) NOT NULL
-);
+);	
 
 ALTER TABLE empleado 
 ADD activo SMALLINT UNSIGNED DEFAULT 1 NOT NULL;
@@ -73,6 +73,20 @@ CREATE TABLE gestion_deuda(
 
 
 -- TERCER SPRINT
+DROP TABLE categoria;
+CREATE TABLE categoria(
+id INT AUTO_INCREMENT PRIMARY KEY UNIQUE not null,
+nombre VARCHAR(200) NOT NULL UNIQUE
+);
+ALTER TABLE categoria 
+ADD descripcion VARCHAR(200);
+
+CREATE TABLE registro(
+id_producto VARCHAR(10) NOT NULL,
+id_categoria VARCHAR(10) NOT NULL,
+fecha_cambio DATETIME
+);
+DROP TABLE productos;
 CREATE TABLE productos(
 	id INT AUTO_INCREMENT PRIMARY KEY,
 	nombre VARCHAR(200) NOT NULL,
@@ -80,10 +94,12 @@ CREATE TABLE productos(
     nombre_categoria VARCHAR(200) NOT NULL,
     precio_compra INT NOT NULL,
     precio_venta INT NOT NULL,
+    fecha_ingreso DATE NOT NULL,
 	stock DECIMAL NOT NULL,
-    id_proveedor INT NOT NULL,
+    marca VARCHAR(200),
     nombre_proveedor VARCHAR(200) NOT NULL
 );
+alter table productos ADD activo SMALLINT UNSIGNED DEFAULT 1 NOT NULL;
 
 
 -- Usuario de prueba
@@ -115,3 +131,37 @@ CREATE TABLE logData(
 
 ALTER TABLE cliente 
 ADD activo SMALLINT UNSIGNED DEFAULT 1 NOT NULL;
+
+select * from productos;
+select * from registro;
+select * from categoria;
+
+insert into categoria (nombre, descripcion)values('Carnes', 'Todos los productos de origen animal que se denominen carnes');
+insert into categoria (nombre, descripcion)values('Carnes', 'Todos los productos de origen animal que se denominen carnes');
+Select * from categoria where nombre = 'Carnes';
+
+Select id  from categoria;
+Select *  from categoria;
+Select * from empleado;
+select * from cliente;
+
+UPDATE categoria SET nombre='Bebidaswa' where nombre = 'Bebidas Azucaradas' and descripcion ='Liquidos potables asdas';
+
+
+
+Insert into productos(nombre, categoria_id, nombre_categoria, precio_compra, precio_venta, fecha_ingreso, stock, marca, nombre_proveedor)
+values('papas', 3, 'paquetes', '2000', '3000', '29-02-22', 3, 'Margarita', 'Sapo');
+
+Insert into productos(nombre, categoria_id, nombre_categoria, precio_compra, precio_venta, fecha_ingreso, stock, marca, nombre_proveedor)
+values('huevo', 2, 'nose', '2000', '3000', '27-02-22', 3, '', 'Sapo');
+
+UPDATE productos SET nombre = 'papas de pollo' where ID = 2 and marca = '';
+
+Select * from productos;
+SELECT * FROM productos WHERE nombre='asdfghj' AND marca='dfghj';
+SELECT * FROM productos WHERE nombre like '%asdfghj%' AND marca like '%dfghj%'; 
+
+select id from categoria where nombre = 'Bebidaswa';
+select nombre from categoria where nombre = 'Carnitas';
+
+
