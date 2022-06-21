@@ -16,13 +16,7 @@ public class Producto {
     private String nombre;
     private Long idCategoria; 
 
-    public Long getIdCategoria() {
-        return idCategoria;
-    }
-
-    public void setIdCategoria(Long idCategoria) {
-        this.idCategoria = idCategoria;
-    }
+    
     private String nombreCategoria;
 
 
@@ -32,6 +26,14 @@ public class Producto {
     private String marca;
     private Integer activo;
 
+    public Long getIdCategoria() {
+        return idCategoria;
+    }
+
+    public void setIdCategoria(Long idCategoria) {
+        this.idCategoria = idCategoria;
+    }
+    
     public Integer getActivo() {
         return activo;
     }

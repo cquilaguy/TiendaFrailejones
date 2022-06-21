@@ -59,7 +59,10 @@ public class ControladorProducto implements IProducto {
         return consultasProducto.obtenerTodasLasCategorias();
     }
     
-    
+    @Override
+    public boolean elementosTablaRegistro(Producto producto, Long id){
+        return consultasProducto.elementosTablaRegistro(producto, id);
+    }
     
 
     

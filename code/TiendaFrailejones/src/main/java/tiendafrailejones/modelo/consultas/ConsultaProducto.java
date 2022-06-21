@@ -27,11 +27,12 @@ public class ConsultaProducto extends Conexion implements IProducto{
    
     @Override
     public void actualizar(Producto producto, Long id) {
+        java.sql.Date fecha = new java.sql.Date(producto.getFechaIngreso().getTime());
         PreparedStatement ps = null;
         Connection connection = getConexion();
         String sql = "UPDATE productos SET nombre=?, categoria_id=?, nombre_categoria=?, precio_compra=?, precio_venta=?,"
                 + " fecha_ingreso=?, stock=?, marca=?, nombre_proveedor=?"
-                + " WHERE id=? and marca=?";
+                + " WHERE id=? ";
         try {
             ps = connection.prepareStatement(sql);
             ps.setString(1, producto.getNombre());
@@ -39,12 +40,11 @@ public class ConsultaProducto extends Conexion implements IProducto{
             ps.setString(3, producto.getNombreCategoria());
             ps.setLong(4, producto.getPrecioCompra());
             ps.setLong(5, producto.getPrecioVenta());
-            ps.setDate(6, (Date) producto.getFechaIngreso());
+            ps.setDate(6, fecha);
             ps.setLong(7, producto.getStock());
             ps.setString(8, producto.getMarca());
             ps.setString(9, producto.getNombreProveedor());
             ps.setLong(10, producto.getId());
-            ps.setString(11, producto.getMarca());
 
             ps.execute();
 
@@ -67,11 +67,11 @@ public class ConsultaProducto extends Conexion implements IProducto{
         PreparedStatement ps = null;
         ResultSet resultSet = null;
         Connection connection = getConexion();
-        String sql = "SELECT * FROM productos WHERE nombre=?, marca=? ";
+        String sql = "SELECT * FROM productos WHERE nombre like ? AND marca like ? ";
         try {
             ps = connection.prepareStatement(sql);
-            ps.setString(1, nombre);
-            ps.setString(2, marca);
+            ps.setString(1, "%" + nombre + "%");
+            ps.setString(2, "%" + marca + "%");
             resultSet = ps.executeQuery();
 
             if (resultSet.next()) {
@@ -144,6 +144,7 @@ public class ConsultaProducto extends Conexion implements IProducto{
 
     @Override
     public boolean crear(Producto producto, Long id) {
+        java.sql.Date fecha = new java.sql.Date(producto.getFechaIngreso().getTime());
         PreparedStatement ps = null;
         Connection connection = getConexion();
         String sql = "INSERT INTO productos (nombre, categoria_id, nombre_categoria, precio_compra, precio_venta, fecha_ingreso, stock, marca, nombre_proveedor) "
@@ -155,7 +156,7 @@ public class ConsultaProducto extends Conexion implements IProducto{
             ps.setString(3, producto.getNombreCategoria());
             ps.setLong(4, producto.getPrecioCompra());
             ps.setLong(5, producto.getPrecioVenta());
-            ps.setDate(6, (Date) producto.getFechaIngreso());
+            ps.setDate(6, fecha);
             ps.setLong(7, producto.getStock());
             ps.setString(8, producto.getMarca());
             ps.setString(9, producto.getNombreProveedor());
@@ -203,7 +204,7 @@ public class ConsultaProducto extends Conexion implements IProducto{
         PreparedStatement ps = null;
         ResultSet resultSet = null;
         Connection connection = getConexion();
-        String sql = "SELECT id FROM categoria WHERE nombre like ? ";
+        String sql = "SELECT id FROM categoria WHERE nombre like  ? ";
         try {
             ps = connection.prepareStatement(sql);
             ps.setString(1, "%" + nombre + "%");
@@ -211,11 +212,15 @@ public class ConsultaProducto extends Conexion implements IProducto{
 
             if (resultSet.next()) {
                 idCategoria = resultSet.getLong("id");
+                System.out.println(idCategoria);
                 return idCategoria;
             }
+            System.out.println(idCategoria);
             return idCategoria;
         } catch (SQLException e) {
+            System.out.println(idCategoria);
             System.err.println(e);
+            
             return idCategoria;
         } finally {
             try {
@@ -257,6 +262,33 @@ public class ConsultaProducto extends Conexion implements IProducto{
         }
     
     }    
+    @Override
+        public boolean elementosTablaRegistro(Producto producto, Long id){
+       java.sql.Date fecha = new java.sql.Date(producto.getFechaIngreso().getTime());
+        PreparedStatement ps = null;
+        Connection connection = getConexion();
+        String sql = "INSERT INTO registro (id_producto, id_categoria, fecha_cambio) "
+                + "VALUES (?, ?, ?)";
+        try {
+            ps = connection.prepareStatement(sql);
+            ps.setLong(1, producto.getId());
+            ps.setLong(2, id );
+            ps.setDate(3, fecha);       
+            ps.execute();
+            return true;
+            
+        } catch (SQLException e) {
+            System.err.println(e);
+            return false;
+        } finally {
+            try {
+                connection.close();
+            } catch (SQLException e) {
+                System.err.println(e);
+            }
+        }
+    
+    }
 
 
     

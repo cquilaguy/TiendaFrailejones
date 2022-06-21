@@ -8,8 +8,13 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.math.BigDecimal;
 import java.sql.Array;
+import java.time.Instant;
+import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.List;
 import java.util.Objects;
 import javax.swing.JFileChooser;
@@ -62,8 +67,10 @@ public class InventarioProducto extends javax.swing.JFrame {
     //private ControladorDeuda controladorDeuda = new ControladorDeuda(consultaDeuda);
 
     private boolean actualizar = false;
-    private String tipoDocumento;
+    private String tipoCategoria;
+    private Long categoria = null;
     private String tipoUsuario;
+    Calendar fecha = new GregorianCalendar();
     private Integer activo = 1;
 
     private DefaultTableModel defaultTableModel;
@@ -104,7 +111,6 @@ public class InventarioProducto extends javax.swing.JFrame {
     private void datosPredeterminados() {
         btnEliminar.setEnabled(false);
         tipoUsuario = "CLIENTE";
-        tipoDocumento = "CÉDULA";
     }
 
     private void llenarTabla() {
@@ -137,7 +143,6 @@ public class InventarioProducto extends javax.swing.JFrame {
         jLabel9 = new javax.swing.JLabel();
         inputCantidad = new javax.swing.JTextField();
         jLabel10 = new javax.swing.JLabel();
-        inputidCategoria = new javax.swing.JTextField();
         jPanel4 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tablaProductos = new javax.swing.JTable();
@@ -265,11 +270,14 @@ public class InventarioProducto extends javax.swing.JFrame {
                 inputCantidadActionPerformed(evt);
             }
         });
+        inputCantidad.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                inputCantidadKeyTyped(evt);
+            }
+        });
 
         jLabel10.setFont(new java.awt.Font("Segoe UI Semibold", 0, 12)); // NOI18N
         jLabel10.setText("Cantidad");
-
-        inputidCategoria.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -314,9 +322,7 @@ public class InventarioProducto extends javax.swing.JFrame {
                         .addContainerGap())
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addComponent(inputNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(inputidCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(50, 50, 50))))
+                        .addGap(50, 175, Short.MAX_VALUE))))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -324,9 +330,7 @@ public class InventarioProducto extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(inputNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(inputidCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(inputNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jLabel3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -614,7 +618,8 @@ public class InventarioProducto extends javax.swing.JFrame {
         if (fila == -1) {
             JOptionPane.showMessageDialog(null, "Cliente no seleccionado");
         } else {
-            String nombre = String.valueOf(tablaProductos.getValueAt(fila, 3));
+            
+            String nombre = String.valueOf(tablaProductos.getValueAt(fila, 1));
             String marca = String.valueOf(tablaProductos.getValueAt(fila, 6));
             producto = getProducto(nombre, marca);
             inputNombre.setText(producto.getNombre());
@@ -626,7 +631,6 @@ public class InventarioProducto extends javax.swing.JFrame {
             inputCantidad.setText(String.valueOf(producto.getStock()));
             actualizar = true;
             inputPrecioCompra.setEnabled(false);
-            jcomboxTipoCategoriaId.setEnabled(false);
             btnCrearActualizar.setText("Actualizar");
             habilitarBotonEliminar();
         }
@@ -657,52 +661,57 @@ public class InventarioProducto extends javax.swing.JFrame {
 
     private void btnCrearActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCrearActualizarActionPerformed
         try {
-            long miliseconds = System.currentTimeMillis();
-            Date fecha = new Date(miliseconds);
-            verificarCampos(); // revisaaaaaaaaaaaaar
-            Long categoria = null;
-
+            
+            System.out.println(fecha.getTime());
+            
+            verificarCampos();     
+            
             Producto prod = controladorProducto.existePorNombre(inputNombre.getText(),inputMarca.getText());
             
 
             if (!actualizar && prod != null && Objects.equals(prod.getNombre(), inputNombre.getText()) && Objects.equals(prod.getMarca(), inputMarca.getText())) {
                 JOptionPane.showMessageDialog(null, "Producto ya existe con ese numero de identificación");
             } else if (producto.getId() != null && actualizar) {  // Actualizar
-                categoria = controladorProducto.obtenerCategoriaIdPorNombre(jcomboxTipoCategoriaId.getPrototypeDisplayValue());
+                categoria = controladorProducto.obtenerCategoriaIdPorNombre((String) jcomboxTipoCategoriaId.getSelectedItem());
 
                 producto.setId(producto.getId());
                 producto.setNombre(inputNombre.getText());
-                producto.setIdCategoria(controladorProducto.obtenerCategoriaIdPorNombre(jcomboxTipoCategoriaId.getPrototypeDisplayValue()));
-                producto.setNombreCategoria(jcomboxTipoCategoriaId.getPrototypeDisplayValue());
+                producto.setIdCategoria(controladorProducto.obtenerCategoriaIdPorNombre((String) jcomboxTipoCategoriaId.getSelectedItem()));
+                producto.setNombreCategoria((String) jcomboxTipoCategoriaId.getSelectedItem());
                 producto.setPrecioCompra(Integer.valueOf(inputPrecioCompra.getText()));
                 producto.setPrecioVenta(Integer.valueOf(inputPrecioVenta.getText()));
-                producto.setFechaIngreso(fecha);
+                producto.setFechaIngreso(fecha.getTime());
                 producto.setStock(Integer.valueOf(inputCantidad.getText()));
                 producto.setMarca(inputMarca.getText());
                 producto.setNombreProveedor(inputNombreProveedor.getText());
               
                 controladorProducto.actualizar(producto,categoria);
+                controladorProducto.elementosTablaRegistro(producto, categoria);
                 btnCrearActualizar.setText("Guardar");
-                deshabilitarBotonEliminar();
                 limpiarCampos();
+                inputPrecioCompra.setEnabled(true);
                 llenarTabla();
+                deshabilitarBotonEliminar();
+                
 
                 JOptionPane.showMessageDialog(null, "Se ha actualizado el registro");
             } else { // Crear
-                categoria = controladorProducto.obtenerCategoriaIdPorNombre(jcomboxTipoCategoriaId.getPrototypeDisplayValue());
+                
+                
+                categoria = controladorProducto.obtenerCategoriaIdPorNombre((String) jcomboxTipoCategoriaId.getSelectedItem());
                 System.out.println(categoria);
                 producto.setNombre(inputNombre.getText());
                 producto.setIdCategoria(controladorProducto.obtenerCategoriaIdPorNombre((String) jcomboxTipoCategoriaId.getSelectedItem()));
-                
-                producto.setNombreCategoria(jcomboxTipoCategoriaId.getPrototypeDisplayValue());
+                producto.setNombreCategoria((String) jcomboxTipoCategoriaId.getSelectedItem());
                 producto.setPrecioCompra(Integer.valueOf(inputPrecioCompra.getText()));
                 producto.setPrecioVenta(Integer.valueOf(inputPrecioVenta.getText()));
-                producto.setFechaIngreso(producto.getFechaIngreso());
+                producto.setFechaIngreso(fecha.getTime());
                 producto.setStock(Integer.valueOf(inputCantidad.getText()));
                 producto.setMarca(inputMarca.getText());
                 producto.setNombreProveedor(inputNombreProveedor.getText());
                
                 controladorProducto.crear(producto, categoria);
+                
                 llenarTabla();
                 limpiarCampos();
                 deshabilitarBotonEliminar();
@@ -722,6 +731,7 @@ public class InventarioProducto extends javax.swing.JFrame {
         verificarSiEsDigito(evt);
     }//GEN-LAST:event_inputPrecioVentaKeyTyped
 
+    
     private void jComboBoxOrdenarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxOrdenarActionPerformed
         //String evento = jComboBoxOrdenar.getSelectedItem().toString();
         //ordenar(evento);
@@ -767,8 +777,11 @@ public class InventarioProducto extends javax.swing.JFrame {
     }//GEN-LAST:event_inputMarcaActionPerformed
 
     private void inputCantidadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_inputCantidadActionPerformed
-        // TODO add your handling code here:
     }//GEN-LAST:event_inputCantidadActionPerformed
+
+    private void inputCantidadKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_inputCantidadKeyTyped
+    verificarSiEsDigito(evt);
+    }//GEN-LAST:event_inputCantidadKeyTyped
 
     private void verificarSiEsDigito(java.awt.event.KeyEvent evt) {
         char c = evt.getKeyChar();
@@ -800,7 +813,7 @@ public class InventarioProducto extends javax.swing.JFrame {
         for(String categoria : catego){
             jcomboxTipoCategoriaId.addItem(categoria);
         }
-        inputidCategoria.setText(String.valueOf(controladorProducto.obtenerCategoriaIdPorNombre(jcomboxTipoCategoriaId.getPrototypeDisplayValue())));
+        
         }
 
 
@@ -859,7 +872,6 @@ public class InventarioProducto extends javax.swing.JFrame {
     private javax.swing.JTextField inputNombreProveedor;
     private javax.swing.JTextField inputPrecioCompra;
     private javax.swing.JTextField inputPrecioVenta;
-    private javax.swing.JTextField inputidCategoria;
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
     private javax.swing.JComboBox<String> jComboBoxOrdenar;

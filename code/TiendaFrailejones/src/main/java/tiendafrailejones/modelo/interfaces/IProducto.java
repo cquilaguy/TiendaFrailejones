@@ -19,6 +19,7 @@ public interface IProducto {
     void eliminar(Long id);
     Producto existePorNombre(String Nombre, String marca);
     Long obtenerCategoriaIdPorNombre(String Nombre);
+    boolean elementosTablaRegistro(Producto producto, Long id);
     List<Producto> obtenerTodosLosProductos();
     List<String> obtenerTodasLasCategorias();
     //List<Cliente> buscar(String parametros);
