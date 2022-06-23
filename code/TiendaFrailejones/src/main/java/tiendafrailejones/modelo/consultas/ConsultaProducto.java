@@ -323,7 +323,7 @@ public class ConsultaProducto extends Conexion implements IProducto{
         }  
         }
 
-        public List<Producto> buscar(String parametros){
+        public List<Producto> buscar(String parametros){                                                                            
         List<Producto> productos = new ArrayList<>();
         PreparedStatement ps = null;
         ResultSet resultSet = null;
