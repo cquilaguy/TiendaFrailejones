@@ -10,6 +10,7 @@ import tiendafrailejones.modelo.Deuda;
 import tiendafrailejones.modelo.consultas.ConsultaDeuda;
 import tiendafrailejones.modelo.consultas.ConsultasCliente;
 import tiendafrailejones.utils.ExportToExcel;
+import tiendafrailejones.vista.b_administrador.b_Menu;
 
 public class ReportesVista extends javax.swing.JFrame {
 
@@ -260,7 +261,9 @@ public class ReportesVista extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
+        b_Menu b = new b_Menu();
+        b.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
