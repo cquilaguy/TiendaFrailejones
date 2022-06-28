@@ -50,11 +50,10 @@ public class ab_AbonoDeuda extends javax.swing.JDialog {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("FraileStore Pagar");
-        setMaximumSize(new java.awt.Dimension(285, 400));
         setMinimumSize(new java.awt.Dimension(285, 400));
         setResizable(false);
 
-        jPanel2.setBackground(javax.swing.UIManager.getDefaults().getColor("Actions.Green"));
+        jPanel2.setBackground(new java.awt.Color(51, 153, 0));
         jPanel2.setMaximumSize(new java.awt.Dimension(285, 50));
         jPanel2.setMinimumSize(new java.awt.Dimension(285, 50));
         jPanel2.setPreferredSize(new java.awt.Dimension(285, 50));
@@ -70,12 +69,12 @@ public class ab_AbonoDeuda extends javax.swing.JDialog {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(labelNombreCliente)
-                .addContainerGap(129, Short.MAX_VALUE))
+                .addContainerGap(151, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap(22, Short.MAX_VALUE)
+                .addContainerGap(19, Short.MAX_VALUE)
                 .addComponent(labelNombreCliente)
                 .addContainerGap())
         );
@@ -104,7 +103,7 @@ public class ab_AbonoDeuda extends javax.swing.JDialog {
         labelAbonoExcedido.setText("   ");
 
         jButton1.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
-        jButton1.setForeground(javax.swing.UIManager.getDefaults().getColor("Actions.Yellow"));
+        jButton1.setForeground(new java.awt.Color(255, 204, 0));
         jButton1.setText("CANCELAR");
         jButton1.setMaximumSize(new java.awt.Dimension(120, 50));
         jButton1.setMinimumSize(new java.awt.Dimension(120, 50));
@@ -115,7 +114,7 @@ public class ab_AbonoDeuda extends javax.swing.JDialog {
         });
 
         btnGuardar.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
-        btnGuardar.setForeground(javax.swing.UIManager.getDefaults().getColor("Actions.Green"));
+        btnGuardar.setForeground(new java.awt.Color(51, 153, 0));
         btnGuardar.setText("CONFIRMAR");
         btnGuardar.setMaximumSize(new java.awt.Dimension(120, 50));
         btnGuardar.setMinimumSize(new java.awt.Dimension(120, 50));

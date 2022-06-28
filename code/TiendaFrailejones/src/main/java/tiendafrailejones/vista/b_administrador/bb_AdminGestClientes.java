@@ -204,7 +204,7 @@ public class bb_AdminGestClientes extends javax.swing.JFrame {
         jLabel7.setFont(new java.awt.Font("Segoe UI Semibold", 0, 12)); // NOI18N
         jLabel7.setText("Permitir Deuda");
 
-        btnEliminar.setBackground(javax.swing.UIManager.getDefaults().getColor("Actions.Red"));
+        btnEliminar.setBackground(new java.awt.Color(255, 102, 102));
         btnEliminar.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnEliminar.setForeground(new java.awt.Color(255, 255, 255));
         btnEliminar.setText("Eliminar");
@@ -214,7 +214,7 @@ public class bb_AdminGestClientes extends javax.swing.JFrame {
             }
         });
 
-        jButton3.setBackground(javax.swing.UIManager.getDefaults().getColor("Actions.Yellow"));
+        jButton3.setBackground(new java.awt.Color(255, 204, 0));
         jButton3.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jButton3.setForeground(new java.awt.Color(255, 255, 255));
         jButton3.setText("Cancelar");
@@ -224,7 +224,7 @@ public class bb_AdminGestClientes extends javax.swing.JFrame {
             }
         });
 
-        btnCrearActualizar.setBackground(javax.swing.UIManager.getDefaults().getColor("Actions.Green"));
+        btnCrearActualizar.setBackground(new java.awt.Color(51, 153, 0));
         btnCrearActualizar.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnCrearActualizar.setForeground(new java.awt.Color(255, 255, 255));
         btnCrearActualizar.setText("Guardar");
@@ -341,7 +341,8 @@ public class bb_AdminGestClientes extends javax.swing.JFrame {
             }
         });
 
-        btnBuscar.setBackground(javax.swing.UIManager.getDefaults().getColor("Actions.Blue"));
+        btnBuscar.setBackground(new java.awt.Color(51, 153, 255));
+        btnBuscar.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnBuscar.setForeground(new java.awt.Color(255, 255, 255));
         btnBuscar.setText("Buscar");
         btnBuscar.addActionListener(new java.awt.event.ActionListener() {
@@ -350,7 +351,8 @@ public class bb_AdminGestClientes extends javax.swing.JFrame {
             }
         });
 
-        btnQuitar.setBackground(javax.swing.UIManager.getDefaults().getColor("Actions.Yellow"));
+        btnQuitar.setBackground(new java.awt.Color(255, 204, 0));
+        btnQuitar.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnQuitar.setForeground(new java.awt.Color(255, 255, 255));
         btnQuitar.setText("Quitar filtros");
         btnQuitar.addActionListener(new java.awt.event.ActionListener() {
@@ -359,7 +361,7 @@ public class bb_AdminGestClientes extends javax.swing.JFrame {
             }
         });
 
-        bntVerMas.setBackground(javax.swing.UIManager.getDefaults().getColor("Actions.Blue"));
+        bntVerMas.setBackground(new java.awt.Color(51, 153, 255));
         bntVerMas.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         bntVerMas.setForeground(new java.awt.Color(255, 255, 255));
         bntVerMas.setText("Ver mas");
@@ -369,7 +371,7 @@ public class bb_AdminGestClientes extends javax.swing.JFrame {
             }
         });
 
-        btnExportExcel.setBackground(javax.swing.UIManager.getDefaults().getColor("Actions.Blue"));
+        btnExportExcel.setBackground(new java.awt.Color(51, 153, 255));
         btnExportExcel.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnExportExcel.setForeground(new java.awt.Color(255, 255, 255));
         btnExportExcel.setText("Exportar excel");

@@ -227,8 +227,8 @@ public class cc_VerMasCliente extends javax.swing.JFrame
         ));
         jScrollPane1.setViewportView(tabla);
 
-        jButton1.setBackground(javax.swing.UIManager.getDefaults().getColor("Actions.Red"));
-        jButton1.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
+        jButton1.setBackground(new java.awt.Color(255, 102, 102));
+        jButton1.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
         jButton1.setForeground(new java.awt.Color(255, 255, 255));
         jButton1.setText("Nueva Deuda");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -237,8 +237,8 @@ public class cc_VerMasCliente extends javax.swing.JFrame
             }
         });
 
-        btnAbonar.setBackground(javax.swing.UIManager.getDefaults().getColor("Actions.Green"));
-        btnAbonar.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
+        btnAbonar.setBackground(new java.awt.Color(51, 153, 0));
+        btnAbonar.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
         btnAbonar.setForeground(new java.awt.Color(255, 255, 255));
         btnAbonar.setText("Pagar Deuda");
         btnAbonar.addActionListener(new java.awt.event.ActionListener() {
@@ -293,9 +293,9 @@ public class cc_VerMasCliente extends javax.swing.JFrame
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 442, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnAbonar, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(78, Short.MAX_VALUE))
+                .addGap(78, 78, 78))
         );
 
         pack();

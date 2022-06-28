@@ -47,7 +47,7 @@ public class ab_AgregarDeuda extends javax.swing.JDialog {
         setTitle("FraileStore Fiar");
         setResizable(false);
 
-        jPanel2.setBackground(javax.swing.UIManager.getDefaults().getColor("Actions.Red"));
+        jPanel2.setBackground(new java.awt.Color(255, 102, 102));
         jPanel2.setMaximumSize(new java.awt.Dimension(285, 50));
         jPanel2.setMinimumSize(new java.awt.Dimension(285, 50));
         jPanel2.setPreferredSize(new java.awt.Dimension(285, 50));
@@ -99,7 +99,7 @@ public class ab_AgregarDeuda extends javax.swing.JDialog {
         jScrollPane1.setViewportView(inputDescripcion);
 
         jButton1.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
-        jButton1.setForeground(javax.swing.UIManager.getDefaults().getColor("Actions.Yellow"));
+        jButton1.setForeground(new java.awt.Color(255, 204, 0));
         jButton1.setText("CANCELAR");
         jButton1.setMaximumSize(new java.awt.Dimension(120, 50));
         jButton1.setMinimumSize(new java.awt.Dimension(120, 50));
@@ -111,7 +111,7 @@ public class ab_AgregarDeuda extends javax.swing.JDialog {
         });
 
         btnGuardar.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
-        btnGuardar.setForeground(javax.swing.UIManager.getDefaults().getColor("Actions.Red"));
+        btnGuardar.setForeground(new java.awt.Color(255, 102, 102));
         btnGuardar.setText("CONFIRMAR");
         btnGuardar.setMaximumSize(new java.awt.Dimension(120, 50));
         btnGuardar.setMinimumSize(new java.awt.Dimension(120, 50));

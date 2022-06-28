@@ -54,10 +54,8 @@ public class login extends javax.swing.JFrame {
         setTitle("FraileStore");
         setBackground(new java.awt.Color(255, 0, 0));
         setLocationByPlatform(true);
-        setMaximumSize(new java.awt.Dimension(1280, 720));
         setMinimumSize(new java.awt.Dimension(1280, 720));
         setName("a_LogIn"); // NOI18N
-        setPreferredSize(new java.awt.Dimension(1280, 720));
         setResizable(false);
         setSize(new java.awt.Dimension(1280, 720));
 
@@ -105,7 +103,7 @@ public class login extends javax.swing.JFrame {
             }
         });
 
-        btnLogin.setBackground(new java.awt.Color(0, 204, 102));
+        btnLogin.setBackground(new java.awt.Color(51, 153, 255));
         btnLogin.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
         btnLogin.setForeground(new java.awt.Color(255, 255, 255));
         btnLogin.setText("INGRESAR");

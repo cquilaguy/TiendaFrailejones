@@ -279,7 +279,9 @@ public class ba_GestionUsuarios extends javax.swing.JFrame {
             }
         });
 
-        jButton1.setBackground(new java.awt.Color(255, 255, 51));
+        jButton1.setBackground(new java.awt.Color(255, 204, 0));
+        jButton1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jButton1.setForeground(new java.awt.Color(255, 255, 255));
         jButton1.setText("Cancelar");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -287,7 +289,7 @@ public class ba_GestionUsuarios extends javax.swing.JFrame {
             }
         });
 
-        btnEliminar.setBackground(new java.awt.Color(255, 67, 56));
+        btnEliminar.setBackground(new java.awt.Color(255, 102, 102));
         btnEliminar.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnEliminar.setForeground(new java.awt.Color(255, 255, 255));
         btnEliminar.setText("Eliminar");
@@ -297,7 +299,7 @@ public class ba_GestionUsuarios extends javax.swing.JFrame {
             }
         });
 
-        btnCrearActualizar.setBackground(javax.swing.UIManager.getDefaults().getColor("Actions.Green"));
+        btnCrearActualizar.setBackground(new java.awt.Color(51, 153, 0));
         btnCrearActualizar.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnCrearActualizar.setForeground(new java.awt.Color(255, 255, 255));
         btnCrearActualizar.setText("Crear / Actualizar");
@@ -411,8 +413,8 @@ public class ba_GestionUsuarios extends javax.swing.JFrame {
         });
         jScrollPane2.setViewportView(tablaEmpleados);
 
-        jButton2.setBackground(javax.swing.UIManager.getDefaults().getColor("Actions.Blue"));
-        jButton2.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        jButton2.setBackground(new java.awt.Color(51, 153, 255));
+        jButton2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jButton2.setForeground(new java.awt.Color(255, 255, 255));
         jButton2.setText("Buscar");
         jButton2.addActionListener(new java.awt.event.ActionListener() {

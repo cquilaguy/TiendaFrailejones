@@ -153,7 +153,7 @@ public class bba_VerMasCliente extends javax.swing.JFrame
         nombreCliente.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         nombreCliente.setText("Nombre cliente");
 
-        jButton1.setBackground(new java.awt.Color(255, 67, 56));
+        jButton1.setBackground(new java.awt.Color(255, 102, 102));
         jButton1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jButton1.setForeground(new java.awt.Color(255, 255, 255));
         jButton1.setText("Nueva Deuda");
@@ -163,7 +163,7 @@ public class bba_VerMasCliente extends javax.swing.JFrame
             }
         });
 
-        btnAbonar.setBackground(new java.awt.Color(130, 188, 0));
+        btnAbonar.setBackground(new java.awt.Color(51, 153, 0));
         btnAbonar.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnAbonar.setForeground(new java.awt.Color(255, 255, 255));
         btnAbonar.setText("Pagar Deuda");
