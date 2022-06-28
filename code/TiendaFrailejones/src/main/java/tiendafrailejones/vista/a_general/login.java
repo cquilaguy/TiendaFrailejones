@@ -1,10 +1,15 @@
 package tiendafrailejones.vista.a_general;
 
-
+import com.formdev.flatlaf.FlatDarculaLaf;
+import com.formdev.flatlaf.FlatDarkLaf;
+import com.formdev.flatlaf.FlatIntelliJLaf;
+import com.formdev.flatlaf.FlatLaf;
+import com.formdev.flatlaf.FlatLightLaf;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import javax.swing.UIManager;
 import tiendafrailejones.controlador.ControladorLogin;
 import tiendafrailejones.modelo.Login;
 import tiendafrailejones.modelo.consultas.ConsultaContraseña;
@@ -100,7 +105,7 @@ public class login extends javax.swing.JFrame {
             }
         });
 
-        btnLogin.setBackground(javax.swing.UIManager.getDefaults().getColor("Actions.Blue"));
+        btnLogin.setBackground(new java.awt.Color(0, 204, 102));
         btnLogin.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
         btnLogin.setForeground(new java.awt.Color(255, 255, 255));
         btnLogin.setText("INGRESAR");
@@ -185,7 +190,7 @@ public class login extends javax.swing.JFrame {
         login.setPassword(pass);
 
         Login loginTmp = controladorLogin.existeUsuario(login);
-        if (loginTmp.getCorreo()== null || loginTmp.getPassword() == null) {
+        if (loginTmp.getCorreo() == null || loginTmp.getPassword() == null) {
             labelUsuarioOContraseña.setText("Usuario o contraseña incorrecto");
         } else {
             DataUser dataUser = DataUser.getDataUser();
@@ -237,22 +242,13 @@ public class login extends javax.swing.JFrame {
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
          * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
          */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
+//        try {
+//            UIManager.setLookAndFeel(new FlatLightLaf());
+//        } catch (Exception ex) {
+//            System.err.println("Failed to initialize LaF");
+//        }
+//        FlatLightLaf.setup();
+        FlatLaf.setup(new FlatDarculaLaf());
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>

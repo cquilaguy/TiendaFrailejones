@@ -7,6 +7,7 @@ import javax.swing.UnsupportedLookAndFeelException;
 import tiendafrailejones.vista.a_general.login;
 import tiendafrailejones.vista.pendiente.AdminGestCustomer;
 import tiendafrailejones.vista.pendiente.InventarioProducto;
+import tiendafrailejones.vista.pendiente.ReportesVista;
 
 /**
  *
@@ -192,7 +193,10 @@ public class b_Menu extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        JOptionPane.showMessageDialog(null, "En construccion");
+//        JOptionPane.showMessageDialog(null, "En construccion");
+        ReportesVista reportesVista = new ReportesVista();
+        reportesVista.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void btnGestionarUsuriosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGestionarUsuriosActionPerformed

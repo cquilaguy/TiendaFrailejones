@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package tiendafrailejones.controlador;
 
 import java.util.List;
@@ -9,10 +5,7 @@ import tiendafrailejones.modelo.Deuda;
 import tiendafrailejones.modelo.consultas.ConsultaDeuda;
 import tiendafrailejones.modelo.interfaces.IDeuda;
 
-/**
- *
- * @author alan
- */
+
 public class ControladorDeuda implements IDeuda{
 
     public ConsultaDeuda consultaDeuda;
@@ -29,6 +22,11 @@ public class ControladorDeuda implements IDeuda{
     @Override
     public List<Deuda> obtenerDeudas(Long idUsuario) {
         return consultaDeuda.obtenerDeudas(idUsuario);
+    }
+
+    @Override
+    public List<Deuda> obtenerDeudasTreintDias(Long idUsuario) {
+        return consultaDeuda.obtenerDeudasTreintDias(idUsuario);
     }
     
 }
