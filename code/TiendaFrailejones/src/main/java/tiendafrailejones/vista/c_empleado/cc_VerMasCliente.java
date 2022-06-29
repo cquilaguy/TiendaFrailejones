@@ -150,7 +150,7 @@ public class cc_VerMasCliente extends javax.swing.JFrame
         jPanel1.setMinimumSize(new java.awt.Dimension(1280, 100));
         jPanel1.setPreferredSize(new java.awt.Dimension(1280, 100));
 
-        btnVolver.setText("INICIO");
+        btnVolver.setIcon(new javax.swing.ImageIcon(getClass().getResource("/btn_volver.png"))); // NOI18N
         btnVolver.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnVolverActionPerformed(evt);

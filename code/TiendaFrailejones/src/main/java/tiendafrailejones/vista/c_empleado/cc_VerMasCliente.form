@@ -140,7 +140,9 @@
       <SubComponents>
         <Component class="javax.swing.JButton" name="btnVolver">
           <Properties>
-            <Property name="text" type="java.lang.String" value="INICIO"/>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/btn_volver.png"/>
+            </Property>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnVolverActionPerformed"/>

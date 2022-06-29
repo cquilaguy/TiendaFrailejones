@@ -434,7 +434,7 @@ public class bb_AdminGestClientes extends javax.swing.JFrame {
         jPanel1.setMaximumSize(new java.awt.Dimension(1280, 100));
         jPanel1.setMinimumSize(new java.awt.Dimension(1280, 100));
 
-        jButton6.setText("Volver");
+        jButton6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/btn_volver.png"))); // NOI18N
         jButton6.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton6ActionPerformed(evt);
