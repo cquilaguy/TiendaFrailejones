@@ -26,7 +26,8 @@ public class AES {
 
     public AES() throws FileNotFoundException, IOException {
         Properties properties = new Properties();
-        FileInputStream inputStream = new FileInputStream("src/main/java/properties/config.properties");
+        FileInputStream inputStream = new FileInputStream("src/main/resources/config.properties");
+//        properties.load(getClass().getResourceAsStream("/config.properties"));
         properties.load(inputStream);
         SECRET_KEY = properties.getProperty("password");
         if (SECRET_KEY == null) {

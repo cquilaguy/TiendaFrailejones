@@ -2,24 +2,26 @@ package tiendafrailejones.modelo;
 
 public class Login {
 
-    private Long id; 
-    private String user;
+    private Long id;
+    private String correo;
     private String password;
     private String userType;
     private Long idUsuario;
     private Long activo;
-    
-    public String getUser() {
-        return user;
+
+    public String getCorreo() {
+        return correo;
     }
 
-    public void setUser(String user) {
-        this.user = user;
+    public void setCorreo(String correo) {
+        this.correo = correo;
     }
 
     public String getPassword() {
         return password;
     }
+
+    
 
     public void setPassword(String password) {
         this.password = password;
@@ -60,6 +62,5 @@ public class Login {
     public void setActivo(Long activo) {
         this.activo = activo;
     }
-    
-    
+
 }

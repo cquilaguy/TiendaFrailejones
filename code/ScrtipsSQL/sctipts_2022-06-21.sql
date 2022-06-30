@@ -1,0 +1,3 @@
+ALTER TABLE empleado ADD usuario VARCHAR(200) NOT NULL;
+
+ALTER TABLE cliente ADD permitir_deuda VARCHAR(1) DEFAULT 'S' NOT NULL;
